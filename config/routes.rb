@@ -1,5 +1,28 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :walk, except: [:show]
+
+  namespace :description do
+    resources :walk, only: [:show]
+  end
+
+  namespace :live do
+    resources :walk, only: [:show]
+  end
+
+  namespace :recap_and_review do
+    resources :walk, only: [:show]
+  end
+
+  namespace :recap_and_save do
+    resources :walk, only: %i[show edit]
+  end
+
+  namespace :my do
+    resources :walk, only: [:index]
+  end
+
+  resources :review, only: [:create]
 end
