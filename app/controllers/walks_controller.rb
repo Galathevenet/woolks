@@ -1,6 +1,6 @@
 class WalksController < ApplicationController
   def index
-    # affichage map + carte new walk + grilles cartes balades
+    # affichage map + carte nouvel itinéraire + grilles cartes balades
   end
 
   def new
