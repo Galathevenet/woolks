@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_28_132350) do
+ActiveRecord::Schema.define(version: 2022_03_01_115201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "hotspot_walks", force: :cascade do |t|
+    t.bigint "hotspot_id", null: false
+    t.bigint "walk_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hotspot_id"], name: "index_hotspot_walks_on_hotspot_id"
+    t.index ["walk_id"], name: "index_hotspot_walks_on_walk_id"
+  end
+
+  create_table "hotspots", force: :cascade do |t|
+    t.string "type"
+    t.string "name"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "walk_id", null: false
+    t.bigint "user_id", null: false
+    t.text "comment"
+    t.integer "rating"
+    t.boolean "favorite"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["walk_id"], name: "index_reviews_on_walk_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +53,44 @@ ActiveRecord::Schema.define(version: 2022_02_28_132350) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "walks", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.date "date"
+    t.time "duration"
+    t.float "length"
+    t.boolean "published"
+    t.float "start_point_latitude"
+    t.float "start_point_longitude"
+    t.float "end_point_latitude"
+    t.float "end_point_longitude"
+    t.bigint "user_id", null: false
+    t.bigint "original_walk_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["original_walk_id"], name: "index_walks_on_original_walk_id"
+    t.index ["user_id"], name: "index_walks_on_user_id"
+  end
+
+  create_table "waypoints", force: :cascade do |t|
+    t.bigint "walk_id", null: false
+    t.float "longitude"
+    t.float "latitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["walk_id"], name: "index_waypoints_on_walk_id"
+  end
+
+  add_foreign_key "hotspot_walks", "hotspots"
+  add_foreign_key "hotspot_walks", "walks"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "walks"
+  add_foreign_key "walks", "users"
+  add_foreign_key "walks", "walks", column: "original_walk_id"
+  add_foreign_key "waypoints", "walks"
 end
