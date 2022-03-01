@@ -1,4 +1,6 @@
 class WalksController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+
   def index
     # affichage map + carte nouvel itinéraire + grilles cartes balades
   end
