@@ -1,0 +1,54 @@
+.btn-min {
+  width: 25%;
+  height: 25%;
+  color: white;
+  padding: 24px 24px;
+  border-radius: 4px;
+  background: $primary;
+  transition: 0.3s ease;
+  margin: 10px;
+  display: block;
+  text-align: center;
+  font-size: 24px;
+}
+
+.btn-min:hover {
+  background: $success;
+  color: white;
+}
+
+.btn-med {
+  width: 50%;
+  color: white;
+  padding: 24px 24px;
+  border-radius: 4px;
+  background: $primary;
+  transition: 0.3s ease;
+  margin: 10px;
+  display: block;
+  text-align: center;
+  font-size: 22px;
+}
+
+.btn-med:hover {
+  background: $success;
+  color: white;
+}
+
+.btn-max {
+  width: 75%;
+  color: white;
+  padding: 35px 24px;
+  border-radius: 4px;
+  background: $primary;
+  transition: 0.3s ease;
+  margin: 10px;
+  display: block;
+  text-align: center;
+  font-size: 22px;
+}
+
+.btn-max:hover {
+  background: $success;
+  color: white;
+}
