@@ -26,7 +26,7 @@ puts "The 4 best users on earth have been created out of nowhere"
 puts "Creating 2 Walks"
 
 walk_one = Walk.create!(user: gala, name: "Tour autour de Layrac", description: "Un super tour qui grimpe", date: "20220301", duration:  "3600", length: "6000", published: true)
-walk_two = Walk.create!(user: cedric, name: "Tour autour de Mérignac", description: "Un super tour plein d'immeubles", date: "20220302", duration:  "3650", length: "3000", published: false)
+walk_two = Walk.create!(user: cedric, name: "Tour autour de Mérignac", description: "Un super tour plein d'immeubles", date: "20220302", duration:  "3650", length: "3000", published: true)
 
 puts "Fake walks created... You walked a lot, take a break :)"
 
