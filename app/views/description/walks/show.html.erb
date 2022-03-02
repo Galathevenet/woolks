@@ -1,0 +1,19 @@
+<h1>This is the show for a walk before launching it</h1>
+
+<h2><%= @walk.name %></h2>
+<p><%= @walk.description %></p>
+<p><%= @walk.length %></p>
+<p><%= @walk.duration %></p>
+  <% @walk.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 390, crop: :fill%>
+  <% end %>
+
+
+
+<h2>REVIEWS</h2>
+
+<% @walk.reviews.each do |review| %>
+  <p><%= review.user.username %></p>
+  <p><%= review.rating %></p>
+  <p><%= review.comment %></p>
+<% end %>
