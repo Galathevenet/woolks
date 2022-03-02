@@ -11,5 +11,5 @@ class Walk < ApplicationRecord
   validates :date, presence: true
   validates :duration, presence: true
   validates :length, presence: true
-  # validates :published, presence: true
+  validates :published, exclusion: [nil]
 end

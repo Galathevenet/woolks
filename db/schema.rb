@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_01_164830) do
+ActiveRecord::Schema.define(version: 2022_03_02_095134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorite_walks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "walk_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_favorite_walks_on_user_id"
+    t.index ["walk_id"], name: "index_favorite_walks_on_walk_id"
+  end
 
   create_table "hotspot_walks", force: :cascade do |t|
     t.bigint "hotspot_id", null: false
@@ -62,7 +71,7 @@ ActiveRecord::Schema.define(version: 2022_03_01_164830) do
     t.string "description"
     t.date "date"
     t.float "length"
-    t.boolean "published"
+    t.boolean "published", default: false
     t.float "start_point_latitude"
     t.float "start_point_longitude"
     t.float "end_point_latitude"
@@ -85,6 +94,8 @@ ActiveRecord::Schema.define(version: 2022_03_01_164830) do
     t.index ["walk_id"], name: "index_waypoints_on_walk_id"
   end
 
+  add_foreign_key "favorite_walks", "users"
+  add_foreign_key "favorite_walks", "walks"
   add_foreign_key "hotspot_walks", "hotspots"
   add_foreign_key "hotspot_walks", "walks"
   add_foreign_key "reviews", "users"
