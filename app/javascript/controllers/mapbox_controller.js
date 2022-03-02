@@ -16,8 +16,6 @@ export default class extends Controller {
       console.log('Geolocation is NOT supported by your browser');
     } else {
       console.log('Geolocation IS supported by your browser');
-
-      // Center map on current position
       navigator.geolocation.getCurrentPosition(
         position => {
           this.map = new mapboxgl.Map({
@@ -26,14 +24,39 @@ export default class extends Controller {
             center: [position.coords.longitude, position.coords.latitude],
             zoom: 14
           });
-        }
-      );
 
-      this.#addHotspotsToMap();
+          this.map.on('load', () => {
+            this.#addHotspotsToMap();
+            this.#addOriginalWalkToMap();
+            // this.#addCurrentWalkToMap();
+          })
+
+
+
+        }
+
+      );
     }
   }
 
+  // #initializeMap(position) {
+  //   console.log("initializeMap")
+  //   console.log(this)
+  //   this.map = new mapboxgl.Map({
+  //     container: this.element,
+  //     style: "mapbox://styles/mapbox/streets-v10",
+  //     center: [position.coords.longitude, position.coords.latitude],
+  //     zoom: 14
+  //   });
+
+  //   this.#addHotspotsToMap();
+  //   this.#addOriginalWalkToMap();
+  //   // this.#addCurrentWalkToMap();
+  // }
+
   #addHotspotsToMap() {
+    console.log("#addHotspotsToMap");
+
     const dispenserEl = document.createElement('i');
     dispenserEl.classList.add('fa-solid');
     dispenserEl.classList.add('fa-trash-can');
@@ -65,26 +88,47 @@ export default class extends Controller {
       .addTo(this.map);
   }
 
-  // #addMarkersToMap() {
-  //   this.markersValue.forEach((marker) => {
-  //     const popup = new mapboxgl.Popup().setHTML(marker.info_window)
-  //     const customMarker = document.createElement("div")
-  //     customMarker.className = "marker"
-  //     customMarker.style.backgroundImage = `url('${marker.image_url}')`
-  //     customMarker.style.backgroundSize = "contain"
-  //     customMarker.style.width = "25px"
-  //     customMarker.style.height = "25px"
+  #addOriginalWalkToMap() {
+    console.log("#addOriginalWalkToMap");
 
-  //     new mapboxgl.Marker(customMarker)
-  //       .setLngLat([ marker.lng, marker.lat ])
-  //       .addTo(this.map)
-  //       .setPopup(popup)
-  //   });
-  // }
+    this.map.addSource(
+      'route',
+      {
+        type: 'geojson',
+        data: {
+          'type': 'FeatureCollection',
+          'features': [
+            {
+              'type': 'Feature',
+              'geometry': {
+                'type': 'LineString',
+                'coordinates': [
+                  [-0.565, 44.859],
+                  [-0.572, 44.858]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    );
 
-  // #fitMapToMarkers() {
-  //   const bounds = new mapboxgl.LngLatBounds()
-  //   this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
-  //   this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
-  // }
+    this.map.addLayer({
+      'id': 'route',
+      'type': 'line',
+      'source': 'route',
+      'layout': {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      'paint': {
+        'line-color': 'red',
+        'line-width': 8
+      }
+    });
+  }
+
+  #addCurrentWalkToMap() {
+    console.log("#addCurrentWalkToMap");
+  }
 }
