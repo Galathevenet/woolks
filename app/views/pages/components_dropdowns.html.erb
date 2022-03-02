@@ -1,0 +1,53 @@
+
+<%# ------dropdown filter-------- %>
+
+<ul class="dropdown-filter">
+  <li class="dropdown">
+    <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
+      Duration<b class="filter-title"></b>
+    </button>
+    <ul class="dropdown-menu">
+      <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    15 min</label></li>
+      <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    30 min</label></li>
+      <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure</label></li>
+      <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    2 heures</label></li>
+    </ul>
+  </li>
+</ul>
+
+<%# ------dropdown pour signaler un hotspot-------- %>
+
+<div class="btn-group" id="dropdown-hotspots">
+  <button type="button" class="btn btn-danger" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fa-solid fa-thumbtack"></i>
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Dog park</a>
+    <a class="dropdown-item" href="#">Fountain</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Distributor</a>
+    <a class="dropdown-item" href="#">Bin</a>
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<%# ------dropdown sur l'avatar-------- %>
+
+<img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
+  <div class="dropdown-menu dropdown-menu-end" id="dropdown-avatar" aria-labelledby="navbarDropdown">
+    <a class="dropdown-item" href="#">My walks</a>
+    <a class="dropdown-item" href="#">My favorites</a>
+    <a class="dropdown-item" href="#">My historical</a>
+  </div>
+
+
+<%# ------map avec un favori-------- %>
+
+<div class="medium-map-favorite">
+  <img class="medium-map" src="https://kitt.lewagon.com/placeholder/users/ssaunier" alt="">
+  <i class="fa-solid fa-heart"></i>
+</div>
