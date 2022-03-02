@@ -12,6 +12,17 @@
 @import "components/index";
 @import "pages/index";
 
+body {
+  background-color: rgb(245, 245, 245);
+}
+
+h1 {
+  color: $gray;
+}
+
+h2 {
+  color: $gray;
+}
 
 a {
   text-decoration: none;
