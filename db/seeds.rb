@@ -1,6 +1,12 @@
 puts "Destroying all the DBs...!!!"
 Waypoint.destroy_all
 puts "Waypoint db destroyed"
+HotspotWalk.destroy_all
+puts "Hotspot_walk db destroyed"
+FavoriteWalk.destroy_all
+puts "Favorite_walk db destroyed"
+Review.destroy_all
+puts "Review db destroyed"
 Walk.where.not(original_walk_id: nil).destroy_all
 Walk.destroy_all
 puts "Walk db destroyed"
@@ -8,10 +14,6 @@ User.destroy_all
 puts "User db destroyed"
 Hotspot.destroy_all
 puts "Hotspot db destroyed"
-Review.destroy_all
-puts "Review db destroyed"
-HotspotWalk.destroy_all
-puts "Hotspot_walk db destroyed"
 
 puts "All DBs are down ! I repeat, all DBs are down !"
 
@@ -25,8 +27,9 @@ puts "The 4 best users on earth have been created out of nowhere"
 
 puts "Creating 2 Walks"
 
-walk_one = Walk.create!(user: gala, name: "Tour autour de Layrac", description: "Un super tour qui grimpe", date: "20220301", duration:  "3600", length: "6000", published: true)
-walk_two = Walk.create!(user: cedric, name: "Tour autour de Mérignac", description: "Un super tour plein d'immeubles", date: "20220302", duration:  "3650", length: "3000", published: false)
+walk_one = Walk.create!(user: gala, name: "Tour autour de Layrac", description: "Un super tour qui grimpe", date: "20220301", duration:  "3600", length: "6000", published: false)
+walk_two = Walk.create!(user: cedric, name: "Tour autour de Mérignac", description: "Un super tour plein d'immeubles", date: "20220302", duration:  "3650", length: "3000", published: true)
+walk_three = Walk.create!(user: marion, original_walk_id: walk_two, name: "Tour autour de Mérignac", description: "Un super tour plein d'immeubles", date: "20220402", duration:  "2500", length: "3000", published: false)
 
 puts "Fake walks created... You walked a lot, take a break :)"
 
@@ -59,5 +62,11 @@ hw_one = HotspotWalk.create!(hotspot: hotspot_one, walk: walk_one)
 hw_two = HotspotWalk.create!(hotspot: hotspot_two, walk: walk_two)
 
 puts "hotspots_walks created... Toss a coin ! Are you gonna get lucky this time ?"
+
+puts "Creating 1 favorite_walk"
+
+fw_one = FavoriteWalk.create!(user: marion, walk: walk_two)
+
+puts "1 favorite_walk created... Marion's ready to do it everyday !"
 
 puts "DB seeded EVERYWHEEEEERE !"
