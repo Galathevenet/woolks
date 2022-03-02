@@ -2,27 +2,27 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'walks#index'
 
-  resources :walk, except: [:show]
+  resources :walks, except: [:show]
 
   namespace :description do
-    resources :walk, only: [:show]
+    resources :walks, only: [:show]
   end
 
   namespace :live do
-    resources :walk, only: [:show]
+    resources :walks, only: [:show]
   end
 
   namespace :recap_and_review do
-    resources :walk, only: [:show]
+    resources :walks, only: [:show]
   end
 
   namespace :recap_and_save do
-    resources :walk, only: %i[show edit]
+    resources :walks, only: %i[show edit]
   end
 
   namespace :my do
-    resources :walk, only: [:index]
+    resources :walks, only: [:index]
   end
 
-  resources :review, only: [:create]
+  resources :reviews, only: [:create]
 end
