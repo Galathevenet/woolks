@@ -6,6 +6,8 @@ class Walk < ApplicationRecord
   has_many :waypoints
   has_many :reviews, dependent: :destroy
 
+  has_many_attached :photos
+
   validates :name, presence: true, length: { minimum: 6 }
   # validates :description, presence: true, length: { in: 6..500 }
   validates :date, presence: true
