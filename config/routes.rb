@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   end
 
   namespace :recap_and_review do
-    resources :walks, only: [:show]
+    resources :walks, only: [:show] do
+      resources :reviews
+    end
   end
 
   namespace :recap_and_save do
