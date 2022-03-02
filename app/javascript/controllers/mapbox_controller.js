@@ -5,7 +5,8 @@ export default class extends Controller {
 
   static values = {
     apiKey: String,
-    hotspots: Array
+    hotspots: Array,
+    waypoints: Array
   };
 
   connect() {
@@ -76,27 +77,28 @@ export default class extends Controller {
   #addOriginalWalkToMap = () => {
     console.log("#addOriginalWalkToMap");
 
-    this.map.addSource(
-      'route',
-      {
-        type: 'geojson',
-        data: {
-          'type': 'FeatureCollection',
-          'features': [
-            {
-              'type': 'Feature',
-              'geometry': {
-                'type': 'LineString',
-                'coordinates': [
-                  [-0.565, 44.859],
-                  [-0.572, 44.858]
-                ]
-              }
-            }
-          ]
+    const data = {
+      'type': 'FeatureCollection',
+      'features': [
+        {
+          'type': 'Feature',
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': [
+              // [-0.565, 44.859]
+            ]
+          }
         }
-      }
-    );
+      ]
+    }
+
+    this.map.addSource('route', { type: 'geojson', data: data });
+
+    this.waypointsValue.forEach((waypoint) => {
+      data.features[0].geometry.coordinates.push([waypoint.longitude, waypoint.latitude])
+    })
+    this.map.getSource('route').setData(data);
+
 
     this.map.addLayer({
       'id': 'route',
