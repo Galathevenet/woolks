@@ -12,6 +12,8 @@ Review.destroy_all
 puts "Review db destroyed"
 HotspotWalk.destroy_all
 puts "Hotspot_walk db destroyed"
+FavoriteWalk.destroy_all
+puts "Favorite_walk db destroyed"
 
 puts "All DBs are down ! I repeat, all DBs are down !"
 
@@ -59,5 +61,9 @@ hw_one = HotspotWalk.create!(hotspot: hotspot_one, walk: walk_one)
 hw_two = HotspotWalk.create!(hotspot: hotspot_two, walk: walk_two)
 
 puts "hotspots_walks created... Toss a coin ! Are you gonna get lucky this time ?"
+
+puts "Creating 1 favorite_walk"
+
+fw_one = FavoriteWalk.create!(user: marion, walk: walk_one)
 
 puts "DB seeded EVERYWHEEEEERE !"
