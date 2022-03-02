@@ -4,7 +4,8 @@ import mapboxgl from "mapbox-gl"
 export default class extends Controller {
 
   static values = {
-    apiKey: String
+    apiKey: String,
+    hotspots: Array
   };
 
   connect() {
@@ -43,35 +44,33 @@ export default class extends Controller {
   #addHotspotsToMap = () => {
     console.log("#addHotspotsToMap");
 
-    const dispenserEl = document.createElement('i');
-    dispenserEl.classList.add('fa-solid');
-    dispenserEl.classList.add('fa-trash-can');
-    dispenserEl.style.fontSize = '24px';
-    dispenserEl.style.color = 'red';
+    this.hotspotsValue.forEach((hotspot) => {
+      const hotspotEl = document.createElement('i');
+      hotspotEl.classList.add('fa-solid');
+      hotspotEl.style.fontSize = '24px';
 
-    const parkEl = document.createElement('i');
-    parkEl.classList.add('fa-solid');
-    parkEl.classList.add('fa-tree');
-    parkEl.style.fontSize = '24px';
-    parkEl.style.color = 'green';
+      switch (hotspot.category) {
+        case 'dispenser':
+          hotspotEl.classList.add('fa-trash-can');
+          hotspotEl.style.color = 'red';
+          break;
+        case 'park':
+          hotspotEl.classList.add('fa-tree');
+          hotspotEl.style.color = 'green';
+          break;
+        case 'fountain':
+          hotspotEl.classList.add('fa-faucet');
+          hotspotEl.style.color = 'blue';
+          break;
+        default:
+          break;
+      }
 
-    const fountainEl = document.createElement('i');
-    fountainEl.classList.add('fa-solid');
-    fountainEl.classList.add('fa-faucet');
-    fountainEl.style.fontSize = '24px';
-    fountainEl.style.color = 'blue';
-
-    new mapboxgl.Marker(dispenserEl)
-      .setLngLat([-0.572, 44.859])
+      new mapboxgl.Marker(hotspotEl)
+      .setLngLat([hotspot.longitude, hotspot.latitude])
       .addTo(this.map);
 
-    new mapboxgl.Marker(parkEl)
-    .setLngLat([-0.575, 44.86])
-    .addTo(this.map);
-
-    new mapboxgl.Marker(fountainEl)
-      .setLngLat([-0.573, 44.86])
-      .addTo(this.map);
+    })
   }
 
   #addOriginalWalkToMap = () => {
@@ -126,5 +125,4 @@ export default class extends Controller {
     .setLngLat([position.coords.longitude, position.coords.latitude])
     .addTo(this.map);
   }
-  
 }
