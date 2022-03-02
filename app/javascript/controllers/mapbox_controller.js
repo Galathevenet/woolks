@@ -126,4 +126,5 @@ export default class extends Controller {
     .setLngLat([position.coords.longitude, position.coords.latitude])
     .addTo(this.map);
   }
+  
 }
