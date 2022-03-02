@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_01_115201) do
+ActiveRecord::Schema.define(version: 2022_03_01_164830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2022_03_01_115201) do
   end
 
   create_table "hotspots", force: :cascade do |t|
-    t.string "type"
+    t.string "category"
     t.string "name"
     t.float "latitude"
     t.float "longitude"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2022_03_01_115201) do
     t.bigint "user_id", null: false
     t.text "comment"
     t.integer "rating"
-    t.boolean "favorite"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_reviews_on_user_id"
@@ -62,7 +61,6 @@ ActiveRecord::Schema.define(version: 2022_03_01_115201) do
     t.string "name"
     t.string "description"
     t.date "date"
-    t.time "duration"
     t.float "length"
     t.boolean "published"
     t.float "start_point_latitude"
@@ -73,6 +71,7 @@ ActiveRecord::Schema.define(version: 2022_03_01_115201) do
     t.bigint "original_walk_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "duration"
     t.index ["original_walk_id"], name: "index_walks_on_original_walk_id"
     t.index ["user_id"], name: "index_walks_on_user_id"
   end
