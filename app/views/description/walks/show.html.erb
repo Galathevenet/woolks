@@ -4,6 +4,11 @@
 <p><%= @walk.description %></p>
 <p><%= @walk.length %></p>
 <p><%= @walk.duration %></p>
+  <% @walk.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 390, crop: :fill%>
+  <% end %>
+
+
 
 <h2>REVIEWS</h2>
 
