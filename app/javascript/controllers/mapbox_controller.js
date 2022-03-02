@@ -16,45 +16,31 @@ export default class extends Controller {
       console.log('Geolocation is NOT supported by your browser');
     } else {
       console.log('Geolocation IS supported by your browser');
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          this.map = new mapboxgl.Map({
-            container: this.element,
-            style: "mapbox://styles/mapbox/streets-v10",
-            center: [position.coords.longitude, position.coords.latitude],
-            zoom: 14
-          });
+      // Initiate map, markers and originalWalk
+      navigator.geolocation.getCurrentPosition(this.#initializeMap);
 
-          this.map.on('load', () => {
-            this.#addHotspotsToMap();
-            this.#addOriginalWalkToMap();
-            // this.#addCurrentWalkToMap();
-          })
-
-
-
-        }
-
-      );
+      // Loop to watch position live
+      navigator.geolocation.watchPosition(this.#currentWalkToMap);
     }
   }
 
-  // #initializeMap(position) {
-  //   console.log("initializeMap")
-  //   console.log(this)
-  //   this.map = new mapboxgl.Map({
-  //     container: this.element,
-  //     style: "mapbox://styles/mapbox/streets-v10",
-  //     center: [position.coords.longitude, position.coords.latitude],
-  //     zoom: 14
-  //   });
+  #initializeMap = (position) => {
+    console.log("initializeMap")
+    console.log(this)
+    this.map = new mapboxgl.Map({
+      container: this.element,
+      style: "mapbox://styles/mapbox/streets-v10",
+      center: [position.coords.longitude, position.coords.latitude],
+      zoom: 14
+    });
 
-  //   this.#addHotspotsToMap();
-  //   this.#addOriginalWalkToMap();
-  //   // this.#addCurrentWalkToMap();
-  // }
+    this.map.on('load', () => {
+      this.#addHotspotsToMap();
+      this.#addOriginalWalkToMap();
+    })
+  }
 
-  #addHotspotsToMap() {
+  #addHotspotsToMap = () => {
     console.log("#addHotspotsToMap");
 
     const dispenserEl = document.createElement('i');
@@ -76,7 +62,7 @@ export default class extends Controller {
     fountainEl.style.color = 'blue';
 
     new mapboxgl.Marker(dispenserEl)
-      .setLngLat([-0.5722858, 44.8584662])
+      .setLngLat([-0.572, 44.859])
       .addTo(this.map);
 
     new mapboxgl.Marker(parkEl)
@@ -88,7 +74,7 @@ export default class extends Controller {
       .addTo(this.map);
   }
 
-  #addOriginalWalkToMap() {
+  #addOriginalWalkToMap = () => {
     console.log("#addOriginalWalkToMap");
 
     this.map.addSource(
@@ -123,12 +109,21 @@ export default class extends Controller {
       },
       'paint': {
         'line-color': 'red',
-        'line-width': 8
+        'line-width': 4
       }
     });
   }
 
-  #addCurrentWalkToMap() {
+  #currentWalkToMap = () => {
     console.log("#addCurrentWalkToMap");
+    const currentPositionEl = document.createElement('i');
+    currentPositionEl.classList.add('fa-solid');
+    currentPositionEl.classList.add('fa-location-crosshairs');
+    currentPositionEl.style.fontSize = '24px';
+    currentPositionEl.style.color = 'red';
+
+    new mapboxgl.Marker(currentPositionEl)
+    .setLngLat([-0.5722858, 44.8584662])
+    .addTo(this.map);
   }
 }
