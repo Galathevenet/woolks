@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_02_094536) do
+ActiveRecord::Schema.define(version: 2022_03_02_095134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2022_03_02_094536) do
     t.string "description"
     t.date "date"
     t.float "length"
-    t.boolean "published"
+    t.boolean "published", default: false
     t.float "start_point_latitude"
     t.float "start_point_longitude"
     t.float "end_point_latitude"
