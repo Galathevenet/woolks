@@ -1,3 +1,5 @@
+require 'open-uri'
+
 puts "Destroying all the DBs...!!!"
 Waypoint.destroy_all
 puts "Waypoint db destroyed"
@@ -19,9 +21,13 @@ puts "All DBs are down ! I repeat, all DBs are down !"
 
 puts "Creating 4 Users"
 gala = User.create!(email: 'gala@mail.com', password: 'gala', username: 'gala')
+gala.photo.attach(io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1645623392/Users/gala_by9udp.jpg'), filename: 'gala_by9udp.jpg', content_type: 'image/jpg')
 cedric = User.create!(email: 'cedric@mail.com', password: 'cedric', username: 'cedric')
+cedric.photo.attach(io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1645623392/Users/cedric_peqsvm.jpg'), filename: 'cedric_peqsvm.jpg', content_type: 'image/jpg')
 marion = User.create!(email: 'marion@mail.com', password: 'marion', username: 'marion')
+marion.photo.attach(io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1645623392/Users/marion2_dpnplg.jpg'), filename: 'marion2_dpnplg.jpg', content_type: 'image/jpg')
 carole = User.create!(email: 'carole@mail.com', password: 'carole', username: 'carole')
+carole.photo.attach(io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1645623392/Users/carole_s23qgu.jpg'), filename: 'carole_s23qgu.jpg', content_type: 'image/jpg')
 
 puts "The 4 best users on earth have been created out of nowhere"
 
