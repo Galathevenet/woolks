@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2022_03_02_132818) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.bigint "walk_id", null: false
+    t.bigint "walk_id"
     t.bigint "user_id", null: false
     t.text "comment"
     t.integer "rating"

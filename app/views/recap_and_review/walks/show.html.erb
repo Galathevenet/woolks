@@ -11,9 +11,33 @@
   <p>Walk length: <%= @walk.length %> km</p>
   </div>
 
-  <%= simple_form_for [:walks @review] do |f| %>
+  <%= simple_form_for @review do |f| %>
+
+    <%= f.hidden_field :walk_id, value: @walk.original_walk_id %>
+
     <p>Rate the walk</p><br>
-    <form class="rating">
+    <%= f.collection_radio_buttons :rating, [[1, '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']], :first, :last %>
+
+    <div class="form-input">
+      <%= f.input :comment, placeholder: "Comment the walk" %>
+    </div>
+
+    <div class="form-input">
+      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    </div>
+
+    <div class="form-button">
+      <%= f.submit "Add my review", class: "btn btn-flat" %>
+    </div>
+  <% end %>
+
+<br>
+
+<%= link_to "Back to homepage", walks_path, class: "nav-link" %>
+
+</div>
+
+<%# <form class="rating">
     <label>
       <input type="radio" name="stars" value="1" />
       <span class="icon">★</span>
@@ -44,23 +68,4 @@
       <span class="icon">★</span>
       <span class="icon">★</span>
     </label>
-    </form>
-
-    <div class="form-input">
-      <%= f.input :comment, placeholder: "Comment the walk" %>
-    </div>
-
-    <div class="form-input">
-      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    </div>
-
-    <div class="form-button">
-      <%= f.submit "Add my review", class: "btn btn-flat" %>
-    </div>
-  <% end %>
-
-<br>
-
-<%= link_to "Back to homepage", walks_path, class: "nav-link" %>
-
-</div>
+    </form> %>
