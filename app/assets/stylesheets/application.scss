@@ -13,15 +13,15 @@
 @import "pages/index";
 
 body {
-  background-color: rgb(223, 222, 222);
+  background-color: rgb(245, 245, 245);
 }
 
 h1 {
-  color: white;
+  color: $gray;
 }
 
 h2 {
-  color: white;
+  color: $gray;
 }
 
 a {
