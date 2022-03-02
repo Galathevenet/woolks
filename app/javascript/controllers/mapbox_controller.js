@@ -66,7 +66,7 @@ export default class extends Controller {
       .addTo(this.map);
 
     new mapboxgl.Marker(parkEl)
-    .setLngLat([-0.572, 44.858])
+    .setLngLat([-0.575, 44.86])
     .addTo(this.map);
 
     new mapboxgl.Marker(fountainEl)
@@ -114,7 +114,7 @@ export default class extends Controller {
     });
   }
 
-  #currentWalkToMap = () => {
+  #currentWalkToMap = (position) => {
     console.log("#addCurrentWalkToMap");
     const currentPositionEl = document.createElement('i');
     currentPositionEl.classList.add('fa-solid');
@@ -123,7 +123,7 @@ export default class extends Controller {
     currentPositionEl.style.color = 'red';
 
     new mapboxgl.Marker(currentPositionEl)
-    .setLngLat([-0.5722858, 44.8584662])
+    .setLngLat([position.coords.longitude, position.coords.latitude])
     .addTo(this.map);
   }
 }

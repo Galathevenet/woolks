@@ -1,4 +1,11 @@
 #map {
   background-color:bisque;
-  height: 400px;
+  height: calc(100vh - 66px);
+}
+
+.map-btn {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
