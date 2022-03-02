@@ -66,4 +66,6 @@ puts "Creating 1 favorite_walk"
 
 fw_one = FavoriteWalk.create!(user: marion, walk: walk_one)
 
+puts "1 favorite_walk created... Marion's ready to do it everyday !"
+
 puts "DB seeded EVERYWHEEEEERE !"
