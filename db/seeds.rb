@@ -1,3 +1,5 @@
+require 'open-uri'
+
 puts "Destroying all the DBs...!!!"
 Waypoint.destroy_all
 puts "Waypoint db destroyed"
@@ -19,16 +21,24 @@ puts "All DBs are down ! I repeat, all DBs are down !"
 
 puts "Creating 4 Users"
 gala = User.create!(email: 'gala@mail.com', password: 'gala', username: 'gala')
+gala.photo.attach(io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1645623392/Users/gala_by9udp.jpg'), filename: 'gala_by9udp.jpg', content_type: 'image/jpg')
 cedric = User.create!(email: 'cedric@mail.com', password: 'cedric', username: 'cedric')
+cedric.photo.attach(io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1645623392/Users/cedric_peqsvm.jpg'), filename: 'cedric_peqsvm.jpg', content_type: 'image/jpg')
 marion = User.create!(email: 'marion@mail.com', password: 'marion', username: 'marion')
+marion.photo.attach(io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1645623392/Users/marion2_dpnplg.jpg'), filename: 'marion2_dpnplg.jpg', content_type: 'image/jpg')
 carole = User.create!(email: 'carole@mail.com', password: 'carole', username: 'carole')
+carole.photo.attach(io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1645623392/Users/carole_s23qgu.jpg'), filename: 'carole_s23qgu.jpg', content_type: 'image/jpg')
 
 puts "The 4 best users on earth have been created out of nowhere"
 
 puts "Creating 2 Walks"
 
 walk_one = Walk.create!(user: gala, name: "Tour autour de Layrac", description: "Un super tour qui grimpe", date: "20220301", duration:  "3600", length: "6000", published: false)
+walk_one.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/walk_one_1_cacmpw.jpg'), filename: 'walk_one_1_cacmpw.jpg', content_type: 'image/jpg'},
+                        {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/walk_one_2_nd2rty.jpg'), filename: 'walk_one_2_nd2rty.jpg', content_type: 'image/jpg'}])
 walk_two = Walk.create!(user: cedric, name: "Tour autour de Mérignac", description: "Un super tour plein d'immeubles", date: "20220302", duration:  "3650", length: "3000", published: true)
+walk_two.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
+                        {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
 walk_three = Walk.create!(user: marion, original_walk: walk_two, name: "Tour autour de Mérignac", description: "Un super tour plein d'immeubles", date: "20220402", duration:  "2500", length: "3000", published: false)
 
 puts "Fake walks created... You walked a lot, take a break :)"
