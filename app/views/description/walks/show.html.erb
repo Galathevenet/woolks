@@ -4,6 +4,9 @@
 <p><%= @walk.description %></p>
 <p><%= @walk.length %></p>
 <p><%= @walk.duration %></p>
+  <%= cl_image_tag @walk.photos.first.key, height: 300, width: 400, crop: :fill%>
+  <%= cl_image_tag @walk.photos.last.key, height: 300, width: 400, crop: :fill%>
+
 
 <h2>REVIEWS</h2>
 
@@ -11,6 +14,4 @@
   <p><%= review.user.username %></p>
   <p><%= review.rating %></p>
   <p><%= review.comment %></p>
-  <%= cl_image_tag("walk_one_1_cacmpw",
-      width: 400, height: 300, crop: :fill) %>
 <% end %>
