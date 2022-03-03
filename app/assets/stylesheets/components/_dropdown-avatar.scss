@@ -1,0 +1,21 @@
+#dropdown-avatar {
+  background-color: $light-gray;
+  border-radius: 4px;
+  padding: 10px 0px;
+  font-size: 10px;
+  float: right;
+  margin-top: 6px
+}
+
+.dropdown-item {
+  text-align: right;
+  font-family: $body-font;
+  padding-left: 0px;
+  margin-left: 0px;
+}
+
+.avatar {
+  width: 60px;
+  float: right;
+  margin-right: 15px;
+}
