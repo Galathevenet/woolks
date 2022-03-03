@@ -31,7 +31,7 @@ export default class extends Controller {
 
     navigator.geolocation.clearWatch(this.watchPositionId);
     console.log(this.currentWalkData.features[0].geometry.coordinates);
-    // this.inputTarget = this.currentWalkData.features[0].geometry.coordinates;
+    this.inputTarget.values = this.currentWalkData.features[0].geometry.coordinates;
   }
 
   #launchMap = (position) => {

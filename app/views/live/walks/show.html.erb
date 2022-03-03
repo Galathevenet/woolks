@@ -2,13 +2,19 @@
   data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
   data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
   data-mapbox-waypoints-value="<%= @waypoints.to_json%>">
+
   <div id="map"></div>
 
-  <%# NO PATCH METHOD %>
-  <%# <form action="/walks/update" method="POST">
-    <input type="hidden" data-mapbox-target="input">
-    <input type="submit" value="End walk" class="map-btn" data-action="click->mapbox#endWalk">
-  </form> %>
+  <%= simple_form_for @walk do |f| %>
+    <%= f.input :waypoints, as: :hidden, input_html: { value: "initialValue", data: { mapbox_target: 'input' } } %>
+    <%= f.submit "End walk", class: "map-btn", data: { action: 'click->mapbox#endWalk' } %>
+  <% end %>
 
-  <button class="map-btn" data-action="click->mapbox#endWalk">End walk</button>
+  <%#<form action="/walks/<%= @walk.id %>">
+  <%#  <input type="hidden" data-mapbox-target="input">
+  <%#  <input type="submit" value="End walk" class="map-btn" data-action="click->mapbox#endWalk">
+  <%#</form>
+  <%# Launches data-action method or defaults to the POST ?
+
+  <%# <button class="map-btn" data-action="click->mapbox#endWalk">End walk</button> %>
 </div>
