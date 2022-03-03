@@ -18,7 +18,7 @@
     <% @walks.select{ |walk| walk.published}.each do |walk| %>
       <%= link_to description_walk_path(walk) do %>
         <div class="card-walk">
-          <h2><%= walk.name.capitalize %></h1>
+          <h2><%= walk.name.capitalize %></h2>
           <img src="https://image.shutterstock.com/image-vector/small-map-city-260nw-770438665.jpg" alt="map">
           <div class="info">
             <div class="rating">
