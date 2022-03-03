@@ -18,27 +18,32 @@ export default class extends Controller {
       console.log('Geolocation is NOT supported by your browser');
     } else {
       console.log('Geolocation IS supported by your browser');
-      // Initiate map, markers and originalWalk
-      navigator.geolocation.getCurrentPosition(this.#initializeMap);
 
-      // Loop to watch position live
-      navigator.geolocation.watchPosition(this.#currentWalkToMap);
+      // Initialize map with hotspots and originalWalk
+      navigator.geolocation.getCurrentPosition(this.#initializeMap);
     }
   }
 
   #initializeMap = (position) => {
     console.log("initializeMap")
-    console.log(this)
+
     this.map = new mapboxgl.Map({
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v10",
       center: [position.coords.longitude, position.coords.latitude],
-      zoom: 14
+      zoom: 13
     });
 
     this.map.on('load', () => {
+      // Display hotspots and original walk
       this.#addHotspotsToMap();
       this.#addOriginalWalkToMap();
+
+      // Initialize current walk
+      this.#initializeCurrentWalk()
+
+      // Loop to watch position live
+      navigator.geolocation.watchPosition(this.#currentWalkToMap);
     })
   }
 
@@ -92,18 +97,53 @@ export default class extends Controller {
       ]
     }
 
-    this.map.addSource('route', { type: 'geojson', data: data });
+    this.map.addSource('original-walk', { type: 'geojson', data: data });
 
     this.waypointsValue.forEach((waypoint) => {
       data.features[0].geometry.coordinates.push([waypoint.longitude, waypoint.latitude])
     })
-    this.map.getSource('route').setData(data);
+    this.map.getSource('original-walk').setData(data);
 
 
     this.map.addLayer({
-      'id': 'route',
+      'id': 'original-walk',
       'type': 'line',
-      'source': 'route',
+      'source': 'original-walk',
+      'layout': {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      'paint': {
+        'line-color': 'blue',
+        'line-width': 4
+      }
+    });
+  }
+
+  #initializeCurrentWalk = () => {
+    console.log("#initializeCurrentWalk");
+
+    this.currentWalkData = {
+      'type': 'FeatureCollection',
+      'features': [
+        {
+          'type': 'Feature',
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': [
+              // [-0.565, 44.859]
+            ]
+          }
+        }
+      ]
+    }
+
+    this.map.addSource('current-walk', { type: 'geojson', data: this.currentWalkData });
+
+    this.map.addLayer({
+      'id': 'current-walk',
+      'type': 'line',
+      'source': 'current-walk',
       'layout': {
         'line-join': 'round',
         'line-cap': 'round'
@@ -113,18 +153,24 @@ export default class extends Controller {
         'line-width': 4
       }
     });
+
   }
 
   #currentWalkToMap = (position) => {
     console.log("#addCurrentWalkToMap");
+
     const currentPositionEl = document.createElement('i');
     currentPositionEl.classList.add('fa-solid');
     currentPositionEl.classList.add('fa-location-crosshairs');
     currentPositionEl.style.fontSize = '24px';
     currentPositionEl.style.color = 'red';
 
-    new mapboxgl.Marker(currentPositionEl)
-    .setLngLat([position.coords.longitude, position.coords.latitude])
-    .addTo(this.map);
+    this.currentPositionMarker = new mapboxgl.Marker(currentPositionEl)
+      .setLngLat([position.coords.longitude, position.coords.latitude])
+      .addTo(this.map);
+
+    this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude])
+
+    this.map.getSource('current-walk').setData(this.currentWalkData);
   }
 }
