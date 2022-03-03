@@ -1,8 +1,14 @@
 <div class="content-container">
-  <div id="map"
+  <div
     data-controller="mapbox"
-    data-mapbox-markers-value="<%= @markers.to_json %>"
-    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
+    data-mapbox-waypoints-value="<%= @waypoints.to_json%>"
+    data-mapbox-start-points-value="<%= @start_points.to_json%>"
+    data-mapbox-current-position-value="false"
+    data-mapbox-live-track-value="false"
+    data-mapbox-center-current-value="false">
+    <div id="map" class="medium-map"></div>
   </div>
   <div>
     <h1>Choose your walk or create your own !</h1>
@@ -19,7 +25,16 @@
       <%= link_to description_walk_path(walk) do %>
         <div class="card-walk">
           <h2><%= walk.name.capitalize %></h2>
-          <img src="https://image.shutterstock.com/image-vector/small-map-city-260nw-770438665.jpg" alt="map">
+
+            <div id="map" class="medium-map"
+              data-controller="mapbox"
+              data-mapbox-markers-value="<%= @markers.to_json %>"
+              data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+            </div>
+
+          <%# <img src="https://image.shutterstock.com/image-vector/small-map-city-260nw-770438665.jpg" alt="map"> %>
+
+
           <div class="info">
             <div class="rating">
               <% if walk.reviews.size == 0 %>
@@ -33,45 +48,6 @@
                 <% end %>
                 <span>(<%= walk.reviews.size%>)</span>
               <% end %>
-              <%# if walk.reviews_average == nil %>
-                <%# <div class="rating-zero-hidden">
-                  <span class="fa-regular fa-star"></span>
-                  <span class="fa-regular fa-star"></span>
-                  <span class="fa-regular fa-star"></span>
-                  <span class="fa-regular fa-star"></span>
-                  <span class="fa-regular fa-star"></span>
-                </div> %>
-              <%# elsif walk.reviews_average == 1 %>
-                <%# <span class="fa fa-star"></span>
-                <span class="fa-regular fa-star"></span>
-                <span class="fa-regular fa-star"></span>
-                <span class="fa-regular fa-star"></span>
-                <span class="fa-regular fa-star"></span> %>
-              <%# elsif walk.reviews_average == 2 %>
-                <%# <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa-regular fa-star"></span>
-                <span class="fa-regular fa-star"></span>
-                <span class="fa-regular fa-star"></span> %>
-              <%# elsif walk.reviews_average == 3 %>
-                <%# <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa-regular fa-star"></span>
-                <span class="fa-regular fa-star"></span> %>
-              <%# elsif walk.reviews_average == 4 %>
-                <%# <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa-regular fa-star"></span> %>
-              <%# elsif walk.reviews_average == 5 %>
-                <%# <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span> %>
-              <%# end %>
             </div>
             <p><%= walk.description %></p>
           </div>

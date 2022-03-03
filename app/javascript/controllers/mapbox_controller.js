@@ -8,7 +8,11 @@ export default class extends Controller {
   static values = {
     apiKey: String,
     hotspots: Array,
-    waypoints: Array
+    waypoints: Array,
+    startPoints: Array,
+    currentPosition: Boolean,
+    liveTrack: Boolean,
+    centerCurrent: Boolean
   };
 
   connect() {
@@ -36,7 +40,7 @@ export default class extends Controller {
   }
 
   #launchMap = (position) => {
-    console.log("initializeMap")
+    // console.log("initializeMap")
 
     this.map = new mapboxgl.Map({
       container: this.element,
@@ -48,18 +52,21 @@ export default class extends Controller {
     this.map.on('load', () => {
       // Display hotspots and original walk
       this.#addHotspotsToMap();
+      this.#addStartPointsToMap();
       this.#addOriginalWalkToMap();
 
       // Initialize current walk and current position marker
       this.#initializeCurrentWalk()
 
       // Loop to watch position live
-      this.watchPositionId = navigator.geolocation.watchPosition(this.#currentWalkToMap);
+      if (this.liveTrackValue) {
+        this.watchPositionId = navigator.geolocation.watchPosition(this.#currentWalkToMap);
+      }
     })
   }
 
   #addHotspotsToMap = () => {
-    console.log("#addHotspotsToMap");
+    // console.log("#addHotspotsToMap");
 
     this.hotspotsValue.forEach((hotspot) => {
       const hotspotEl = document.createElement('i');
@@ -90,8 +97,24 @@ export default class extends Controller {
     })
   }
 
+  #addStartPointsToMap = () => {
+    // console.log("#addStartPointsToMap");
+
+    this.startPointsValue.forEach((startPoint) => {
+      const startPointEl = document.createElement('i');
+      startPointEl.classList.add('fa-solid');
+      startPointEl.style.fontSize = '24px';
+      startPointEl.classList.add('fa-location-dot');
+      startPointEl.style.color = 'blue';
+
+      new mapboxgl.Marker(startPointEl)
+        .setLngLat([startPoint.longitude, startPoint.latitude])
+        .addTo(this.map);
+    });
+  }
+
   #addOriginalWalkToMap = () => {
-    console.log("#addOriginalWalkToMap");
+    // console.log("#addOriginalWalkToMap");
 
     const data = {
       'type': 'FeatureCollection',
@@ -110,6 +133,7 @@ export default class extends Controller {
 
     this.map.addSource('original-walk', { type: 'geojson', data: data });
 
+    console.log(this.waypointsValue)
     this.waypointsValue.forEach((waypoint) => {
       data.features[0].geometry.coordinates.push([waypoint.longitude, waypoint.latitude])
     })
@@ -132,7 +156,7 @@ export default class extends Controller {
   }
 
   #initializeCurrentWalk = () => {
-    console.log("#initializeCurrentWalk");
+    // console.log("#initializeCurrentWalk");
 
     this.currentWalkData = {
       'type': 'FeatureCollection',
@@ -167,7 +191,7 @@ export default class extends Controller {
   }
 
   #currentWalkToMap = (position) => {
-    console.log("#currentWalkToMap");
+    // console.log("#currentWalkToMap");
 
     // Create current position marker
     const currentPositionEl = document.createElement('i');

@@ -4,12 +4,12 @@ class WalksController < ApplicationController
   def index
     # affichage map + carte nouvel itinéraire + grilles cartes
     @walks = Walk.all
-    @markers = @walks.map do |w|
-      {
-        lat: w.start_point_latitude,
-        lng: w.start_point_longitude,
-        image_url: helpers.asset_url("primarypin.png")
-      }
+    @hotspots = Hotspot.all
+    @waypoints = []
+
+    @start_points = []
+    @walks.each do |walk|
+      @start_points.push(longitude: walk.waypoints.first.longitude, latitude: walk.waypoints.first.latitude)
     end
   end
 
