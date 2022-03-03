@@ -2,12 +2,4 @@
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-
-  .card-walk:first-child {
-    margin-left: auto;
-  }
-
-  .card-walk:last-child {
-    margin-right: auto;
-  }
 }

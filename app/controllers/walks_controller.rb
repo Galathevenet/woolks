@@ -2,7 +2,15 @@ class WalksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    # affichage map + carte nouvel itinéraire + grilles cartes balades
+    # affichage map + carte nouvel itinéraire + grilles cartes
+    @walks = Walk.all
+    @markers = @walks.map do |w|
+      {
+        lat: w.start_point_latitude,
+        lng: w.start_point_longitude,
+        image_url: helpers.asset_url("primarypin.png")
+      }
+    end
   end
 
   def new
