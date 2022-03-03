@@ -14,4 +14,12 @@ class Walk < ApplicationRecord
   validates :duration, presence: true
   validates :length, presence: true
   validates :published, exclusion: [nil]
+
+  def reviews_average
+    rating_sum = 0
+    reviews.each do |review|
+      rating_sum += review.rating
+    end
+    rating_sum/reviews.size
+  end
 end
