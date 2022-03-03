@@ -1,13 +1,24 @@
-.dropdown-filter {
-  list-style: none;
+.form-filter {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+
   .btn {
-    background-color: $info;
+    background-color: $primary;
     color: $light-gray;
     font-family: $body-font;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
+    align-self: stretch;
   }
+
+  .dropdown-filter {
+    list-style: none;
+    padding: 10px;
+  }
+
 }
+
 
 // .dropdown-filter .btn:hover {
 //   color: $light-gray;
