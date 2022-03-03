@@ -1,9 +1,14 @@
-<div data-controller="mapbox"
+<div
+  data-controller="mapbox"
   data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
   data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
-  data-mapbox-waypoints-value="<%= @waypoints.to_json%>">
+  data-mapbox-waypoints-value="<%= @waypoints.to_json%>"
+  data-mapbox-start-points-value=""
+  data-mapbox-current-value="false"
+  data-mapbox-live-track-value="false"
+  data-mapbox-center-value="false">
 
-  <div id="map"></div>
+  <div id="map" class="full-screen-map"></div>
 
   <%= simple_form_for [:live, @walk] do |f| %>
     <%= f.input :waypoints, as: :hidden, input_html: { value: "initialValue", data: { mapbox_target: 'input' } } %>
