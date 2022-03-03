@@ -5,15 +5,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    # create une review quand elle est validée par l'utilisateurice
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     if @review.save
-      redirect_to(walk_path(@walk))
+      redirect_to(walks_path) and return
     else
-      render :new
+      redirect_to(recap_and_review_walks(@walk)) and return
     end
-    # @walk = Walk.find(params[:walk_id])
   end
 
   private

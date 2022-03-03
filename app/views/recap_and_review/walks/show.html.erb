@@ -7,27 +7,29 @@
   </div>
 
   <div>
-  <p>Walk duration: <%= @walk.duration %> min</p>
-  <p>Walk length: <%= @walk.length %> km</p>
+  <p class="walk-recap">Walk duration: <%= @walk.duration %> min</p>
+  <p class="walk-recap">Walk length: <%= @walk.length %> km</p>
   </div>
 
   <%= simple_form_for @review do |f| %>
 
     <%= f.hidden_field :walk_id, value: @walk.original_walk_id %>
 
-    <p>Rate the walk</p><br>
-    <%= f.collection_radio_buttons :rating, [[1, '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']], :first, :last %>
+    <p class="review-form-title">Rate the walk</p>
+    <div class="enter-rating">
+    <%= f.collection_radio_buttons :rating, [[1, '...'] ,[2, '...'],[3, '...'],[4, '...'],[5, '.']], :first, :last %>
+    </div>
 
-    <div class="form-input">
+    <div class="form-input review-form-title">
       <%= f.input :comment, placeholder: "Comment the walk" %>
     </div>
 
-    <div class="form-input">
+    <div class="form-input review-form-title">
       <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     </div>
 
     <div class="form-button">
-      <%= f.submit "Add my review", class: "btn btn-flat" %>
+      <%= f.submit "Add my review", class: "btn-med btn-review-form" %>
     </div>
   <% end %>
 
