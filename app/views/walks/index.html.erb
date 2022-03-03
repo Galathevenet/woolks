@@ -10,18 +10,20 @@
     </div>
   </div>
   <div class="card-dispenser-slide">
-    <div class="card-add-walk">
-      <p>+</p>
-    </div>
-    <% @walks.each do |walk| %>
-      <%= link_to walk_path(walk) do %>
+    <%= link_to new_walk_path do %>
+      <div class="card-add-walk">
+        <p>+</p>
+      </div>
+    <% end %>
+    <% @walks.select{ |walk| walk.published}.each do |walk| %>
+      <%= link_to description_walk_path(walk) do %>
         <div class="card-walk">
           <h2><%= walk.name.capitalize %></h1>
           <img src="https://image.shutterstock.com/image-vector/small-map-city-260nw-770438665.jpg" alt="map">
           <div class="info">
             <div class="rating">
               <% if walk.reviews.size == 0 %>
-                <p>No rating yet</p>
+                <p>Not rated yet</p>
               <% else %>
                 <% walk.reviews_average.times do  %>
                   <span class="fa fa-star"></span>
