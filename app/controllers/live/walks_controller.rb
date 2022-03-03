@@ -5,7 +5,7 @@ class Live::WalksController < ApplicationController
     # :id is the id of the current walk
     @walk = Walk.find(params[:id])
     @hotspots = Hotspot.all
-    @waypoints = @walk.original_walk.waypoints
+    @waypoints = @walk.waypoints
   end
 
   def update
