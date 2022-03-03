@@ -18,14 +18,7 @@ class WalksController < ApplicationController
   end
 
   def update
-    # appuie sur bouton fin de la walk à la fin de mon parcours
-    @walk = Walk.find(params[:id])
-    # From: "2.3522219,48.856614,2.3522219,48.856614,2.3522219,48.856614"
-    # To: [[2.3522219, 48.856614], [2.3522219, 48.856614], [2.3522219, 48.856614]]
-    params['walk']['waypoints'].split(',').map(&:to_f).each_slice(2).to_a.each do |coord|
-      Waypoint.create!(walk: @walk, longitude: coord[0], latitude: coord[1])
-    end
-    # IS IT HERE OR IN waypoints_controller.rb ?
+    # met à jour la walk avec son nom, sa description, ses photos...
   end
 
   def destroy

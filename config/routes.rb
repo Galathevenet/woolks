@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   namespace :live do
-    resources :walks, only: [:show]
+    resources :walks, only: [:show, :update]
   end
 
   namespace :recap_and_review do
