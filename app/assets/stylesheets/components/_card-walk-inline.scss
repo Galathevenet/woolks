@@ -1,0 +1,43 @@
+.card-walk-inline {
+  overflow: hidden;
+  height: 120px;
+  background: $secondary;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 15px;
+
+  img {
+    height: 100%;
+    width: 35%;
+    object-fit: cover;
+  }
+
+  i {
+    margin: 10px;
+    color: $light-gray;
+    font-size: 14px;
+  }
+}
+
+.card-walk-inline-infos {
+  padding: 15px 0px 15px 15px;
+  color: $light-gray;
+
+  h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    text-align: left;
+  }
+
+  p{
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: .7;
+    margin-bottom: 0;
+    margin-top: 8px;
+    text-align: left;
+  }
+}
