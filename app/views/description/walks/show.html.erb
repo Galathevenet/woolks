@@ -1,14 +1,19 @@
 <h1>This is the show for a walk before launching it</h1>
-
+<%# @walk is the original walk %>
+<%# @new_walk is the new walk we just created  %>
 <h2><%= @walk.name %></h2>
 <p><%= @walk.description %></p>
 <p><%= @walk.length %></p>
 <p><%= @walk.duration %></p>
-  <% @walk.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, height: 300, width: 390, crop: :fill%>
-  <% end %>
+<% @walk.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 390, crop: :fill%>
+<% end %>
 
 
+<%= simple_form_for @new_walk, method: :post do |f| %>
+  <%= f.input :original_walk_id, as: :hidden, input_html: { value: @walk.id } %>
+  <%= f.submit "GO!", class: 'btn-max' %>
+<% end %>
 
 <h2>REVIEWS</h2>
 

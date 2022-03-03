@@ -45,17 +45,19 @@ puts "Fake walks created... You walked a lot, take a break :)"
 
 puts "Creating 4 Waypoints"
 
-waypoint_one = Waypoint.create!(walk: walk_one, longitude: '45.5', latitude: '32.2')
-waypoint_two = Waypoint.create!(walk: walk_one, longitude: '32.5', latitude: '18.2')
-waypoint_three = Waypoint.create!(walk: walk_two, longitude: '10.3', latitude: '22.2')
-waypoint_four = Waypoint.create!(walk: walk_two, longitude: '48.4', latitude: '69.3')
+waypoint_one = Waypoint.create!(walk: walk_two, longitude: '-0.565', latitude: '44.859')
+waypoint_two = Waypoint.create!(walk: walk_two, longitude: '-0.570', latitude: '44.858')
+waypoint_three = Waypoint.create!(walk: walk_two, longitude: '-0.570', latitude: '44.856')
+waypoint_four = Waypoint.create!(walk: walk_two, longitude: '-0.567', latitude: '44.857')
 
 puts "Waypoints created... Did you take your swimming suit for waypoint 3 ?"
 
 puts "Creating 2 Hotspots"
 
-hotspot_one = Hotspot.create!(category: "park", name: "My favorite park", longitude: "45.5", latitude: "32.2")
-hotspot_two = Hotspot.create!(category: "fountain", name: "My favorite fountain", longitude: "32.5", latitude: "18.2")
+hotspot_one = Hotspot.create!(category: "dispenser", name: "My favorite dispenser", longitude: "-0.572", latitude: "44.859")
+hotspot_two = Hotspot.create!(category: "park", name: "My favorite park", longitude: "-0.575", latitude: "44.86")
+hotspot_three = Hotspot.create!(category: "fountain", name: "My favorite fountain", longitude: "-0.573", latitude: "44.86")
+hotspot_four = Hotspot.create!(category: "fountain", name: "A lambda fountain", longitude: "-0.571", latitude: "44.857")
 
 puts "Hotspots created... Feeling hot yet ?"
 
