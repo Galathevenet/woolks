@@ -1,13 +1,80 @@
 <div class="content-container">
-  <div id="map"
+  <div class="medium-map"
     data-controller="mapbox"
     data-mapbox-markers-value="<%= @markers.to_json %>"
     data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
   <div>
-    <h1>Choose your walk or create your own !</h1>
-    <div>
-    </div>
+    <h1>Choose your walk !</h1>
+    <form>
+      <div class="form-filter">
+        <ul class="dropdown-filter">
+          <li class="dropdown">
+            <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
+              Duration ⌄<b class="filter-title"></b>
+            </button>
+            <ul class="dropdown-menu">
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    less than 15 min</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    less than 30 min</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure 30</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    2 heures</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    more</label></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="dropdown-filter">
+          <li class="dropdown">
+            <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
+              Hotspots  ⌄<b class="filter-title"></b>
+            </button>
+            <ul class="dropdown-menu">
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    Park</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    Fontain</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    Dispenser</label></li>
+            </ul>
+          </li>
+        </ul>
+          <ul class="dropdown-filter">
+            <li class="dropdown">
+              <button type="submit" class="btn">Submit</button>
+            </li>
+          </ul>
+      </div>
+    </form>
+      <%# <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+        <option selected>Duration</option>
+        <option value="1">< 15 min</option>
+        <option value="2">< 30 min</option>
+        <option value="3">1h</option>
+        <option value="4">1h30</option>
+        <option value="5">2h</option>
+      </select> %>
+      <%# <div class="mb-3">
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+          <option selected>Hotspots</option>
+          <option value="1">Fontain</option>
+          <option value="2">Park</option>
+          <option value="3">Dispenser</option>
+        </select>
+      </div>
+    <%# <div class="my-4">
+      <ul class="dropdown-filter">
+        <li class="dropdown">
+          <button type="button" class="btn d-inline" data-bs-toggle="dropdown" class="dropdown-toggle">
+            Duration<b class="filter-title"></b>
+          </button>
+          <ul class="dropdown-menu">
+            <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    less than 15 min</label></li>
+            <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    less than 30 min</label></li>
+            <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure</label></li>
+            <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure 30</label></li>
+            <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    2 heures</label></li>
+            <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    more</label></li>
+          </ul>
+        </li>
+      </ul>
+    </div> %>
   </div>
   <div class="card-dispenser-slide">
     <%= link_to new_walk_path do %>
@@ -33,45 +100,6 @@
                 <% end %>
                 <span>(<%= walk.reviews.size%>)</span>
               <% end %>
-              <%# if walk.reviews_average == nil %>
-                <%# <div class="rating-zero-hidden">
-                  <span class="fa-regular fa-star"></span>
-                  <span class="fa-regular fa-star"></span>
-                  <span class="fa-regular fa-star"></span>
-                  <span class="fa-regular fa-star"></span>
-                  <span class="fa-regular fa-star"></span>
-                </div> %>
-              <%# elsif walk.reviews_average == 1 %>
-                <%# <span class="fa fa-star"></span>
-                <span class="fa-regular fa-star"></span>
-                <span class="fa-regular fa-star"></span>
-                <span class="fa-regular fa-star"></span>
-                <span class="fa-regular fa-star"></span> %>
-              <%# elsif walk.reviews_average == 2 %>
-                <%# <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa-regular fa-star"></span>
-                <span class="fa-regular fa-star"></span>
-                <span class="fa-regular fa-star"></span> %>
-              <%# elsif walk.reviews_average == 3 %>
-                <%# <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa-regular fa-star"></span>
-                <span class="fa-regular fa-star"></span> %>
-              <%# elsif walk.reviews_average == 4 %>
-                <%# <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa-regular fa-star"></span> %>
-              <%# elsif walk.reviews_average == 5 %>
-                <%# <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span> %>
-              <%# end %>
             </div>
             <p><%= walk.description %></p>
           </div>
