@@ -14,4 +14,17 @@ class Walk < ApplicationRecord
   validates :duration, presence: true
   validates :length, presence: true
   validates :published, exclusion: [nil]
+
+  def reviews_average
+    walk = Walk.find(self.id)
+    rating_sum = 0
+    walk.reviews.each do |review|
+      rating_sum += review.rating
+    end
+    if reviews.size >= 1
+      rating_sum/walk.reviews.size
+    else
+      0
+    end
+  end
 end
