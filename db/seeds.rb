@@ -33,29 +33,82 @@ puts "The 4 best users on earth have been created out of nowhere"
 
 puts "Creating 2 Walks"
 
-walk_one = Walk.create!(user: gala, name: "Tour autour de Layrac", description: "Un super tour qui grimpe", date: "20220301", duration:  "3600", length: "6000", published: false)
+walk_one = Walk.create!(user: gala, name: "Dans les chartrons", description: "Jolies petites ruelles", date: "20220301", duration:  "660", length: "1500", published: false)
 walk_one.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/walk_one_1_cacmpw.jpg'), filename: 'walk_one_1_cacmpw.jpg', content_type: 'image/jpg'},
                         {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/walk_one_2_nd2rty.jpg'), filename: 'walk_one_2_nd2rty.jpg', content_type: 'image/jpg'}])
-walk_two = Walk.create!(user: cedric, name: "Tour autour de Mérignac", description: "Un super tour plein d'immeubles", date: "20220302", duration:  "3650", length: "3000", published: true)
+
+walk_two = Walk.create!(user: cedric, name: "Jardin Public et Quinconces", description: "Le triangle d'or, pour les toutous chics", date: "20220302", duration:  "1200", length: "2200", published: true)
 walk_two.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
                         {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
-walk_three = Walk.create!(user: marion, original_walk: walk_two, name: "Tour autour de Mérignac", description: "Un super tour plein d'immeubles", date: "20220402", duration:  "2500", length: "3000", published: false)
+
+walk_three = Walk.create!(user: marion, original_walk: walk_two, name: "Tours des 2 ponts", description: "Un super tour plein d'immeubles", date: "20220402", duration:  "4000", length: "7000", published: false)
 
 puts "Fake walks created... You walked a lot, take a break :)"
 
-puts "Creating 4 Waypoints"
+puts "Creating Waypoints"
 
-waypoint_one = Waypoint.create!(walk: walk_one, longitude: '45.5', latitude: '32.2')
-waypoint_two = Waypoint.create!(walk: walk_one, longitude: '32.5', latitude: '18.2')
-waypoint_three = Waypoint.create!(walk: walk_two, longitude: '10.3', latitude: '22.2')
-waypoint_four = Waypoint.create!(walk: walk_two, longitude: '48.4', latitude: '69.3')
+# Walk one
+Waypoint.create!(walk: walk_one, longitude: '-0.5539512634277344', latitude: '44.86027982426265')
+Waypoint.create!(walk: walk_one, longitude: '-0.5553674697875977', latitude: '44.85950411819097')
+Waypoint.create!(walk: walk_one, longitude: '-0.5608177185058593', latitude: '44.85700961998633')
+Waypoint.create!(walk: walk_one, longitude: '-0.5628776550292969', latitude: '44.858986975003894')
+Waypoint.create!(walk: walk_one, longitude: '-0.5603671073913574', latitude: '44.860295034081176')
+Waypoint.create!(walk: walk_one, longitude: '-0.5611181259155273', latitude: '44.86084258487141')
+Waypoint.create!(walk: walk_one, longitude: '-0.5593585968017577', latitude: '44.86178557680361')
+Waypoint.create!(walk: walk_one, longitude: '-0.5604314804077148', latitude: '44.86286543569054')
+Waypoint.create!(walk: walk_one, longitude: '-0.5586075782775879', latitude: '44.864234241789056')
+Waypoint.create!(walk: walk_one, longitude: '-0.5544877052307129', latitude: '44.860751326768')
+
+# Walk two
+Waypoint.create!(walk: walk_two, longitude: '-0.5753874778747559', latitude: '44.849289680236346')
+Waypoint.create!(walk: walk_two, longitude: '-0.5739927291870117', latitude: '44.85154872537361')
+Waypoint.create!(walk: walk_two, longitude: '-0.5718684196472168', latitude: '44.85091741865007')
+Waypoint.create!(walk: walk_two, longitude: '-0.5710101127624512', latitude: '44.850537110055')
+Waypoint.create!(walk: walk_two, longitude: '-0.5697441101074219', latitude: '44.85021764889445')
+Waypoint.create!(walk: walk_two, longitude: '-0.5702698230743408', latitude: '44.84917558469707')
+Waypoint.create!(walk: walk_two, longitude: '-0.5707097053527832', latitude: '44.847905305761344')
+Waypoint.create!(walk: walk_two, longitude: '-0.5708813667297363', latitude: '44.84656653835979')
+Waypoint.create!(walk: walk_two, longitude: '-0.5750441551208496', latitude: '44.846201414577415')
+Waypoint.create!(walk: walk_two, longitude: '-0.5753982067108154', latitude: '44.84782924026543')
+Waypoint.create!(walk: walk_two, longitude: '-0.5763423442840576', latitude: '44.84778360091967')
+Waypoint.create!(walk: walk_two, longitude: '-0.5754947662353515', latitude: '44.84917558469707')
+
+# Walk three
+Waypoint.create!(walk: walk_three, longitude: '-0.5707526206970215', latitude: '44.845570049242795')
+Waypoint.create!(walk: walk_three, longitude: '-0.570216178894043', latitude: '44.84316623355929')
+Waypoint.create!(walk: walk_three, longitude: '-0.5689072608947754', latitude: '44.8403667268484')
+Waypoint.create!(walk: walk_three, longitude: '-0.5672550201416016', latitude: '44.838480026033636')
+Waypoint.create!(walk: walk_three, longitude: '-0.5653882026672362', latitude: '44.83682150413406')
+Waypoint.create!(walk: walk_three, longitude: '-0.5606245994567871', latitude: '44.83981898136341')
+Waypoint.create!(walk: walk_three, longitude: '-0.5621910095214844', latitude: '44.840944896988866')
+Waypoint.create!(walk: walk_three, longitude: '-0.5619120597839354', latitude: '44.84121876503036')
+Waypoint.create!(walk: walk_three, longitude: '-0.5635643005371094', latitude: '44.842648943651994')
+Waypoint.create!(walk: walk_three, longitude: '-0.5641007423400879', latitude: '44.84331837676571')
+Waypoint.create!(walk: walk_three, longitude: '-0.5647444725036621', latitude: '44.84614816716577')
+Waypoint.create!(walk: walk_three, longitude: '-0.5646371841430664', latitude: '44.84683277299209')
+Waypoint.create!(walk: walk_three, longitude: '-0.5642509460449219', latitude: '44.84765428924366')
+Waypoint.create!(walk: walk_three, longitude: '-0.5631780624389648', latitude: '44.848475793778825')
+Waypoint.create!(walk: walk_three, longitude: '-0.5622124671936035', latitude: '44.84923643567947')
+Waypoint.create!(walk: walk_three, longitude: '-0.559852123260498', latitude: '44.85065120289719')
+Waypoint.create!(walk: walk_three, longitude: '-0.549488067626953', latitude: '44.85603612795718')
+Waypoint.create!(walk: walk_three, longitude: '-0.5537581443786621', latitude: '44.86031024389566')
+Waypoint.create!(walk: walk_three, longitude: '-0.5581569671630859', latitude: '44.858196041145334')
+Waypoint.create!(walk: walk_three, longitude: '-0.5623197555541992', latitude: '44.856385978549646')
+Waypoint.create!(walk: walk_three, longitude: '-0.564572811126709', latitude: '44.85504740826973')
+Waypoint.create!(walk: walk_three, longitude: '-0.5669331550598145', latitude: '44.8532980933905')
+Waypoint.create!(walk: walk_three, longitude: '-0.5690574645996094', latitude: '44.85130533082998')
+Waypoint.create!(walk: walk_three, longitude: '-0.5698513984680176', latitude: '44.85027089254426')
+Waypoint.create!(walk: walk_three, longitude: '-0.5704092979431152', latitude: '44.848871328820756')
+Waypoint.create!(walk: walk_three, longitude: '-0.5710530281066893', latitude: '44.84631551600802')
+Waypoint.create!(walk: walk_three, longitude: '-0.570838451385498', latitude: '44.845767827079875')
 
 puts "Waypoints created... Did you take your swimming suit for waypoint 3 ?"
 
 puts "Creating 2 Hotspots"
 
-hotspot_one = Hotspot.create!(category: "park", name: "My favorite park", longitude: "45.5", latitude: "32.2")
-hotspot_two = Hotspot.create!(category: "fountain", name: "My favorite fountain", longitude: "32.5", latitude: "18.2")
+hotspot_one = Hotspot.create!(category: "park", name: "My favorite park", longitude: "-0.5762243270874023", latitude: "44.848293238227974")
+hotspot_two = Hotspot.create!(category: "fountain", name: "My favorite fountain", longitude: "-0.5657020211219788", latitude: "44.858857688481386")
+hotspot_three = Hotspot.create!(category: "dispenser", name: "My favorite fountain", longitude: "-0.5653560161590576", latitude: "44.85424120888342")
 
 puts "Hotspots created... Feeling hot yet ?"
 
