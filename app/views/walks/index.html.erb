@@ -3,11 +3,11 @@
     data-controller="mapbox"
     data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
     data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
-    data-mapbox-waypoints-value="<%= @waypoints.to_json%>"
-    data-mapbox-start-points-value="<%= @start_points.to_json%>"
-    data-mapbox-current-position-value="false"
+    data-mapbox-waypoints-value="<%= [] %>"
+    data-mapbox-start-points-value="<%= @start_points.to_json %>"
+    data-mapbox-current-position-value="true"
     data-mapbox-live-track-value="false"
-    data-mapbox-center-current-value="false">
+    data-mapbox-center-current-value="true">
     <div id="map" class="medium-map"></div>
   </div>
   <div>
@@ -26,13 +26,17 @@
         <div class="card-walk">
           <h2><%= walk.name.capitalize %></h2>
 
-            <div id="map" class="medium-map"
-              data-controller="mapbox"
-              data-mapbox-markers-value="<%= @markers.to_json %>"
-              data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-            </div>
-
-          <%# <img src="https://image.shutterstock.com/image-vector/small-map-city-260nw-770438665.jpg" alt="map"> %>
+              <div
+                data-controller="mapbox"
+                data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+                data-mapbox-hotspots-value="<%= [] %>"
+                data-mapbox-waypoints-value="<%= @waypoints.where(walk: walk).to_json %>"
+                data-mapbox-start-points-value="<%= [] %>"
+                data-mapbox-current-position-value="true"
+                data-mapbox-live-track-value="false"
+                data-mapbox-center-current-value="false">
+                <div id="map" class="medium-map"></div>
+              </div>
 
 
           <div class="info">

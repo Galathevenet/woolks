@@ -42,24 +42,33 @@ export default class extends Controller {
   #launchMap = (position) => {
     // console.log("initializeMap")
 
+    if (this.centerCurrentValue) { // Center map on current user position
+      this.center = [position.coords.longitude, position.coords.latitude]
+    } else { // center map on first walk startPoint
+      this.center = [this.waypointsValue[0].longitude, this.waypointsValue[0].latitude]
+    }
+
     this.map = new mapboxgl.Map({
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v10",
-      center: [position.coords.longitude, position.coords.latitude],
+      center: this.center,
       zoom: 13
     });
 
     this.map.on('load', () => {
-      // Display hotspots and original walk
+      // Display hotspots, startPoints and originalWalk
       this.#addHotspotsToMap();
       this.#addStartPointsToMap();
       this.#addOriginalWalkToMap();
 
-      // Initialize current walk and current position marker
-      this.#initializeCurrentWalk()
+      // Display current position
+      if (this.currentPositionValue) {
+        this.#displayCurrentPosition(position);
+      }
 
       // Loop to watch position live
       if (this.liveTrackValue) {
+        this.#initializeCurrentWalk()
         this.watchPositionId = navigator.geolocation.watchPosition(this.#currentWalkToMap);
       }
     })
@@ -133,7 +142,6 @@ export default class extends Controller {
 
     this.map.addSource('original-walk', { type: 'geojson', data: data });
 
-    console.log(this.waypointsValue)
     this.waypointsValue.forEach((waypoint) => {
       data.features[0].geometry.coordinates.push([waypoint.longitude, waypoint.latitude])
     })
@@ -193,6 +201,14 @@ export default class extends Controller {
   #currentWalkToMap = (position) => {
     // console.log("#currentWalkToMap");
 
+    this.#displayCurrentPosition()
+
+    this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude]);
+
+    this.map.getSource('current-walk').setData(this.currentWalkData);
+  }
+
+  #displayCurrentPosition = (position) => {
     // Create current position marker
     const currentPositionEl = document.createElement('i');
     currentPositionEl.classList.add('fa-solid');
@@ -207,9 +223,5 @@ export default class extends Controller {
     } else {
       this.currentPositionMarker.setLngLat([position.coords.longitude, position.coords.latitude]);
     }
-
-    this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude]);
-
-    this.map.getSource('current-walk').setData(this.currentWalkData);
   }
 }

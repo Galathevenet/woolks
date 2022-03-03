@@ -5,7 +5,7 @@ class WalksController < ApplicationController
     # affichage map + carte nouvel itinéraire + grilles cartes
     @walks = Walk.all
     @hotspots = Hotspot.all
-    @waypoints = []
+    @waypoints = Waypoint.all
 
     @start_points = []
     @walks.each do |walk|
