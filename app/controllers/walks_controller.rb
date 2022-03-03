@@ -6,7 +6,7 @@ class WalksController < ApplicationController
   end
 
   def new
-    # page avant la création d'un nouvel itinéraire
+    @walk = Walk.new
   end
 
   def create
