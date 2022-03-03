@@ -1,15 +1,14 @@
-<div class="content-container">
-    <h1 class="my-3">Votre choix de balade</h1>
-  <div class="card-walk-detailed">
-    <h2><%= @walk.name %></h2>
+<div class="card-walk-detailed">
+  <div class="height-carousel-title">
+    <h1 id="title-card-detailed"><%= @walk.name %></h1>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item active">
+        <div class="carousel-item active width-90">
           <img src="https://image.shutterstock.com/image-vector/small-map-city-260nw-770438665.jpg" class="d-block w-100" alt="map">
         </div>
         <% @walk.photos.each do |photo| %>
           <div class="carousel-item">
-            <%= cl_image_tag photo.key, height: 462, width: 280, crop: :fill, class: "d-block width-80"%>
+            <%= cl_image_tag photo.key, height: 462, width: 280, crop: :fill, class: "d-block width-90"%>
           </div>
         <% end %>
       </div>
@@ -22,56 +21,45 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    <div class="infos-detailed">
-      <div class="description-reviews">
-        <p><%= @walk.description %></p>
-        <div class="reviews">
-          <h3>Avis des woolkers</h3>
-          <% @walk.reviews.each do |review| %>
-            <p><%= review.user.username %> | <%= review.rating %></p>
-            <p><%= review.comment %></p>
-          <% end %>
+  </div>
+  <div class="infos-detailed">
+    <div class="description-data">
+      <div class="middle-divider">
+        <div class="description">
+          <p><%= @walk.description %></p>
         </div>
-      </div>
-      <div class="data-walk">
-        <div class="rating">
-          <span><i class="fa fa-star"></i></span>
-          <span><i class="fa fa-star"></i></span>
-          <span><i class="fa fa-star"></i></span>
-          <span><i class="fa-regular fa-star-half-stroke"></i></span>
-          <span><i class="fa-regular fa-star"></i></span>
+        <div class="data-walk">
+          <div class="rating">
+            <span><i class="fa fa-star"></i></span>
+            <span><i class="fa fa-star"></i></span>
+            <span><i class="fa fa-star"></i></span>
+            <span><i class="fa-regular fa-star-half-stroke"></i></span>
+            <span><i class="fa-regular fa-star"></i></span>
+          </div>
+          <p><strong><%= @walk.length/1000 %></strong> km</p>
+          <p><strong><%= @walk.duration/60 %></strong> min</p>
+          <p><strong><%= @walk.hotspots.count %></strong> <%= 'hotspot'.pluralize(@walk.hotspots.count) %></p>
         </div>
-        <p> distance:</p>
-        <p><strong><%= @walk.length/1000 %></strong> km</p>
-        <p> duration:</p>
-        <p><strong><%= @walk.duration/60 %></strong> min</p>
-        <p><strong><%= @walk.hotspots.count %></strong> <%= 'hotspot'.pluralize(@walk.hotspots.count) %></p>
-        <%= button_to "GO", live_walk_path(@walk), class: "btn-min"%>
       </div>
     </div>
+    <div class="reviews">
+      <h3>Avis des woolkers</h3>
+      <% @walk.reviews.each do |review| %>
+        <p><%= review.user.username %> | <% review.rating.times do %>
+                                          <span class="fa fa-star"></span>
+                                        <% end %>
+                                        <% (5 - review.rating).times do %>
+                                          <span class="fa-regular fa-star"></span>
+                                        <% end %></p>
+        <p><%= review.comment %></p>
+        <div class="photos-review">
+
+        </div>
+      <% end %>
+    </div>
+        <%= simple_form_for @new_walk, html: { class: "d-flex justify-content-center" }, method: :post do |f| %>
+          <%= f.input :original_walk_id, as: :hidden, input_html: { value: @walk.id } %>
+          <%= f.submit "GO!", class: 'btn-max d-flex justify-content-center' %>
+        <% end %>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h1>This is the show for a walk before launching it</h1>
-
-<h2></h2>
-<p></p>
-
-
-
-
-<h2>REVIEWS</h2>
