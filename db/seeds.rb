@@ -208,19 +208,15 @@ puts "Hotspots created... Feeling hot yet ?"
 
 puts "Creating 2 Reviews"
 
-Review.create!(
-  walk: walk_one,
-  user: marion,
-  comment: "J'ai bien aimé mais ça manque de sacs à crottes",
-  rating: 4
-)
 
-Review.create!(
-  walk: walk_two,
-  user: carole,
-  comment: "J'ai adoré comme je n'aime pas la nature, meilleure expérience sur du bitume !",
-  rating: 5
-)
+review_one = Review.create!(walk: walk_one, user: marion, comment: "J'ai bien aimé mais ça manque de sacs à crottes", rating: 4)
+review_one.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
+                          {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
+review_three = Review.create!(walk: walk_one, user: marion, comment: "J'ai bien aimé mais ça manque de sacs à crottes", rating: 3)
+review_three.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
+                          {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
+review_two = Review.create!(walk: walk_two, user: carole, comment: "J'ai adoré comme je n'aime pas la nature, meilleure expérience sur du bitume !", rating: 5)
+
 
 puts "Reviews created... Disclaimer : Woolks takes no responsability for fake reviews !"
 
