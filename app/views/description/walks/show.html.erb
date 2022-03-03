@@ -5,11 +5,15 @@
     <img src="https://image.shutterstock.com/image-vector/small-map-city-260nw-770438665.jpg" alt="map">
     <div class="infos-detailed">
       <div class="description-reviews">
-        <p>Super balade sur les bords de garonne. On croise beaucoup de copins chiens.</p>
+        <p><%= @walk.description %></p>
+        <p> distance: <strong><%= @walk.length/1000 %></strong> km</p>
+        <p> duration: <strong><%= @walk.duration/60 %></strong> min</p>
         <div class="reviews">
           <h3>Avis des woolkers</h3>
-          <p>Balade très chouette.</p>
-          <p>Parfait pour que mon chien rencontre des copains !</p>
+          <% @walk.reviews.each do |review| %>
+            <p><%= review.user.username %> | <%= review.rating %></p>
+            <p><%= review.comment %></p>
+          <% end %>
         </div>
       </div>
       <div class="data-walk">
@@ -46,9 +50,7 @@
 <h1>This is the show for a walk before launching it</h1>
 
 <h2></h2>
-<p><%= @walk.description %></p>
-<p><%= @walk.length %></p>
-<p><%= @walk.duration %></p>
+<p></p>
   <% @walk.photos.each do |photo| %>
     <%= cl_image_tag photo.key, height: 300, width: 390, crop: :fill%>
   <% end %>
@@ -56,9 +58,3 @@
 
 
 <h2>REVIEWS</h2>
-
-<% @walk.reviews.each do |review| %>
-  <p><%= review.user.username %></p>
-  <p><%= review.rating %></p>
-  <p><%= review.comment %></p>
-<% end %>
