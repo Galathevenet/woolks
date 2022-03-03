@@ -1,28 +1,29 @@
 require 'open-uri'
 
 puts "Destroying all the DBs...!!!"
+
 Waypoint.destroy_all
-
 puts "Waypoint db destroyed"
+
 HotspotWalk.destroy_all
-
 puts "Hotspot_walk db destroyed"
+
 FavoriteWalk.destroy_all
-
 puts "Favorite_walk db destroyed"
-Review.destroy_all
 
+Review.destroy_all
 puts "Review db destroyed"
+
 Walk.where.not(original_walk_id: nil).destroy_all
 Walk.destroy_all
-
 puts "Walk db destroyed"
+
 User.destroy_all
-
 puts "User db destroyed"
-Hotspot.destroy_all
 
+Hotspot.destroy_all
 puts "Hotspot db destroyed"
+
 puts "All DBs are down ! I repeat, all DBs are down !"
 
 puts "Creating 4 Users"
