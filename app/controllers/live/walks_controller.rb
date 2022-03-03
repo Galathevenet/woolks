@@ -15,5 +15,6 @@ class Live::WalksController < ApplicationController
     params['walk']['waypoints'].split(',').map(&:to_f).each_slice(2).to_a.each do |coord|
       Waypoint.create!(walk: @walk, longitude: coord[0], latitude: coord[1])
     end
+    redirect_to recap_and_review_walk_path
   end
 end
