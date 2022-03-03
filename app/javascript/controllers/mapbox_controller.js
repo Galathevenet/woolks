@@ -19,12 +19,17 @@ export default class extends Controller {
     } else {
       console.log('Geolocation IS supported by your browser');
 
-      // Initialize map with hotspots and originalWalk
-      navigator.geolocation.getCurrentPosition(this.#initializeMap);
+      // When current position is available, launch map
+      navigator.geolocation.getCurrentPosition(this.#launchMap);
     }
   }
 
-  #initializeMap = (position) => {
+  end() {
+    console.log("end");
+    
+  }
+
+  #launchMap = (position) => {
     console.log("initializeMap")
 
     this.map = new mapboxgl.Map({
@@ -39,7 +44,7 @@ export default class extends Controller {
       this.#addHotspotsToMap();
       this.#addOriginalWalkToMap();
 
-      // Initialize current walk
+      // Initialize current walk and current position marker
       this.#initializeCurrentWalk()
 
       // Loop to watch position live
@@ -153,23 +158,27 @@ export default class extends Controller {
         'line-width': 4
       }
     });
-
   }
 
   #currentWalkToMap = (position) => {
-    console.log("#addCurrentWalkToMap");
+    console.log("#currentWalkToMap");
 
+    // Create current position marker
     const currentPositionEl = document.createElement('i');
     currentPositionEl.classList.add('fa-solid');
     currentPositionEl.classList.add('fa-location-crosshairs');
     currentPositionEl.style.fontSize = '24px';
     currentPositionEl.style.color = 'red';
 
-    this.currentPositionMarker = new mapboxgl.Marker(currentPositionEl)
+    if (!this.currentPositionMarker) {
+      this.currentPositionMarker = new mapboxgl.Marker(currentPositionEl)
       .setLngLat([position.coords.longitude, position.coords.latitude])
       .addTo(this.map);
+    } else {
+      this.currentPositionMarker.setLngLat([position.coords.longitude, position.coords.latitude]);
+    }
 
-    this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude])
+    this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude]);
 
     this.map.getSource('current-walk').setData(this.currentWalkData);
   }

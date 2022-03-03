@@ -1,7 +1,7 @@
-<div id="map"
-  data-controller="mapbox"
+<div data-controller="mapbox"
   data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
   data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
   data-mapbox-waypoints-value="<%= @waypoints.to_json%>">
+  <div id="map"></div>
+  <button class="map-btn" data-action="click->mapbox#end">End walk</button>
 </div>
-<button class="map-btn">End walk</button>
