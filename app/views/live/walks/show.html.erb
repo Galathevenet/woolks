@@ -1,5 +1,13 @@
-<div id="map"
-  data-controller="mapbox"
-  data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+<div data-controller="mapbox"
+  data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+  data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
+  data-mapbox-waypoints-value="<%= @waypoints.to_json%>">
+
+  <div id="map"></div>
+
+  <%= simple_form_for [:live, @walk] do |f| %>
+    <%= f.input :waypoints, as: :hidden, input_html: { value: "initialValue", data: { mapbox_target: 'input' } } %>
+    <%= f.submit "End walk", class: "map-btn", data: { action: 'click->mapbox#endWalk' } %>
+  <% end %>
+
 </div>
-<button class="map-btn">End walk</button>
