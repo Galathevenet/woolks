@@ -7,25 +7,27 @@
       Duration<b class="filter-title"></b>
     </button>
     <ul class="dropdown-menu">
-      <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    15 min</label></li>
-      <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    30 min</label></li>
+      <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    less than 15 min</label></li>
+      <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    less than 30 min</label></li>
       <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure</label></li>
+      <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure 30</label></li>
       <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    2 heures</label></li>
+      <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    more</label></li>
     </ul>
   </li>
 </ul>
 
 <%# ------dropdown pour signaler un hotspot-------- %>
+<%# ------ATTENTION, pas en DB pour le moment-------- %>
 
 <div class="btn-group" id="dropdown-hotspots">
   <button type="button" class="btn btn-danger" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="fa-solid fa-thumbtack"></i>
+    <i class="fa-solid fa-thumbtack" id="dropdown-pin"></i>
   </button>
   <div class="dropdown-menu">
     <a class="dropdown-item" href="#">Dog park</a>
     <a class="dropdown-item" href="#">Fountain</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Distributor</a>
+    <a class="dropdown-item" href="#">Dispenser</a>
     <a class="dropdown-item" href="#">Bin</a>
   </div>
 </div>
@@ -42,6 +44,8 @@
     <a class="dropdown-item" href="#">My walks</a>
     <a class="dropdown-item" href="#">My favorites</a>
     <a class="dropdown-item" href="#">My historical</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Log out</a>
   </div>
 
 
