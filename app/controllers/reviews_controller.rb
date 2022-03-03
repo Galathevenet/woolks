@@ -8,9 +8,11 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     if @review.save
-      redirect_to(walks_path) and return
+      redirect_to walks_path and return
     else
-      redirect_to(recap_and_review_walks(@walk)) and return
+      @walk = Walk.find(params[:review][:walk_id])
+      render "recap_and_review/walks/show"
+      # redirect_to recap_and_review_walk_path(@current_walk.id) and return
     end
   end
 
