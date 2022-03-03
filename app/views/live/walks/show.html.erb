@@ -3,5 +3,12 @@
   data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
   data-mapbox-waypoints-value="<%= @waypoints.to_json%>">
   <div id="map"></div>
-  <button class="map-btn" data-action="click->mapbox#end">End walk</button>
+
+  <%# NO PATCH METHOD %>
+  <%# <form action="/walks/update" method="POST">
+    <input type="hidden" data-mapbox-target="input">
+    <input type="submit" value="End walk" class="map-btn" data-action="click->mapbox#endWalk">
+  </form> %>
+
+  <button class="map-btn" data-action="click->mapbox#endWalk">End walk</button>
 </div>

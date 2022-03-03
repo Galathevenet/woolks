@@ -3,6 +3,8 @@ import mapboxgl from "mapbox-gl"
 
 export default class extends Controller {
 
+  static targets = ['input'];
+
   static values = {
     apiKey: String,
     hotspots: Array,
@@ -24,9 +26,12 @@ export default class extends Controller {
     }
   }
 
-  end() {
+  endWalk() {
     console.log("end");
-    
+
+    navigator.geolocation.clearWatch(this.watchPositionId);
+    console.log(this.currentWalkData.features[0].geometry.coordinates);
+    // this.inputTarget = this.currentWalkData.features[0].geometry.coordinates;
   }
 
   #launchMap = (position) => {
@@ -48,7 +53,7 @@ export default class extends Controller {
       this.#initializeCurrentWalk()
 
       // Loop to watch position live
-      navigator.geolocation.watchPosition(this.#currentWalkToMap);
+      this.watchPositionId = navigator.geolocation.watchPosition(this.#currentWalkToMap);
     })
   }
 
