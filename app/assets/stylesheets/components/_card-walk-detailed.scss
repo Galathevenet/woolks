@@ -98,11 +98,23 @@
         margin-bottom: 4px;
         font-style: italic;
       }
+
+      .photos-review {
+      display: flex;
+      flex-direction: row;
+      height: 30px;
+      width: 100%;
     }
 
-    .photo-reviews {
-      height: 20%;
+      .photo-size {
+        width: 10%;
+        height: 100%;
+        margin: 5px;
+
+      }
     }
+
+
 
   .data-walk {
     display: flex;
@@ -124,4 +136,11 @@
   .btn-centered {
     align-items: center;
   }
+
+}
+
+.modal-dialog {
+  position: relative;
+  top: calc(30% - 66px);
+
 }

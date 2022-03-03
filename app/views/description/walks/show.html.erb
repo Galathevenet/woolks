@@ -54,7 +54,7 @@
         <p><%= review.comment %></p>
         <div class="photos-review">
           <% review.photos.each do | photo | %>
-            <%= cl_image_tag photo.key, height: 10, width: 10, crop: :fill%>
+            <%= cl_image_tag photo.key, height: 462, width: 280 , crop: :fill , class: "photo-size", data: {'bs-toggle': "modal", 'bs-target': "#review#{review.id}Modal"} %>
           <% end %>
         </div>
       <% end %>
@@ -65,3 +65,34 @@
         <% end %>
   </div>
 </div>
+
+<% @walk.reviews.each do |review| %>
+  <div class="modal fade" id="review<%=review.id%>Modal" tabindex="-1" aria-labelledby="review<%=review.id%>ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div id="carouselReview<%=review.id%>Controls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <% review.photos.each_with_index do |photo, i| %>
+                  <div class="carousel-item <%= "active" if i == 0%>">
+                    <%= cl_image_tag photo.key, crop: :fill, class: "d-block width-100"%>
+                  </div>
+                <% end %>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselReview<%=review.id%>Controls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselReview<%=review.id%>Controls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
