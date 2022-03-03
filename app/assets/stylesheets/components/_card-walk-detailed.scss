@@ -30,6 +30,10 @@
     text-align: center;
     // margin: 0 auto;
   }
+
+  .width-80 {
+    width: 80vw;
+  }
 }
 
 .infos-detailed {
@@ -74,6 +78,7 @@
     text-align: center;
     flex-grow: 1;
     border: $light-gray solid;
+    padding: 8px;
 
     .rating {
       font-size: 12px;
@@ -84,6 +89,7 @@
 
     .btn-min {
       align-self: flex-end;
+      border: none;
     }
   }
 }

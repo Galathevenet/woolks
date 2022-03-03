@@ -2,12 +2,29 @@
     <h1 class="my-3">Votre choix de balade</h1>
   <div class="card-walk-detailed">
     <h2><%= @walk.name %></h2>
-    <img src="https://image.shutterstock.com/image-vector/small-map-city-260nw-770438665.jpg" alt="map">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://image.shutterstock.com/image-vector/small-map-city-260nw-770438665.jpg" class="d-block w-100" alt="map">
+        </div>
+        <% @walk.photos.each do |photo| %>
+          <div class="carousel-item">
+            <%= cl_image_tag photo.key, height: 462, width: 280, crop: :fill, class: "d-block width-80"%>
+          </div>
+        <% end %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
     <div class="infos-detailed">
       <div class="description-reviews">
         <p><%= @walk.description %></p>
-        <p> distance: <strong><%= @walk.length/1000 %></strong> km</p>
-        <p> duration: <strong><%= @walk.duration/60 %></strong> min</p>
         <div class="reviews">
           <h3>Avis des woolkers</h3>
           <% @walk.reviews.each do |review| %>
@@ -24,10 +41,12 @@
           <span><i class="fa-regular fa-star-half-stroke"></i></span>
           <span><i class="fa-regular fa-star"></i></span>
         </div>
-        <p>4,8km</p>
-        <p>50 min</p>
-        <p>3 hotspots</p>
-        <a class="btn-min" href="#">GO</a>
+        <p> distance:</p>
+        <p><strong><%= @walk.length/1000 %></strong> km</p>
+        <p> duration:</p>
+        <p><strong><%= @walk.duration/60 %></strong> min</p>
+        <p><strong><%= @walk.hotspots.count %></strong> <%= 'hotspot'.pluralize(@walk.hotspots.count) %></p>
+        <%= button_to "GO", live_walk_path(@walk), class: "btn-min"%>
       </div>
     </div>
   </div>
@@ -51,9 +70,7 @@
 
 <h2></h2>
 <p></p>
-  <% @walk.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, height: 300, width: 390, crop: :fill%>
-  <% end %>
+
 
 
 
