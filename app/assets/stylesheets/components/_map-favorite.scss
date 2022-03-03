@@ -1,0 +1,20 @@
+.little-map-favorite {
+  position: relative;
+
+  .fa-heart {
+    position: absolute;
+    right: 180px;
+    top: 8px;
+  }
+}
+
+.medium-map-favorite {
+  position: relative;
+
+  .fa-heart {
+    font-size: 25px;
+    position: absolute;
+    right: 20px;
+    top: 8px;
+  }
+}

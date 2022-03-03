@@ -1,0 +1,25 @@
+#dropdown-hotspots {
+  background-color: $light-gray;
+  border-radius: 4px;
+  text-align: right;
+  padding: 10px 15px;
+  float: right;
+  margin-top: 6px
+}
+
+.dropdown-item:hover {
+  background-color: $success;
+}
+
+.dropdown-item {
+  font-size: 18px;
+  font-family: $body-font;
+  padding-left: 0px;
+  margin-left: 0px;
+}
+
+#dropdown-pin {
+  font-size: 22px;
+  text-align: center;
+  padding-top: 3px;
+}
