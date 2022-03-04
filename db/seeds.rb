@@ -60,9 +60,9 @@ puts "The 4 best users on earth have been created out of nowhere"
 puts "Creating 2 Walks"
 
 walk_one = Walk.create!(
-  user: cedric,
-  name: "Dans les chartrons",
-  description: "Jolies petites ruelles",
+  user: carole,
+  name: "Around the Chartrons",
+  description: "A nice stroll around cute alleys to discover this atypical neighborhood",
   date: "20220302",
   duration: "1200",
   length: "2200",
@@ -86,8 +86,8 @@ walk_one.photos.attach(
 walk_two = Walk.create!(
   user: gala,
   original_walk: walk_one,
-  name: "Jardin Public et Quinconces",
-  description: "Le triangle d'or, pour les toutous chics",
+  name: "Jardin Public and Quinconces",
+  description: "Bordeaux's golden triangle, for chic doggies and their owners",
   date: "20220301",
   duration: "660",
   length: "1500",
@@ -111,8 +111,8 @@ walk_two.photos.attach(
 walk_three = Walk.create!(
   user: marion,
   original_walk: nil,
-  name: "Tours des 2 ponts",
-  description: "Un super tour plein d'immeubles",
+  name: "Circle around the two bridges",
+  description: "Beautiful hausmanian style buildings and a sweet walk along the riverside",
   date: "20220402",
   duration: "4000",
   length: "7000",
@@ -209,14 +209,15 @@ puts "Hotspots created... Feeling hot yet ?"
 puts "Creating 2 Reviews"
 
 
-review_one = Review.create!(walk: walk_one, user: marion, comment: "J'ai bien aimé mais ça manque de sacs à crottes", rating: 4)
+review_one = Review.create!(walk: walk_one, user: marion, comment: "I liked it, but i couldn't find any poop-bags dispenser", rating: 4)
 review_one.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
                           {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
-review_three = Review.create!(walk: walk_one, user: marion, comment: "J'ai bien aimé mais ça manque de sacs à crottes", rating: 3)
+review_three = Review.create!(walk: walk_one, user: gala, comment: "Not enough grass, my dog refused to pee", rating: 3)
 review_three.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
                           {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
-review_two = Review.create!(walk: walk_two, user: carole, comment: "J'ai adoré comme je n'aime pas la nature, meilleure expérience sur du bitume !", rating: 5)
-
+review_two = Review.create!(walk: walk_two, user: carole, comment: "Since i hate nature, i loved it", rating: 5)
+review_two.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
+                          {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
 
 puts "Reviews created... Disclaimer : Woolks takes no responsability for fake reviews !"
 
