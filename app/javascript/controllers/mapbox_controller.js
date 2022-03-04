@@ -3,7 +3,7 @@ import mapboxgl from "mapbox-gl"
 
 export default class extends Controller {
 
-  static targets = ['input'];
+  static targets = ['input', 'map'];
 
   static values = {
     apiKey: String,
@@ -42,14 +42,14 @@ export default class extends Controller {
   #launchMap = (position) => {
     // console.log("initializeMap")
 
-    if (this.centerCurrentValue) { // Center map on current user position
-      this.center = [position.coords.longitude, position.coords.latitude]
-    } else { // center map on first walk startPoint
-      this.center = [this.waypointsValue[0].longitude, this.waypointsValue[0].latitude]
-    }
+    // if (this.centerCurrentValue) { // Center map on current user position
+    //   this.center = [position.coords.longitude, position.coords.latitude]
+    // } else { // center map on first walk startPoint
+    //   this.center = [this.waypointsValue[0].longitude, this.waypointsValue[0].latitude]
+    // }
 
     this.map = new mapboxgl.Map({
-      container: this.element,
+      container: this.mapTarget,
       style: "mapbox://styles/mapbox/streets-v10",
       center: this.center,
       zoom: 13
@@ -64,13 +64,12 @@ export default class extends Controller {
 
       // Display current position
       if (this.currentPositionValue) {
-        console.log(position)
         this.#displayCurrentPosition(position);
       }
 
       // Loop to watch position live
       if (this.liveTrackValue) {
-        this.#initializeCurrentWalk()
+        this.#initializeCurrentWalk(position)
         this.watchPositionId = navigator.geolocation.watchPosition(this.#currentWalkToMap);
       }
     })
@@ -166,7 +165,7 @@ export default class extends Controller {
     });
   }
 
-  #initializeCurrentWalk = () => {
+  #initializeCurrentWalk = (position) => {
     // console.log("#initializeCurrentWalk");
 
     this.currentWalkData = {
@@ -177,7 +176,7 @@ export default class extends Controller {
           'geometry': {
             'type': 'LineString',
             'coordinates': [
-              // [-0.565, 44.859]
+              [position.coords.longitude, position.coords.latitude]
             ]
           }
         }
@@ -195,7 +194,7 @@ export default class extends Controller {
         'line-cap': 'round'
       },
       'paint': {
-        'line-color': 'red',
+        'line-color': '#FE7F2D',
         'line-width': 4
       }
     });

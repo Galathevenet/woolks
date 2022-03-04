@@ -6,12 +6,12 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.user_id = current_user.id
+    @review.user = current_user
     if @review.save
       flash[:alert] = "Your review has been added"
       redirect_to description_walk_path(@review.walk) and return
     else
-      @walk = Walk.find(params[:review][:walk_id])
+      # @walk = Walk.find(params[:review][:walk_id])
       render "recap_and_review/walks/show"
       # redirect_to recap_and_review_walk_path(@current_walk.id) and return
     end
