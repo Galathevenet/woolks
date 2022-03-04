@@ -42,6 +42,12 @@ class WalksController < ApplicationController
 
   def update
     # met à jour la walk avec son nom, sa description, ses photos...
+    @walk = Walk.find(params[:walk_id])
+    if @walk.update(walk_params)
+      redirect_to my_walks_path
+    else
+      raise
+    end
   end
 
   def destroy

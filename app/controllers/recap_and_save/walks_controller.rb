@@ -6,6 +6,5 @@ class RecapAndSave::WalksController < ApplicationController
   def edit
     # Si j'ai décidé de sauvegarder ma walk, j'ajoute une desc, des photos etc
     @walk = Walk.find(params[:walk_id])
-    @review = Review.new
   end
 end
