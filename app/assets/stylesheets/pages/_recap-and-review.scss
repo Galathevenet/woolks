@@ -28,10 +28,12 @@
   background-color: $primary;
   font-size: 15px;
   font-family: $body-font;
-  font-weight: 300;
-  margin-left: 0px;
-  margin-top: 40px;
+  border: none;
 }
+
+.btn-centered {
+    align-items: center;
+  }
 
 .congrats {
   text-align: center;
@@ -42,4 +44,9 @@
   text-align: center;
   color: $primary;
   margin-bottom: 15px;
+}
+
+.light-orange-bckgrd {
+  background-color: $light-orange;
+  padding: 10px;
 }

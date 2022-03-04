@@ -36,22 +36,20 @@
     <%= f.hidden_field :walk_id, value: @walk.original_walk_id %>
     <%= f.hidden_field :current_walk_id, value: @walk.id %>
 
-    <div class="review-form-title">
+    <div class="review-form-title light-orange-bckgrd">
       <%= f.input :rating, collection: (1..5).to_a, label: "Rate your walk" %>
     </div>
-    <div class="form-input review-form-title">
+    <div class="form-input review-form-title light-orange-bckgrd">
       <%= f.input :comment, placeholder: "Comment your walk" %>
     </div>
 
-    <div class="form-input review-form-title">
+    <div class="form-input review-form-title light-orange-bckgrd">
       <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     </div>
 
-    <div class="form-button">
+    <div class="form-button d-flex justify-content-center">
       <%= f.submit "Add my review", class: "btn-med btn-review-form" %>
     </div>
   <% end %>
-
-<%= link_to "Back to homepage", walks_path, class: "nav-link" %>
-
+  <%= link_to "Back to homepage", walks_path, class: "nav-link" %>
 </div>
