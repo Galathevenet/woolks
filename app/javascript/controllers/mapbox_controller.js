@@ -63,6 +63,7 @@ export default class extends Controller {
 
       // Display current position
       if (this.currentPositionValue) {
+        console.log(position)
         this.#displayCurrentPosition(position);
       }
 
@@ -201,7 +202,7 @@ export default class extends Controller {
   #currentWalkToMap = (position) => {
     // console.log("#currentWalkToMap");
 
-    this.#displayCurrentPosition()
+    this.#displayCurrentPosition(position)
 
     this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude]);
 
