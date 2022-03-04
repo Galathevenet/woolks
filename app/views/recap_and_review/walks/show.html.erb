@@ -2,18 +2,39 @@
   <h1 class="congrats">Congratulations!</h1>
 
   <div class="medium-map-favorite">
-    <img class="medium-map" src="https://kitt.lewagon.com/placeholder/users/ssaunier" alt="">
+    <div
+      class="mapbox"
+      data-controller="mapbox"
+      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+      data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
+      data-mapbox-waypoints-value="<%= @waypoints.to_json %>"
+      data-mapbox-start-points-value="<%= @start_points.to_json %>"
+      data-mapbox-current-position-value="false"
+      data-mapbox-live-track-value="false"
+      data-mapbox-center-current-value="false">
+      <div data-mapbox-target="map" id="map" class="medium-map"></div>
+    </div>
+
     <i class="fa-solid fa-heart"></i>
   </div>
 
-  <div class="light-orange-bckgrd">
-  <p class="walk-recap"><i class="fa-solid fa-person-hiking"></i>  <strong><%= @walk.length/1000 %></strong> km</p>
-  <p class="walk-recap"><i class="fa-solid fa-stopwatch"></i>  <strong><%= @walk.duration/60 %></strong> min</p>
+  <div>
+    <div class="walk-recap">
+      <i class="fa-solid fa-person-hiking"></i>
+      <strong><%= @walk.length/1000 %></strong> km
+    </div>
+    <div class="walk-recap">
+      <i class="fa-solid fa-stopwatch"></i>
+      <strong><%= @walk.duration/60 %></strong> min
+    </div>
   </div>
+
   <br>
+
   <%= simple_form_for @review, data:{controller:"star-rating"} do |f| %>
 
     <%= f.hidden_field :walk_id, value: @walk.original_walk_id %>
+    <%= f.hidden_field :current_walk_id, value: @walk.id %>
 
     <div class="review-form-title light-orange-bckgrd">
       <%= f.input :rating, collection: (1..5).to_a, label: "Rate your walk" %>
