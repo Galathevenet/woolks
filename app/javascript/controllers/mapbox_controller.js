@@ -248,6 +248,6 @@ export default class extends Controller {
     if (this.currentPositionValue) {
       bounds.extend([ position.coords.longitude, position.coords.latitude ])
     }
-    this.map.fitBounds(bounds, { padding: 70, maxZoom: 17, duration: 0 })
+    this.map.fitBounds(bounds, { padding: 20, maxZoom: 17, duration: 0 })
   }
 }

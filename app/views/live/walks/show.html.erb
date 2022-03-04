@@ -6,13 +6,10 @@
   data-mapbox-start-points-value=" [] "
   data-mapbox-current-position-value="true"
   data-mapbox-live-track-value="true"
-  data-mapbox-center-current-value="true">
-
-  <div id="map" class="full-screen-map"></div>
-
-  <%= simple_form_for [:live, @walk] do |f| %>
-    <%= f.input :waypoints, as: :hidden, input_html: { value: "initialValue", data: { mapbox_target: 'input' } } %>
-    <%= f.submit "End walk", class: "map-btn", data: { action: 'click->mapbox#endWalk' } %>
-  <% end %>
-
+  data-mapbox-center-current-value="true"
+  div id="map" class="full-screen-map">
 </div>
+<%= simple_form_for [:live, @walk] do |f| %>
+  <%= f.input :waypoints, as: :hidden, input_html: { value: "initialValue", data: { mapbox_target: 'input' } } %>
+  <%= f.submit "End walk", class: "map-btn", data: { action: 'click->mapbox#endWalk' } %>
+<% end %>
