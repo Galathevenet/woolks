@@ -18,7 +18,14 @@ body {
 }
 
 h1 {
+  background-color: $light-orange;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px;
   color: $gray;
+  text-decoration: overline $secondary;
+  text-align: center;
 }
 
 h2 {
