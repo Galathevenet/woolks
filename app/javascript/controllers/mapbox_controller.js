@@ -60,6 +60,7 @@ export default class extends Controller {
       this.#addHotspotsToMap();
       this.#addStartPointsToMap();
       this.#addOriginalWalkToMap();
+      this.#fitMap(position);
 
       // Display current position
       if (this.currentPositionValue) {
@@ -225,5 +226,28 @@ export default class extends Controller {
     } else {
       this.currentPositionMarker.setLngLat([position.coords.longitude, position.coords.latitude]);
     }
+  }
+
+  #fitMap(position) {
+    const bounds = new mapboxgl.LngLatBounds()
+
+    if (!this.liveTrackValue) {
+      this.hotspotsValue.forEach((marker) => {
+        bounds.extend([ marker.longitude, marker.latitude ])
+      })
+    }
+
+    this.waypointsValue.forEach((marker) => {
+      bounds.extend([ marker.longitude, marker.latitude ])
+    })
+
+    this.startPointsValue.forEach((marker) => {
+      bounds.extend([ marker.longitude, marker.latitude ])
+    })
+
+    if (this.currentPositionValue) {
+      bounds.extend([ position.coords.longitude, position.coords.latitude ])
+    }
+    this.map.fitBounds(bounds, { padding: 70, maxZoom: 17, duration: 0 })
   }
 }
