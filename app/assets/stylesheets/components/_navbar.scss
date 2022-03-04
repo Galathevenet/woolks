@@ -1,10 +1,33 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+
+  button.navbar-toggler {
+    display: none;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+
+    a {
+      padding: 10px;
+    }
+  }
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+  display: flex;
+  flex-basis: auto;
+
+  .dropdown-menu {
+    position: absolute;
+  }
+
+  .avatar {
+    width: 52px;
+    margin-right: 0;
+  }
 }
 
 .navbar-lewagon .navbar-brand img {
