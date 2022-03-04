@@ -81,20 +81,21 @@ export default class extends Controller {
     this.hotspotsValue.forEach((hotspot) => {
       const hotspotEl = document.createElement('i');
       hotspotEl.classList.add('fa-solid');
-      hotspotEl.style.fontSize = '24px';
+      hotspotEl.style.fontSize = '20px';
 
       switch (hotspot.category) {
         case 'dispenser':
           hotspotEl.classList.add('fa-trash-can');
-          hotspotEl.style.color = 'red';
+          hotspotEl.style.fontSize = '16px';
+          hotspotEl.style.color = '#FE7F2D';
           break;
         case 'park':
           hotspotEl.classList.add('fa-tree');
-          hotspotEl.style.color = 'green';
+          hotspotEl.style.color = '#FE7F2D';//'#5fbf00';
           break;
         case 'fountain':
           hotspotEl.classList.add('fa-faucet');
-          hotspotEl.style.color = 'blue';
+          hotspotEl.style.color = '#FE7F2D';//'#00afef';
           break;
         default:
           break;
@@ -113,9 +114,9 @@ export default class extends Controller {
     this.startPointsValue.forEach((startPoint) => {
       const startPointEl = document.createElement('i');
       startPointEl.classList.add('fa-solid');
-      startPointEl.style.fontSize = '24px';
+      startPointEl.style.fontSize = '20px';
       startPointEl.classList.add('fa-location-dot');
-      startPointEl.style.color = 'blue';
+      startPointEl.style.color = '#556644';
 
       new mapboxgl.Marker(startPointEl)
         .setLngLat([startPoint.longitude, startPoint.latitude])
@@ -158,7 +159,7 @@ export default class extends Controller {
         'line-cap': 'round'
       },
       'paint': {
-        'line-color': 'blue',
+        'line-color': '#556644',
         'line-width': 4
       }
     });
@@ -214,8 +215,8 @@ export default class extends Controller {
     const currentPositionEl = document.createElement('i');
     currentPositionEl.classList.add('fa-solid');
     currentPositionEl.classList.add('fa-location-crosshairs');
-    currentPositionEl.style.fontSize = '24px';
-    currentPositionEl.style.color = 'red';
+    currentPositionEl.style.fontSize = '20px';
+    currentPositionEl.style.color = '#556644';
 
     if (!this.currentPositionMarker) {
       this.currentPositionMarker = new mapboxgl.Marker(currentPositionEl)
