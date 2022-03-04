@@ -1,0 +1,36 @@
+<div class="content-container">
+  <h1 class="congrats">Congratulations!</h1>
+
+  <div class="medium-map-favorite">
+    <img class="medium-map" src="https://kitt.lewagon.com/placeholder/users/ssaunier" alt="">
+    <i class="fa-solid fa-heart"></i>
+  </div>
+
+  <div>
+  <p>Walk duration: <%= @walk.duration %> min</p>
+  <p>Walk length: <%= @walk.length %> km</p>
+  </div>
+
+  <%= simple_form_for(walk) do |f| %>
+    <div class="form-input">
+      <%= f.input :name, placeholder: "Give a title to your Walk" %>
+    </div>
+
+    <div class="form-input">
+      <%= f.input :description, placeholder: "Give a description to your Walk" %>
+    </div>
+
+    <div class="form-input">
+      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    </div>
+
+    <div class="form-button">
+      <%= f.submit "Add your walk", class: "btn btn-flat" %>
+    </div>
+  <% end %>
+
+<br>
+
+<%= link_to "Back to homepage", walks_path, class: "nav-link" %>
+
+</div>
