@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     if @review.save
+      flash[:alert] = "Your review has been added"
       redirect_to walks_path and return
     else
       @walk = Walk.find(params[:review][:walk_id])

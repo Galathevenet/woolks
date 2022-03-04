@@ -8,6 +8,7 @@ export default class extends Controller {
   };
 
   connect() {
+    console.log("testtest")
     console.log("Connected to mapbox_controller.js");
 
     mapboxgl.accessToken = this.apiKeyValue;
@@ -126,5 +127,5 @@ export default class extends Controller {
     .setLngLat([position.coords.longitude, position.coords.latitude])
     .addTo(this.map);
   }
-  
+
 }
