@@ -42,8 +42,8 @@
               <span>(<%= @walk.reviews.size%>)</span>
               <% end %>
             </div>
-          <p><strong><%= @walk.length/1000 %></strong> km</p>
-          <p><strong><%= @walk.duration/60 %></strong> min</p>
+          <p><i class="fa-solid fa-person-hiking"></i> <strong><%= @walk.length/1000 %></strong> km</p>
+          <p><i class="fa-solid fa-stopwatch"></i> <strong><%= @walk.duration/60 %></strong> min</p>
           <p><strong><%= @walk.hotspots.count %></strong> <%= 'hotspot'.pluralize(@walk.hotspots.count) %></p>
         </div>
       </div>
