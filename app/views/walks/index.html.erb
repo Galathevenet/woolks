@@ -1,0 +1,129 @@
+<div class="content-container">
+  <div
+    data-controller="mapbox"
+    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
+    data-mapbox-waypoints-value="<%= [] %>"
+    data-mapbox-start-points-value="<%= @start_points.to_json %>"
+    data-mapbox-current-position-value="true"
+    data-mapbox-live-track-value="false"
+    data-mapbox-center-current-value="true">
+    <div id="map" class="medium-map"></div>
+  </div>
+  <div>
+    <h1>Choose your walk !</h1>
+    <form>
+      <div class="form-filter">
+        <ul class="dropdown-filter">
+          <li class="dropdown">
+            <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
+              Duration ⌄<b class="filter-title"></b>
+            </button>
+            <ul class="dropdown-menu">
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    less than 15 min</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    less than 30 min</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure 30</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    2 heures</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    more</label></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="dropdown-filter">
+          <li class="dropdown">
+            <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
+              Hotspots  ⌄<b class="filter-title"></b>
+            </button>
+            <ul class="dropdown-menu">
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    Park</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    Fontain</label></li>
+              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    Dispenser</label></li>
+            </ul>
+          </li>
+        </ul>
+          <ul class="dropdown-filter">
+            <li class="dropdown">
+              <button type="submit" class="btn">Submit</button>
+            </li>
+          </ul>
+      </div>
+    </form>
+      <%# <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+        <option selected>Duration</option>
+        <option value="1">< 15 min</option>
+        <option value="2">< 30 min</option>
+        <option value="3">1h</option>
+        <option value="4">1h30</option>
+        <option value="5">2h</option>
+      </select> %>
+      <%# <div class="mb-3">
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+          <option selected>Hotspots</option>
+          <option value="1">Fontain</option>
+          <option value="2">Park</option>
+          <option value="3">Dispenser</option>
+        </select>
+      </div>
+    <%# <div class="my-4">
+      <ul class="dropdown-filter">
+        <li class="dropdown">
+          <button type="button" class="btn d-inline" data-bs-toggle="dropdown" class="dropdown-toggle">
+            Duration<b class="filter-title"></b>
+          </button>
+          <ul class="dropdown-menu">
+            <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    less than 15 min</label></li>
+            <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    less than 30 min</label></li>
+            <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure</label></li>
+            <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure 30</label></li>
+            <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    2 heures</label></li>
+            <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    more</label></li>
+          </ul>
+        </li>
+      </ul>
+    </div> %>
+  </div>
+  <div class="card-dispenser-slide">
+    <%= link_to new_walk_path do %>
+      <div class="card-add-walk">
+        <p>+</p>
+      </div>
+    <% end %>
+    <% @walks.select{ |walk| walk.published}.each do |walk| %>
+      <%= link_to description_walk_path(walk) do %>
+        <div class="card-walk">
+          <h2><%= walk.name.capitalize %></h2>
+
+              <div
+                data-controller="mapbox"
+                data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+                data-mapbox-hotspots-value="<%= [] %>"
+                data-mapbox-waypoints-value="<%= @waypoints.where(walk: walk).to_json %>"
+                data-mapbox-start-points-value="<%= [] %>"
+                data-mapbox-current-position-value="true"
+                data-mapbox-live-track-value="false"
+                data-mapbox-center-current-value="false">
+                <div id="map" class="medium-map"></div>
+              </div>
+
+
+          <div class="info">
+            <div class="rating">
+              <% if walk.reviews.size == 0 %>
+                <p>Not rated yet</p>
+              <% else %>
+                <% walk.reviews_average.times do  %>
+                  <span class="fa fa-star"></span>
+                <% end %>
+                <% (5 - walk.reviews_average).times do %>
+                  <span class="fa-regular fa-star"></span>
+                <% end %>
+                <span>(<%= walk.reviews.size%>)</span>
+              <% end %>
+            </div>
+            <p><%= walk.description %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

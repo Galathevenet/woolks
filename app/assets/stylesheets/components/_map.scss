@@ -1,11 +1,41 @@
-#map {
-  background-color:bisque;
+.big-map {
+  height: 100%;
+  margin: 0px;
+  width: 100%;
+  object-fit: cover;
+  float: center;
+}
+
+.medium-map {
+  height: 200px;
+  display: block;
+  margin: 20px auto;
+  width: 95%;
+  object-fit: cover;
+  float: center;
+}
+
+.little-map {
+  height: 120px;
+  width: 45%;
+  float: left;
+  margin-left: 20px;
+  object-fit: cover;
+}
+
+.full-screen-map {
+  // background-color:bisque;
   height: calc(100vh - 66px);
 }
 
 .map-btn {
   position: absolute;
-  bottom: 1rem;
+  bottom: 3rem;
   left: 50%;
   transform: translate(-50%, 0);
+  z-index: 1;
+}
+
+.mapboxgl-map {
+  width: 100%;
 }

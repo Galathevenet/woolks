@@ -1,12 +1,19 @@
 .card-walk {
   overflow: hidden;
-  background: white;
+  background: $secondary;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   transform: scale(1);
   transition: transform .3s;
   border-radius: 4px;
-  margin: 15px;
-  padding: 15px;
+  margin: 5px;
+  padding: 10px;
+  width: 65vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  height: 90%;
 
   &:hover {
     // opacity: 0.7;
@@ -18,29 +25,43 @@
     font-size: 16px;
     font-weight: bold;
     margin: 0;
-    color: $gray;
+    padding: 10px;
+    color: $light-gray;
+    text-align: center;
   }
 
   img {
     height: 200px;
     width: 90%;
     object-fit: cover;
-    padding: 15px;
-  }
-}
-
-.info {
-  position: relative;
-
-  .rating {
-    font-size: 15px;
-    margin-top: 10px;
-    color: grey;
+    text-align: center;
+    // margin: 0 auto;
   }
 
-  p {
-    font-size: 14px;
-    opacity: .7;
-    margin: 0;
+  .info {
+    margin: 0 auto;
+    padding: 10px 5px 5px 5px;
+    width: 100%;
+
+    .rating {
+      font-size: 15px;
+      margin: 0 10px 10px 10px;
+      color: $light-gray;
+      text-align: right;
+
+      p {
+        height: 20px;
+      }
+    }
+
+    p {
+      font-size: 14px;
+      text-align: center;
+      color: $light-gray;
+    }
+  }
+
+  .rating-zero {
+    visibility:hidden;
   }
 }
