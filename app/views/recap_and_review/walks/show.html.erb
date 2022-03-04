@@ -36,6 +36,7 @@
   <%= simple_form_for @review, data:{controller:"star-rating"} do |f| %>
 
     <%= f.hidden_field :walk_id, value: @walk.original_walk_id %>
+    <%= f.hidden_field :current_walk_id, value: @walk.id %>
 
     <div class="review-form-title">
       <%= f.input :rating, collection: (1..5).to_a, label: "Rate your walk" %>
