@@ -40,7 +40,7 @@
                 <span class="fa-regular fa-star"></span>
               <% end %>
               <span>(<%= @walk.reviews.size%>)</span>
-              <% end %>
+            <% end %>
             </div>
           <p><i class="fa-solid fa-person-hiking"></i> <strong><%= @walk.length/1000 %></strong> km</p>
           <p><i class="fa-solid fa-stopwatch"></i> <strong><%= @walk.duration/60 %></strong> min</p>
@@ -74,6 +74,17 @@
           <%= f.submit "GO!", class: 'btn-max d-flex justify-content-center' %>
         <% end %>
   </div>
+  <% hps = [] %>
+  <% @walk.hotspots.each do |h| %>
+    <% case h.category %>
+    <% when "dispenser" then hps.push("fa-trash-can") %>
+    <% when "park" then hps.push("fa-tree") %>
+    <% when "fountain" then hps.push("fa-faucet") %>
+    <% end %>
+  <% end %>
+  <% hps.uniq.each do |hp| %>
+  <i class="fa-solid <%= hp %>"></i>
+  <% end %>
 </div>
 
 <%# ----- Modal with carousel for Review pictures ------- %>
