@@ -1,74 +1,45 @@
-.rating {
-  display: inline-block;
-  position: relative;
-  height: 20px;
-  line-height: 20px;
+.walk-recap {
+  margin-top: 1px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: $info;
+  font-style: italic;
+}
+
+.review-form-title {
+  margin-bottom: 1px;
+  margin-top: 6px;
+  font-family: $body-font;
+}
+
+.enter-rating {
+  color: $light-gray;
+}
+
+.review-button-text {
   font-size: 20px;
+  font-family: $body-font;
+  font-weight: 400;
 }
 
-.rating label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  cursor: pointer;
-}
-
-.rating label:last-child {
-  position: static;
-}
-
-.rating label:nth-child(1) {
-  z-index: 5;
-}
-
-.rating label:nth-child(2) {
-  z-index: 4;
-}
-
-.rating label:nth-child(3) {
-  z-index: 3;
-}
-
-.rating label:nth-child(4) {
-  z-index: 2;
-}
-
-.rating label:nth-child(5) {
-  z-index: 1;
-}
-
-.rating label input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-}
-
-.rating label .icon {
-  float: left;
-  color: transparent;
-}
-
-.rating label:last-child .icon {
-  color: $gray;
-}
-
-.rating:not(:hover) label input:checked ~ .icon,
-.rating:hover label:hover input ~ .icon {
-  color: $warning;
-}
-
-.rating label input:focus:not(:checked) ~ .icon:last-child {
-  color: $gray;
-  text-shadow: 0 0 5px $warning;
+.btn-review-form {
+  padding: 2px;
+  text-align: center;
+  background-color: $primary;
+  font-size: 15px;
+  font-family: $body-font;
+  font-weight: 300;
+  margin-left: 0px;
+  margin-top: 40px;
 }
 
 .congrats {
   text-align: center;
+  font-family: $headers-font;
 }
 
 .nav-link {
   text-align: center;
   color: $primary;
+  margin-bottom: 15px;
 }

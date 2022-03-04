@@ -60,6 +60,7 @@ puts "The 4 best users on earth have been created out of nowhere"
 puts "Creating 2 Walks"
 
 walk_one = Walk.create!(
+
   user: carole,
   name: "Around the Chartrons",
   description: "A nice stroll around cute alleys to discover this atypical neighborhood",

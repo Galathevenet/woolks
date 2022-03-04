@@ -3,7 +3,12 @@ class WalksController < ApplicationController
 
   def index
     # affichage map + carte nouvel itinéraire + grilles cartes
-    @walks = Walk.all
+    # Delete walks with no waypoints
+    Walk.all.each do |walk|
+      walk.destroy if walk.waypoints.empty?
+    end
+
+    @walks = Walk.where(published: true)
     @hotspots = Hotspot.all
     @waypoints = Waypoint.all
 
