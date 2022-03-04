@@ -45,9 +45,9 @@
 .infos-detailed {
   width: 100%;
   height: 60%;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   padding: 8px;
 
   .description-data {
@@ -91,8 +91,6 @@
     border-radius: 12px;
     font-size: 12px;
     text-align: left;
-    align-self: flex-end;
-    overflow-y: scroll;
     background-color: $light-orange;
     padding: 8px;
 
@@ -145,11 +143,10 @@
   }
 
   .review-scrolldown {
-    height: 80px;
+    height: 130px;
     overflow-y: scroll;
     margin-bottom: 8px;
   }
-
 }
 
 .modal-dialog {
