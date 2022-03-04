@@ -2,7 +2,21 @@
   <h1 class="congrats">Congratulations!</h1>
 
   <div class="medium-map-favorite">
-    <img class="medium-map" src="https://kitt.lewagon.com/placeholder/users/ssaunier" alt="">
+
+    <%# <img class="medium-map" src="https://kitt.lewagon.com/placeholder/users/ssaunier" alt=""> %>
+    <div
+      class="mapbox"
+      data-controller="mapbox"
+      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+      data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
+      data-mapbox-waypoints-value="<%= @waypoints.to_json %>"
+      data-mapbox-start-points-value="<%= @start_points.to_json %>"
+      data-mapbox-current-position-value="false"
+      data-mapbox-live-track-value="false"
+      data-mapbox-center-current-value="false">
+      <div data-mapbox-target="map" id="map" class="medium-map"></div>
+    </div>
+
     <i class="fa-solid fa-heart"></i>
   </div>
 
