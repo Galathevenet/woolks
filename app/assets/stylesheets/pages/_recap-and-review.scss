@@ -1,5 +1,5 @@
 .walk-recap {
-  margin-top: 5px;
+  margin-top: 1px;
   margin-bottom: 0px;
   text-align: center;
   color: $info;
@@ -30,15 +30,17 @@
   font-family: $body-font;
   font-weight: 300;
   margin-left: 0px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .congrats {
   text-align: center;
   font-family: $headers-font;
+  margin-top: 20px;
 }
 
 .nav-link {
   text-align: center;
   color: $primary;
+  margin-bottom: 15px;
 }

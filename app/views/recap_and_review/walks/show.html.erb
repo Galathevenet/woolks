@@ -10,17 +10,13 @@
   <p class="walk-recap">Walk duration: <%= @walk.duration %> min</p>
   <p class="walk-recap">Walk length: <%= @walk.length %> km</p>
   </div>
-
+  <br>
   <%= simple_form_for @review, data:{controller:"star-rating"} do |f| %>
 
     <%= f.hidden_field :walk_id, value: @walk.original_walk_id %>
 
-    <p class="review-form-title">Rate the walk</p>
-    <%# <div class="enter-rating">
-    <%= f.collection_radio_buttons :rating, [[1, '...'] ,[2, '...'],[3, '...'],[4, '...'],[5, '.']], :first, :last %>
-    <%# </div> %>
-    <div class="row">
-      <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience" %>
+    <div class="review-form-title">
+      <%= f.input :rating, collection: (1..5).to_a, label: "Rate the walk" %>
     </div>
     <div class="form-input review-form-title">
       <%= f.input :comment, placeholder: "Comment the walk" %>
@@ -35,18 +31,6 @@
     </div>
   <% end %>
 
-<br>
-
 <%= link_to "Back to homepage", walks_path, class: "nav-link" %>
 
 </div>
-
-<%# <div class="row">
-  <div class="col-xs-4">
-    <%= simple_form_for @review do |f| %>
-      <%# <%= f.input :comment %>
-      <%# <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience" %>
-      <%# <%= f.submit "Send your review" %>
-    <%# <% end %>
-  <%# </div>
-</div> %>
