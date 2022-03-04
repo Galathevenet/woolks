@@ -7,59 +7,29 @@
   </div>
 
   <div>
-  <p>Walk duration: <%= @walk.duration %> min</p>
-  <p>Walk length: <%= @walk.length %> km</p>
+  <p class="walk-recap"><i class="fa-solid fa-person-hiking"></i>  <strong><%= @walk.length/1000 %></strong> km</p>
+  <p class="walk-recap"><i class="fa-solid fa-stopwatch"></i>  <strong><%= @walk.duration/60 %></strong> min</p>
   </div>
+  <br>
+  <%= simple_form_for @review, data:{controller:"star-rating"} do |f| %>
 
-  <%= simple_form_for [:walks @review] do |f| %>
-    <p>Rate the walk</p><br>
-    <form class="rating">
-    <label>
-      <input type="radio" name="stars" value="1" />
-      <span class="icon">★</span>
-    </label>
-    <label>
-      <input type="radio" name="stars" value="2" />
-      <span class="icon">★</span>
-      <span class="icon">★</span>
-    </label>
-    <label>
-      <input type="radio" name="stars" value="3" />
-      <span class="icon">★</span>
-      <span class="icon">★</span>
-      <span class="icon">★</span>
-    </label>
-    <label>
-      <input type="radio" name="stars" value="4" />
-      <span class="icon">★</span>
-      <span class="icon">★</span>
-      <span class="icon">★</span>
-      <span class="icon">★</span>
-    </label>
-    <label>
-      <input type="radio" name="stars" value="5" />
-      <span class="icon">★</span>
-      <span class="icon">★</span>
-      <span class="icon">★</span>
-      <span class="icon">★</span>
-      <span class="icon">★</span>
-    </label>
-    </form>
+    <%= f.hidden_field :walk_id, value: @walk.original_walk_id %>
 
-    <div class="form-input">
-      <%= f.input :comment, placeholder: "Comment the walk" %>
+    <div class="review-form-title">
+      <%= f.input :rating, collection: (1..5).to_a, label: "Rate your walk" %>
+    </div>
+    <div class="form-input review-form-title">
+      <%= f.input :comment, placeholder: "Comment your walk" %>
     </div>
 
-    <div class="form-input">
+    <div class="form-input review-form-title">
       <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     </div>
 
     <div class="form-button">
-      <%= f.submit "Add my review", class: "btn btn-flat" %>
+      <%= f.submit "Add my review", class: "btn-med btn-review-form" %>
     </div>
   <% end %>
-
-<br>
 
 <%= link_to "Back to homepage", walks_path, class: "nav-link" %>
 
