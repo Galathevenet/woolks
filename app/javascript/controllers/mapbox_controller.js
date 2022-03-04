@@ -216,7 +216,7 @@ export default class extends Controller {
     currentPositionEl.classList.add('fa-solid');
     currentPositionEl.classList.add('fa-location-crosshairs');
     currentPositionEl.style.fontSize = '20px';
-    currentPositionEl.style.color = '#556644';
+    currentPositionEl.style.color = '#FE7F2D';
 
     if (!this.currentPositionMarker) {
       this.currentPositionMarker = new mapboxgl.Marker(currentPositionEl)
