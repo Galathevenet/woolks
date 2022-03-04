@@ -7,8 +7,8 @@
   </div>
 
   <div>
-  <p class="walk-recap">Walk duration: <%= @walk.duration %> min</p>
-  <p class="walk-recap">Walk length: <%= @walk.length %> km</p>
+  <p class="walk-recap"><i class="fa-solid fa-person-hiking"></i>  <strong><%= @walk.length/1000 %></strong> km</p>
+  <p class="walk-recap"><i class="fa-solid fa-stopwatch"></i>  <strong><%= @walk.duration/60 %></strong> min</p>
   </div>
   <br>
   <%= simple_form_for @review, data:{controller:"star-rating"} do |f| %>
@@ -16,10 +16,10 @@
     <%= f.hidden_field :walk_id, value: @walk.original_walk_id %>
 
     <div class="review-form-title">
-      <%= f.input :rating, collection: (1..5).to_a, label: "Rate the walk" %>
+      <%= f.input :rating, collection: (1..5).to_a, label: "Rate your walk" %>
     </div>
     <div class="form-input review-form-title">
-      <%= f.input :comment, placeholder: "Comment the walk" %>
+      <%= f.input :comment, placeholder: "Comment your walk" %>
     </div>
 
     <div class="form-input review-form-title">
