@@ -7,5 +7,4 @@ class RecapAndReview::WalksController < ApplicationController
     @start_points = [longitude: @waypoints.first.longitude, latitude: @waypoints.first.latitude]
     @review = Review.new
   end
-
 end

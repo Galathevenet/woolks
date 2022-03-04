@@ -35,6 +35,11 @@ export default class extends Controller {
 
     navigator.geolocation.clearWatch(this.watchPositionId);
 
+    // To make sure there's at least one position in the waypoints (to avoid calling methods on nil afterwards):
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude]);
+    })
+
     // Write coordinates in params
     this.inputTarget.value = this.currentWalkData.features[0].geometry.coordinates;
   }
@@ -176,7 +181,7 @@ export default class extends Controller {
           'geometry': {
             'type': 'LineString',
             'coordinates': [
-              [position.coords.longitude, position.coords.latitude]
+              // [position.coords.longitude, position.coords.latitude]
             ]
           }
         }

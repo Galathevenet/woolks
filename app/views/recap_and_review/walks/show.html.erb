@@ -21,10 +21,18 @@
   </div>
 
   <div>
-  <p class="walk-recap"><i class="fa-solid fa-person-hiking"></i>  <strong><%= @walk.length/1000 %></strong> km</p>
-  <p class="walk-recap"><i class="fa-solid fa-stopwatch"></i>  <strong><%= @walk.duration/60 %></strong> min</p>
+    <div class="walk-recap">
+      <i class="fa-solid fa-person-hiking"></i>
+      <strong><%= @walk.length/1000 %></strong> km
+    </div>
+    <div class="walk-recap">
+      <i class="fa-solid fa-stopwatch"></i>
+      <strong><%= @walk.duration/60 %></strong> min
+    </div>
   </div>
+
   <br>
+
   <%= simple_form_for @review, data:{controller:"star-rating"} do |f| %>
 
     <%= f.hidden_field :walk_id, value: @walk.original_walk_id %>
