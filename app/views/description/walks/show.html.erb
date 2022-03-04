@@ -41,10 +41,12 @@
               <% end %>
               <span>(<%= @walk.reviews.size%>)</span>
             <% end %>
-            </div>
+          </div>
           <p><i class="fa-solid fa-person-hiking"></i> <strong><%= @walk.length/1000 %></strong> km</p>
           <p><i class="fa-solid fa-stopwatch"></i> <strong><%= @walk.duration/60 %></strong> min</p>
-          <p><strong><%= @walk.hotspots.count %></strong> <%= 'hotspot'.pluralize(@walk.hotspots.count) %></p>
+          <p id= "hotspot-icon-orange"><% @hps.uniq.each do |hp| %>
+            <i class='fa-solid <%= hp %>'></i>
+          <% end %></p>
         </div>
       </div>
     </div>
@@ -74,17 +76,6 @@
           <%= f.submit "GO!", class: 'btn-max d-flex justify-content-center' %>
         <% end %>
   </div>
-  <% hps = [] %>
-  <% @walk.hotspots.each do |h| %>
-    <% case h.category %>
-    <% when "dispenser" then hps.push("fa-trash-can") %>
-    <% when "park" then hps.push("fa-tree") %>
-    <% when "fountain" then hps.push("fa-faucet") %>
-    <% end %>
-  <% end %>
-  <% hps.uniq.each do |hp| %>
-  <i class="fa-solid <%= hp %>"></i>
-  <% end %>
 </div>
 
 <%# ----- Modal with carousel for Review pictures ------- %>
@@ -98,7 +89,7 @@
             <div class="carousel-inner">
                 <% review.photos.each_with_index do |photo, i| %>
                   <div class="carousel-item <%= "active" if i == 0%>">
-                    <%= cl_image_tag photo.key, crop: :fill, class: "d-block width-100"%>
+                    <%= cl_image_tag photo.key, height: 400, crop: :fill, class: "d-block width-100"%>
                   </div>
                 <% end %>
             </div>
