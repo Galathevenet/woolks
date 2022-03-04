@@ -62,7 +62,7 @@ puts "Creating 2 Walks"
 walk_one = Walk.create!(
   user: cedric,
   name: "Dans les chartrons",
-  description: "Jolies petites ruelles",
+  description: "Un petit tour dans les ruelles des Chartrons pour découvrir ce quartier atypique",
   date: "20220302",
   duration: "1200",
   length: "2200",

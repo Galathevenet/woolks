@@ -51,6 +51,7 @@
   padding: 8px;
 
   .description-data {
+    width: 100%;
     border-radius: 12px;
     display: flex;
     flex-direction: row;
@@ -64,6 +65,7 @@
     }
 
     .description {
+      width: 60%;
       display: flex;
       flex-direction: column;
       align-content: space-around;
@@ -85,38 +87,39 @@
     text-decoration: underline $secondary;
   }
 
-    .reviews {
-      border-radius: 12px;
-      font-size: 12px;
-      text-align: left;
-      align-self: flex-end;
-      overflow-y: scroll;
-      background-color: $light-orange;
-      padding: 8px;
+  .reviews {
+    border-radius: 12px;
+    font-size: 12px;
+    text-align: left;
+    align-self: flex-end;
+    overflow-y: scroll;
+    background-color: $light-orange;
+    padding: 8px;
 
-      p {
-        margin-bottom: 4px;
-        font-style: italic;
-      }
-
-      .photos-review {
-        display: flex;
-        flex-direction: row;
-        height: 30px;
-        width: 100%;
+    p {
+      margin-bottom: 4px;
+      font-style: italic;
     }
 
-      .photo-size {
-        width: 10%;
-        height: 100%;
-        margin: 5px;
+    .photos-review {
+      display: flex;
+      flex-direction: row;
+      height: 30px;
+      width: 100%;
+  }
 
-      }
+    .photo-size {
+      width: 10%;
+      height: 100%;
+      margin: 5px;
+
     }
+  }
 
 
 
   .data-walk {
+    width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -128,13 +131,23 @@
     .rating {
       font-size: 12px;
       // margin: 0 5px 15px 5px;
-      color: $light-gray;
-      padding: 10px 0;
+      color: $gray;
+      margin-bottom: 8px;
+    }
+
+    #hotspot-icon-orange {
+      color: #fe7f2d;
     }
   }
 
   .btn-centered {
     align-items: center;
+  }
+
+  .review-scrolldown {
+    height: 80px;
+    overflow-y: scroll;
+    margin-bottom: 8px;
   }
 
 }
