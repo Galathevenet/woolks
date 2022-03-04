@@ -137,6 +137,12 @@
     align-items: center;
   }
 
+  .review-scrolldown {
+    height: 80px;
+    overflow-y: scroll;
+    margin-bottom: 8px;
+  }
+
 }
 
 .modal-dialog {

@@ -50,20 +50,24 @@
     </div>
     <div class="reviews">
       <h3>Avis des woolkers</h3>
-      <% @walk.reviews.each do |review| %>
-        <p><%= review.user.username %> | <% review.rating.times do %>
-                                          <span class="fa fa-star"></span>
-                                         <% end %>
-                                         <% (5 - review.rating).times do %>
-                                          <span class="fa-regular fa-star"></span>
-                                         <% end %></p>
-        <p><%= review.comment %></p>
-        <div class="photos-review">
-          <% review.photos.each do | photo | %>
-            <%= cl_image_tag photo.key, height: 462, width: 280 , crop: :fill , class: "photo-size", data: {'bs-toggle': "modal", 'bs-target': "#review#{review.id}Modal"} %>
-          <% end %>
-        </div>
-      <% end %>
+      <div class="review-scrolldown">
+        <% @walk.reviews.each do |review| %>
+        <div class="mb-4">
+            <p><%= review.user.username %> | <% review.rating.times do %>
+                                              <span class="fa fa-star"></span>
+                                            <% end %>
+                                            <% (5 - review.rating).times do %>
+                                              <span class="fa-regular fa-star"></span>
+                                            <% end %></p>
+            <p><%= review.comment %></p>
+            <div class="photos-review">
+              <% review.photos.each do | photo | %>
+                <%= cl_image_tag photo.key, height: 462, width: 280 , crop: :fill , class: "photo-size", data: {'bs-toggle': "modal", 'bs-target': "#review#{review.id}Modal"} %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
         <%= simple_form_for @new_walk, html: { class: "d-flex justify-content-center" }, method: :post do |f| %>
           <%= f.input :original_walk_id, as: :hidden, input_html: { value: @walk.id } %>
@@ -72,6 +76,7 @@
   </div>
 </div>
 
+<%# ----- Modal with carousel for Review pictures ------- %>
 
 <% @walk.reviews.each do |review| %>
   <div class="modal fade" id="review<%=review.id%>Modal" tabindex="-1" aria-labelledby="review<%=review.id%>ModalLabel" aria-hidden="true">

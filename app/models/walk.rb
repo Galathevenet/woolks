@@ -16,13 +16,13 @@ class Walk < ApplicationRecord
   validates :published, exclusion: [nil]
 
   def reviews_average
-    walk = Walk.find(self.id)
+    walk = Walk.find(id)
     rating_sum = 0
     walk.reviews.each do |review|
       rating_sum += review.rating
     end
     if reviews.size >= 1
-      rating_sum/walk.reviews.size
+      rating_sum / walk.reviews.size
     else
       0
     end
