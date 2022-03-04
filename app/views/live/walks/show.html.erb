@@ -11,7 +11,6 @@
 >
   <div data-mapbox-target="map" id="map" class="full-screen-map"></div>
 
-
   <%= simple_form_for [:live, @walk] do |f| %>
     <%= f.input :waypoints, as: :hidden, input_html: { value: "INIT", data: { mapbox_target: 'input' } } %>
     <%= f.submit "End walk", class: "map-btn btn-min", data: { action: 'click->mapbox#endWalk' } %>
