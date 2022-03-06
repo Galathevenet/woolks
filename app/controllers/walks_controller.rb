@@ -19,7 +19,7 @@ class WalksController < ApplicationController
   end
 
   def new
-    @walk = Walk.new
+    @new_walk = Walk.new
   end
 
   def create
@@ -32,12 +32,13 @@ class WalksController < ApplicationController
       date: Date.today,
       duration: 0,
       length: 0,
-      original_walk: original_walk)
+      original_walk: original_walk
+    )
 
     if @walk.save
       redirect_to live_walk_path(@walk)
     else
-      raise
+      redirect_to new_walk_path
     end
   end
 
