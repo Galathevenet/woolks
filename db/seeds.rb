@@ -234,16 +234,16 @@ puts "Creating 4 Reviews"
 review_one = Review.create!(walk: walk_one, user: marion, comment: "I liked it, but i couldn't find any poop-bags dispenser", rating: 4)
 review_one.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
                           {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
-review_three = Review.create!(walk: walk_one, user: gala, comment: "Not enough grass, my dog refused to pee", rating: 3)
+review_three = Review.create!(walk: walk_one, user: gala, comment: "Not enough grass, my dog refused to pee", rating: 5)
 review_three.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
                           {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
 review_two = Review.create!(walk: walk_two, user: carole, comment: "Since i hate nature, i loved it", rating: 5)
 review_two.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
                           {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
-review_for = Review.create!(walk: walk_three, user: gala, comment: "Great walk, I've spent a nice moment with my dog", rating: 4)
+review_for = Review.create!(walk: walk_three, user: marion, comment: "Great walk, I've spent a nice moment with my dog", rating: 4)
 review_for.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646405675/Walks/Walk3/Bordeaux_La_Garonne_OK_fnpho7.jpg'), filename: 'wwalk_three_1_dififz.jpg', content_type: 'image/jpg'},
                           {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404712/Walks/Walk3/french-bulldog-walking-on-leash-in-park_pmtqxa.jpg'), filename: 'walk_three_2_bk4o4i.jpg', content_type: 'image/jpg'}])
-review_five = Review.create!(walk: walk_three, user: cedric, comment: "It was raining...", rating: 1)
+review_five = Review.create!(walk: walk_three, user: cedric, comment: "It was raining...", rating: 3)
 review_five.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk3/IMG_1162_scgapg.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
                           {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk3/IMG_3597_oz46wj.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
 
