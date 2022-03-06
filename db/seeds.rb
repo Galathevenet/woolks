@@ -240,7 +240,7 @@ review_three.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/
 review_two = Review.create!(walk: walk_two, user: carole, comment: "Since i hate nature, i loved it", rating: 5)
 review_two.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
                           {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
-review_for = Review.create!(walk: walk_three, user: marion, comment: "Great walk, I've spent a nice moment with my dog", rating: 4)
+review_for = Review.create!(walk: walk_three, user: marion, comment: "Great walk, I've spent a nice moment with my dog", rating: 5)
 review_for.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646405675/Walks/Walk3/Bordeaux_La_Garonne_OK_fnpho7.jpg'), filename: 'wwalk_three_1_dififz.jpg', content_type: 'image/jpg'},
                           {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404712/Walks/Walk3/french-bulldog-walking-on-leash-in-park_pmtqxa.jpg'), filename: 'walk_three_2_bk4o4i.jpg', content_type: 'image/jpg'}])
 review_five = Review.create!(walk: walk_three, user: cedric, comment: "It was raining...", rating: 3)
