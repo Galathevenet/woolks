@@ -47,3 +47,14 @@
 .mapboxgl-ctrl-logo {
   visibility: hidden;
 }
+
+.mapboxgl-popup-content {
+  a {
+    color: $dark-green;
+    font-weight: bold;
+  }
+
+  button {
+    visibility: hidden;
+  }
+}
