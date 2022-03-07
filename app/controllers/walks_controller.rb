@@ -20,6 +20,7 @@ class WalksController < ApplicationController
 
   def new
     @new_walk = Walk.new
+    @hotspots = Hotspot.all
   end
 
   def create
