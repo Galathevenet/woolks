@@ -3,7 +3,7 @@ import mapboxgl from "mapbox-gl"
 
 export default class extends Controller {
 
-  static targets = ['input', 'map'];
+  static targets = ['map', 'waypoints', 'duration', 'distance'];
 
   static values = {
     apiKey: String,
@@ -25,34 +25,14 @@ export default class extends Controller {
     } else {
       console.log('Geolocation IS supported by your browser');
 
+      this.startTime = new Date();
+
       // When current position is available, launch map
       navigator.geolocation.getCurrentPosition(this.#launchMap);
     }
   }
 
-  endWalk() {
-    console.log("end");
-
-    navigator.geolocation.clearWatch(this.watchPositionId);
-
-    // To make sure there's at least one position in the waypoints (to avoid calling methods on nil afterwards):
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude]);
-    })
-
-    // Write coordinates in params
-    this.inputTarget.value = this.currentWalkData.features[0].geometry.coordinates;
-  }
-
   #launchMap = (position) => {
-    // console.log("initializeMap")
-
-    // if (this.centerCurrentValue) { // Center map on current user position
-    //   this.center = [position.coords.longitude, position.coords.latitude]
-    // } else { // center map on first walk startPoint
-    //   this.center = [this.waypointsValue[0].longitude, this.waypointsValue[0].latitude]
-    // }
-
     this.map = new mapboxgl.Map({
       container: this.mapTarget,
       style: "mapbox://styles/mapbox/streets-v10",
@@ -78,6 +58,23 @@ export default class extends Controller {
         this.watchPositionId = navigator.geolocation.watchPosition(this.#currentWalkToMap);
       }
     })
+  }
+
+  endWalk() {
+    console.log("end");
+
+    navigator.geolocation.clearWatch(this.watchPositionId);
+
+    // To make sure there's at least one position in the waypoints (to avoid calling methods on nil afterwards):
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude]);
+    })
+
+    // Write coordinates, distance and duration in params
+    this.waypointsTarget.value = this.currentWalkData.features[0].geometry.coordinates;
+    this.distanceTarget.value = this.distance;
+    this.endTime = new Date()
+    this.durationTarget.value = (this.endTime - this.startTime)/1000;
   }
 
   #addHotspotsToMap = () => {
@@ -121,6 +118,7 @@ export default class extends Controller {
       const startPointEl = document.createElement('i');
       startPointEl.classList.add('fa-solid');
       startPointEl.style.fontSize = '20px';
+      startPointEl.style.paddingBottom = '20px';
       startPointEl.classList.add('fa-location-dot');
       startPointEl.style.color = '#556644';
 
@@ -211,6 +209,18 @@ export default class extends Controller {
     // console.log("#currentWalkToMap");
 
     this.#displayCurrentPosition(position)
+
+    // Distance calculation
+    if (this.currentWalkData.features[0].geometry.coordinates.length === 0) {
+      this.distance = 0;
+    } else {
+      this.distance += turf.distance(
+        [position.coords.longitude, position.coords.latitude],
+        this.currentWalkData.features[0].geometry.coordinates.slice(-1)[0],
+        {units: 'kilometers'}
+      );
+    }
+    console.log(`distance: ${this.distance}`);
 
     this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude]);
 
