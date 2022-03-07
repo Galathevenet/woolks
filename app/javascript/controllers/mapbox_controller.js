@@ -117,6 +117,7 @@ export default class extends Controller {
     // console.log("#addStartPointsToMap");
 
     this.startPointsValue.forEach((startPoint) => {
+      const popup = new mapboxgl.Popup().setHTML(startPoint.info_window)
       const startPointEl = document.createElement('i');
       startPointEl.classList.add('fa-solid');
       startPointEl.style.fontSize = '20px';
@@ -125,7 +126,8 @@ export default class extends Controller {
 
       new mapboxgl.Marker(startPointEl)
         .setLngLat([startPoint.longitude, startPoint.latitude])
-        .addTo(this.map);
+        .addTo(this.map)
+        .setPopup(popup);
     });
   }
 
@@ -199,7 +201,7 @@ export default class extends Controller {
         'line-cap': 'round'
       },
       'paint': {
-        'line-color': '#FE7F2D',
+        'line-color': '#1DA1F2',
         'line-width': 4
       }
     });
@@ -219,9 +221,12 @@ export default class extends Controller {
     // Create current position marker
     const currentPositionEl = document.createElement('i');
     currentPositionEl.classList.add('fa-solid');
-    currentPositionEl.classList.add('fa-location-crosshairs');
-    currentPositionEl.style.fontSize = '20px';
-    currentPositionEl.style.color = '#FE7F2D';
+    currentPositionEl.classList.add('fa-circle');
+    currentPositionEl.style.border = "2px solid white"
+    currentPositionEl.style.borderRadius = "50%"
+    currentPositionEl.style.boxShadow = "0px 0px 3px black";
+    currentPositionEl.style.fontSize = '16px';
+    currentPositionEl.style.color = '#1DA1F2';
 
     if (!this.currentPositionMarker) {
       this.currentPositionMarker = new mapboxgl.Marker(currentPositionEl)

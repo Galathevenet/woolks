@@ -14,7 +14,11 @@ class WalksController < ApplicationController
 
     @start_points = []
     @walks.each do |walk|
-      @start_points.push(longitude: walk.waypoints.first.longitude, latitude: walk.waypoints.first.latitude)
+      @start_points.push(
+        longitude: walk.waypoints.first.longitude,
+        latitude: walk.waypoints.first.latitude,
+        info_window: render_to_string(partial: "info_window", locals: { walk: walk })
+      )
     end
   end
 
