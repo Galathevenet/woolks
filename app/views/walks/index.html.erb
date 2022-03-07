@@ -53,7 +53,7 @@
     <%= link_to new_walk_path, class: "card-add-walk" do %>
         <p>+</p>
     <% end %>
-    <% @walks.select{ |walk| walk.published}.each do |walk| %>
+    <% @walks.select{ |walk| walk.published }.each do |walk| %>
       <%= link_to description_walk_path(walk) do %>
         <div class="card-walk">
           <h2><%= walk.name.capitalize %></h2>
