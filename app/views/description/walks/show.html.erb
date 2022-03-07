@@ -100,7 +100,7 @@
             <div class="carousel-inner">
                 <% review.photos.each_with_index do |photo, i| %>
                   <div class="carousel-item <%= "active" if i == 0%>">
-                    <%= cl_image_tag photo.key, height: 400, crop: :fill, class: "d-block width-100"%>
+                    <%= cl_image_tag photo.key, height: 400, width: 340, crop: :fill, class: "d-block"%>
                   </div>
                 <% end %>
             </div>
