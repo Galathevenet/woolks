@@ -46,7 +46,7 @@ class WalksController < ApplicationController
     if @walk.update(walk_params)
       redirect_to my_walks_path
     else
-      raise
+      redirect_to edit_recap_and_save_walk_path
     end
   end
 

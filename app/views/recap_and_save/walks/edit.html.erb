@@ -29,11 +29,11 @@
     <div>
       <%= simple_form_for @walk do |f| %>
         <div class="form-input">
-          <%= f.input :name, placeholder: "Give a title to my Walk" %>
+          <%= f.input :name, placeholder: "Give a title to your Walk" %>
         </div>
 
         <div class="form-input">
-          <%= f.input :description, placeholder: "Give a description to my Walk" %>
+          <%= f.input :description, placeholder: "Give a description to your Walk" %>
         </div>
 
         <div class="form-input">
@@ -41,11 +41,11 @@
         </div>
 
         <div class="form-input radio-input">
-          <%= f.input :published, as: :boolean, label: "Publish my walk" %>
+          <%= f.input :published, as: :boolean, label: "Publish your walk" %>
         </div>
 
         <div class="form-button">
-          <%= f.submit "Add my walk", class: "btn btn-med" %>
+          <%= f.submit "Add your walk", class: "btn btn-med" %>
         </div>
       <% end %>
     </div>
