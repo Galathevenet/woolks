@@ -37,9 +37,6 @@
     </div>
   </div>
   <div class="card-dispenser-slide">
-    <%= link_to new_walk_path, class: "card-add-walk" do %>
-        <p>+</p>
-    <% end %>
     <% @walks.select{ |walk| walk.published }.each do |walk| %>
       <%= link_to description_walk_path(walk) do %>
         <div class="card-walk">
@@ -93,6 +90,10 @@
           </div>
         </div>
       <% end %>
+    <% end %>
+    <%= link_to new_walk_path, class: "card-add-walk" do %>
+      <h2>Create your own walk</h2>
+      <p>+</p>
     <% end %>
   </div>
 </div>
