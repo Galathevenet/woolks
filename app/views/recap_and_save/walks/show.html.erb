@@ -1,0 +1,36 @@
+<div class="content-container">
+  <h1 class="congrats">Congratulations!</h1>
+
+  <div class="medium-map-favorite">
+     <div
+      class="medium-map"
+      data-controller="mapbox"
+      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+      data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
+      data-mapbox-waypoints-value="<%= @waypoints.to_json %>"
+      data-mapbox-start-points-value="<%= @start_points.to_json %>"
+      data-mapbox-current-position-value="false"
+      data-mapbox-live-track-value="false"
+      data-mapbox-center-current-value="false">
+      <div data-mapbox-target="map" id="map" class="medium-map"></div>
+    </div>
+  </div>
+
+  <div class="walk-recap">
+    <i class="fa-solid fa-person-hiking"></i>
+    <strong><%= @walk.length/1000 %></strong> km
+  </div>
+  <div class="walk-recap">
+    <i class="fa-solid fa-stopwatch"></i>
+    <strong><%= @walk.duration/60 %></strong> min
+  </div>
+  <br>
+  <div class="d-flex justify-content-center">
+    <%= link_to "Publish your walk", edit_recap_and_save_walk_path(@walk), class: "btn-med" %>
+  </div>
+
+  <div class="d-flex justify-content-center mt-3">
+    <%= link_to 'Drop your walk', walk_path(@walk), method: :delete, data: { confirm: "You sure?" } %>
+  </div>
+
+</div>

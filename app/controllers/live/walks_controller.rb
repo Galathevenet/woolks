@@ -16,11 +16,25 @@ class Live::WalksController < ApplicationController
 
   def update
     @walk = Walk.find(params[:id])
+    
     # From: "2.3522219,48.856614,2.3522219,48.856614,2.3522219,48.856614"
     # To: [[2.3522219, 48.856614], [2.3522219, 48.856614], [2.3522219, 48.856614]]
     params['walk']['waypoints'].split(',').map(&:to_f).each_slice(2).to_a.each do |coords|
       Waypoint.create!(walk: @walk, longitude: coords[0], latitude: coords[1])
     end
-    redirect_to recap_and_review_walk_path
+    
+    if @walk.update(
+      length: params['walk']['distance'],
+      duration: params['walk']['duration']
+    )
+    else
+      raise
+    end 
+    
+    if @walk.original_walk_id.blank?
+      redirect_to recap_and_save_walk_path
+    else
+      redirect_to recap_and_review_walk_path
+    end
   end
 end
