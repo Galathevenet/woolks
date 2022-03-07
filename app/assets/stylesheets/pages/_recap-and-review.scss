@@ -47,8 +47,8 @@
   border-radius: 4px;
 }
 
-.align-elements {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.review-photos {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
 }
