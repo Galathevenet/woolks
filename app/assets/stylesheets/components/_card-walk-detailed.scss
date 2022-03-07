@@ -20,7 +20,7 @@
 
   #title-card-detailed {
     background-color: $light-orange;
-    border-radius: 12px;
+    border-radius: 4px;
     font-size: 24px;
     font-weight: bold;
     padding: 10px;
@@ -52,7 +52,7 @@
 
   .description-data {
     width: 100%;
-    border-radius: 12px;
+    border-radius: 4px;
     display: flex;
     flex-direction: row;
     background-color: $light-orange;
@@ -88,7 +88,7 @@
   }
 
   .reviews {
-    border-radius: 12px;
+    border-radius: 4px;
     font-size: 12px;
     text-align: left;
     background-color: $light-orange;
