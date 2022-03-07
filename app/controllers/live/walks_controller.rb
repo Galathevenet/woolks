@@ -22,14 +22,19 @@ class Live::WalksController < ApplicationController
     params['walk']['waypoints'].split(',').map(&:to_f).each_slice(2).to_a.each do |coords|
       Waypoint.create!(walk: @walk, longitude: coords[0], latitude: coords[1])
     end
-
+    
     if @walk.update(
       length: params['walk']['distance'],
       duration: params['walk']['duration']
     )
-      redirect_to recap_and_review_walk_path
     else
       raise
+    end 
+    
+    if @walk.original_walk_id.blank?
+      redirect_to recap_and_save_walk_path
+    else
+      redirect_to recap_and_review_walk_path
     end
   end
 end

@@ -105,12 +105,19 @@ class WalksController < ApplicationController
     if @walk.update(walk_params)
       redirect_to my_walks_path
     else
-      redirect_to edit_recap_and_save_walk_path
+      # redirect_to edit_recap_and_save_walk_path
+      @hotspots = @walk.hotspots
+      @waypoints = @walk.waypoints
+      @start_points = [longitude: @waypoints.first.longitude, latitude: @waypoints.first.latitude]
+      render "recap_and_save/walks/edit"
     end
   end
 
   def destroy
     # en tant qu'utilisateurice je peux destroy un de mes itinéraires
+    @walk = Walk.find(params[:id])
+    @walk.destroy
+    redirect_to walks_path
   end
 
   private
