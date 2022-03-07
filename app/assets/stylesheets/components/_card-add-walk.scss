@@ -14,7 +14,8 @@
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  height: 95%;
+  display: block;
+  padding: 10px;
 
   &:hover {
     // opacity: 0.7;

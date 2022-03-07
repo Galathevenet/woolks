@@ -10,7 +10,7 @@ class Description::WalksController < ApplicationController
     ]
     @new_walk = Walk.new
 
-    @hps = []
+    @hps = [] # Array that will contain the list of the hotspots categories of @walk
     @walk.hotspots.each do |h|
       case h.category
       when "dispenser" then @hps.push("fa-trash-can")

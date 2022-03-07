@@ -61,9 +61,21 @@ class WalksController < ApplicationController
 
   def update
     # met à jour la walk avec son nom, sa description, ses photos...
+    @walk = Walk.find(params[:id])
+    if @walk.update(walk_params)
+      redirect_to my_walks_path
+    else
+      redirect_to edit_recap_and_save_walk_path
+    end
   end
 
   def destroy
     # en tant qu'utilisateurice je peux destroy un de mes itinéraires
+  end
+
+  private
+
+  def walk_params
+    params.require(:walk).permit(:name, :description, :published, photos: [])
   end
 end

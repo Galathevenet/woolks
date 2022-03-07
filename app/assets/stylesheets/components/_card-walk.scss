@@ -39,12 +39,14 @@
     margin: 0 auto;
     padding: 10px 5px 5px 5px;
     width: 100%;
+    background-color: $light-orange;
 
     .rating {
       font-size: 15px;
-      margin: 0 10px 10px 10px;
+      // margin: 0 10px 10px 10px;
       color: $gray;
-      text-align: right;
+
+      text-align: center;
       background-color: $light-orange;
       border-radius: 4px;
       padding: 6px;
@@ -61,10 +63,18 @@
       background-color: $light-orange;
       border-radius: 4px;
       padding: 6px;
+      margin: 4px 0;
     }
   }
 
   .rating-zero {
     visibility:hidden;
+  }
+
+  #hotspot-icon {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 26px;
   }
 }
