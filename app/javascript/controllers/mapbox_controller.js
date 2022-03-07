@@ -16,8 +16,6 @@ export default class extends Controller {
   };
 
   connect() {
-    console.log("Connected to mapbox_controller.js");
-
     mapboxgl.accessToken = this.apiKeyValue;
 
     if (!navigator.geolocation) {
@@ -25,8 +23,49 @@ export default class extends Controller {
     } else {
       console.log('Geolocation IS supported by your browser');
 
-      // When current position is available, launch map
-      navigator.geolocation.getCurrentPosition(this.#launchMap);
+      this.map = new mapboxgl.Map({
+        container: this.mapTarget,
+        style: "mapbox://styles/mapbox/streets-v10",
+        // center: this.center,
+        // zoom: 13,
+      });
+
+      if (this.currentPositionValue) {
+        this.geolocate = new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true
+          },
+          // showAccuracyCircle: false,
+          // When active the map will receive updates to the device's location as it changes.
+          trackUserLocation: true,
+          // Draw an arrow next to the location dot to indicate which direction the device is heading.
+          showUserHeading: true,
+        })
+        this.map.addControl(this.geolocate);
+      }
+
+      this.map.on('load', () => {
+        // Display hotspots, startPoints and originalWalk
+        this.#addHotspotsToMap();
+        this.#addStartPointsToMap();
+        this.#addOriginalWalkToMap();
+
+
+        // Display current position
+        if (this.currentPositionValue) {
+          // this.#displayCurrentPosition(position);
+          this.geolocate.trigger();
+        }
+
+        // Loop to watch position live
+        if (this.liveTrackValue) {
+          this.#initializeCurrentWalk(position)
+          this.watchPositionId = navigator.geolocation.watchPosition(this.#currentWalkToMap);
+        }
+      })
+
+      navigator.geolocation.getCurrentPosition(this.#fitMap);
+
     }
   }
 
@@ -42,54 +81,6 @@ export default class extends Controller {
 
     // Write coordinates in params
     this.inputTarget.value = this.currentWalkData.features[0].geometry.coordinates;
-  }
-
-  #launchMap = (position) => {
-    this.map = new mapboxgl.Map({
-      container: this.mapTarget,
-      style: "mapbox://styles/mapbox/streets-v10",
-      // center: this.center,
-      // zoom: 13,
-    });
-
-    if (this.currentPositionValue) {
-      this.geolocate = new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        // showAccuracyCircle: false,
-        // When active the map will receive updates to the device's location as it changes.
-        trackUserLocation: true,
-        // Draw an arrow next to the location dot to indicate which direction the device is heading.
-        showUserHeading: true,
-      })
-      this.map.addControl(this.geolocate);
-    }
-
-    this.map.on('load', () => {
-      // Display hotspots, startPoints and originalWalk
-      this.#addHotspotsToMap();
-      this.#addStartPointsToMap();
-      this.#addOriginalWalkToMap();
-
-
-      // Display current position
-      if (this.currentPositionValue) {
-        // this.#displayCurrentPosition(position);
-        this.geolocate.trigger();
-      }
-      console.log("out of geolocate")
-
-      this.#fitMap(position);
-
-      console.log("after fitMap")
-
-      // Loop to watch position live
-      if (this.liveTrackValue) {
-        this.#initializeCurrentWalk(position)
-        this.watchPositionId = navigator.geolocation.watchPosition(this.#currentWalkToMap);
-      }
-    })
   }
 
   #addHotspotsToMap = () => {
@@ -249,8 +240,7 @@ export default class extends Controller {
     // }
   }
 
-  #fitMap(position) {
-    console.log("In #fitMap")
+  #fitMap = (position) => {
     const bounds = new mapboxgl.LngLatBounds()
 
     if (!this.liveTrackValue) {
