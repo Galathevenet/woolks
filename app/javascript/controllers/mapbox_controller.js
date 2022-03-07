@@ -117,6 +117,7 @@ export default class extends Controller {
     // console.log("#addStartPointsToMap");
 
     this.startPointsValue.forEach((startPoint) => {
+      const popup = new mapboxgl.Popup().setHTML(startPoint.info_window)
       const startPointEl = document.createElement('i');
       startPointEl.classList.add('fa-solid');
       startPointEl.style.fontSize = '20px';
@@ -125,7 +126,8 @@ export default class extends Controller {
 
       new mapboxgl.Marker(startPointEl)
         .setLngLat([startPoint.longitude, startPoint.latitude])
-        .addTo(this.map);
+        .addTo(this.map)
+        .setPopup(popup);
     });
   }
 
