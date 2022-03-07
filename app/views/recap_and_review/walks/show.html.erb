@@ -1,4 +1,4 @@
-<div class="content-container">
+<div class="content-container align-elements">
   <h1 class="congrats">Congratulations!</h1>
 
   <div class="medium-map-favorite">
@@ -42,9 +42,18 @@
     <div class="form-input review-form-title light-orange-bckgrd">
       <%= f.input :comment, placeholder: "Comment your walk" %>
     </div>
-
-    <div class="form-input review-form-title light-orange-bckgrd">
-      <%= f.input :photos, as: :file, input_html: { multiple: true} %>
+    <div data-controller="file-preview">
+      <div class="form-input review-form-title light-orange-bckgrd">
+        <%= f.input :photos, as: :file,
+          input_html: { multiple: true, class: "sr-only", data: { action: "change->file-preview#displayPhotoMiniature" } },
+          label: "Add your photos",
+          label_html: { class: "btn-min" } %>
+      </div>
+      <div data-file-preview-target="field">
+        <template data-file-preview-target="imageTemplate">
+          <%= image_tag "", class: ""%>
+        </template>
+      </div>
     </div>
 
     <div class="form-button d-flex justify-content-center">
