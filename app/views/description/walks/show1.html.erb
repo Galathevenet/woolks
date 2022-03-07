@@ -1,37 +1,41 @@
 <div class="card-walk-detailed">
-  <h1><%= @walk.name %></h1>
-  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active width-90">
-        <div
-          class="mapbox"
-          data-controller="mapbox"
-          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-          data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
-          data-mapbox-waypoints-value="<%= @waypoints.to_json %>"
-          data-mapbox-start-points-value="<%= @start_points.to_json %>"
-          data-mapbox-current-position-value="true"
-          data-mapbox-live-track-value="false"
-          data-mapbox-center-current-value="true">
-          <div data-mapbox-target="map" id="map" class="medium-map"></div>
+  <div class="height-carousel-title">
+    <h1 id="title-card-detailed"><%= @walk.name %></h1>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active width-90">
+
+          <div
+            class="mapbox"
+            data-controller="mapbox"
+            data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+            data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
+            data-mapbox-waypoints-value="<%= @waypoints.to_json %>"
+            data-mapbox-start-points-value="<%= @start_points.to_json %>"
+            data-mapbox-current-position-value="true"
+            data-mapbox-live-track-value="false"
+            data-mapbox-center-current-value="true">
+            <div data-mapbox-target="map" id="map" class="medium-map"></div>
+          </div>
+          <%# <img src="https://image.shutterstock.com/image-vector/small-map-city-260nw-770438665.jpg" class="d-block w-100" alt="map"> %>
         </div>
-        <%# <img src="https://image.shutterstock.com/image-vector/small-map-city-260nw-770438665.jpg" class="d-block w-100" alt="map"> %>
+        <% @walk.photos.each do |photo| %>
+          <div class="carousel-item">
+            <%= cl_image_tag photo.key, height: 280, width: 462, crop: :fill, class: "d-block width-90"%>
+          </div>
+        <% end %>
       </div>
-      <% @walk.photos.each do |photo| %>
-        <div class="carousel-item">
-          <%= cl_image_tag photo.key, height: 280, width: 462, crop: :fill, class: "d-block width-90"%>
-        </div>
-      <% end %>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
+
   <div class="description-data">
     <div class="middle-divider">
       <div class="description">
@@ -86,9 +90,7 @@
         <%= f.input :original_walk_id, as: :hidden, input_html: { value: @walk.id } %>
         <%= f.submit "GO!", class: 'btn-max d-flex justify-content-center' %>
       <% end %>
-  </div>
 </div>
-
 
 <%# ----- Modal with carousel for Review pictures ------- %>
 
