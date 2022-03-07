@@ -1,0 +1,55 @@
+<div class="content-container">
+  <h1 class="congrats">Congratulations!</h1>
+
+  <div class="medium-map-favorite">
+     <div
+      class="medium-map"
+      data-controller="mapbox"
+      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+      data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
+      data-mapbox-waypoints-value="<%= @waypoints.to_json %>"
+      data-mapbox-start-points-value="<%= @start_points.to_json %>"
+      data-mapbox-current-position-value="false"
+      data-mapbox-live-track-value="false"
+      data-mapbox-center-current-value="false">
+      <div data-mapbox-target="map" id="map" class="medium-map"></div>
+    </div>
+    <i class="fa-solid fa-heart"></i>
+  </div>
+
+    <div class="walk-recap">
+      <i class="fa-solid fa-person-hiking"></i>
+      <strong><%= @walk.length/1000 %></strong> km
+    </div>
+    <div class="walk-recap">
+      <i class="fa-solid fa-stopwatch"></i>
+      <strong><%= @walk.duration/60 %></strong> min
+    </div>
+    <br>
+    <div>
+      <%= simple_form_for @walk do |f| %>
+        <div class="form-input">
+          <%= f.input :name, placeholder: "Give a title to your Walk" %>
+        </div>
+
+        <div class="form-input">
+          <%= f.input :description, placeholder: "Give a description to your Walk" %>
+        </div>
+
+        <div class="form-input">
+          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        </div>
+
+        <div class="form-input radio-input">
+          <%= f.input :published, as: :boolean, label: "Publish your walk" %>
+        </div>
+
+        <div class="form-button">
+          <%= f.submit "Add your walk", class: "btn btn-med" %>
+        </div>
+      <% end %>
+    </div>
+
+  <%= link_to "Back to homepage", walks_path, class: "nav-link" %>
+
+</div>
