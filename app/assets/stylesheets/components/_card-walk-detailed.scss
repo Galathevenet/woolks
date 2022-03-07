@@ -114,8 +114,6 @@
     }
   }
 
-
-
   .data-walk {
     width: 40%;
     display: flex;
@@ -132,10 +130,6 @@
       color: $gray;
       margin-bottom: 8px;
     }
-
-    #hotspot-icon-green {
-      color: $primary;
-    }
   }
 
   .btn-centered {
@@ -147,6 +141,12 @@
     overflow-y: scroll;
     margin-bottom: 8px;
   }
+}
+
+#hotspot-icon-green {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .modal-dialog {

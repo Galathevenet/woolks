@@ -50,10 +50,8 @@
     </form>
   </div>
   <div class="card-dispenser-slide">
-    <%= link_to new_walk_path do %>
-      <div class="card-add-walk">
+    <%= link_to new_walk_path, class: "card-add-walk" do %>
         <p>+</p>
-      </div>
     <% end %>
     <% @walks.select{ |walk| walk.published}.each do |walk| %>
       <%= link_to description_walk_path(walk) do %>
@@ -85,7 +83,23 @@
                 <span>(<%= walk.reviews.size%>)</span>
               <% end %>
             </div>
-            <p><%= walk.description %></p>
+            <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length/1000 %></strong> km</p>
+            <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
+            <p id= "hotspot-icon">
+              <%
+                hps = [] # Array that will contain the list of the hotspots categories of @walk.
+                walk.hotspots.each do |h|
+                  case h.category
+                  when "dispenser" then hps.push("fa-trash-can")
+                  when "park" then hps.push("fa-tree")
+                  when "fountain" then hps.push("fa-faucet")
+                  end
+                end
+               %>
+              <% hps.uniq.each do |hp| %>
+                <i class='fa-solid <%= hp %>'></i>
+              <% end %>
+            </p>
           </div>
         </div>
       <% end %>
