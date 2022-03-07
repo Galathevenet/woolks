@@ -12,42 +12,29 @@
   </div>
   <div>
     <h1>Choose your walk !</h1>
-    <form>
-      <div class="form-filter">
-        <ul class="dropdown-filter">
-          <li class="dropdown">
-            <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
-              Duration ⌄<b class="filter-title"></b>
-            </button>
-            <ul class="dropdown-menu">
-              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    less than 15 min</label></li>
-              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    less than 30 min</label></li>
-              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure</label></li>
-              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    1 heure 30</label></li>
-              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    2 heures</label></li>
-              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    more</label></li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="dropdown-filter">
-          <li class="dropdown">
-            <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
-              Hotspots  ⌄<b class="filter-title"></b>
-            </button>
-            <ul class="dropdown-menu">
-              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    Park</label></li>
-              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    Fontain</label></li>
-              <li><label class="checkbox"><input type="checkbox" class="checkbox-text">    Dispenser</label></li>
-            </ul>
-          </li>
-        </ul>
-          <ul class="dropdown-filter">
-            <li class="dropdown">
-              <button type="submit" class="btn">Submit</button>
-            </li>
-          </ul>
-      </div>
-    </form>
+    <div class="form-filter dropdown-filter dropdown">
+        <%= form_tag(walks_path, method: 'get') do %>
+          <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
+                Duration ⌄<b class="filter-title"></b>
+          </button>
+          <div class="dropdown-menu">
+          <% @durations.each do |duration, label| %>
+              <%= check_box_tag "durations[]", duration %>
+              <%= label_tag label %>
+            <% end %>
+          </div>
+          <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
+            Hotspots  ⌄<b class="filter-title"></b>
+          </button>
+          <div class="dropdown-menu">
+            <% @hotspots_filters.each do |hotspot_filter, label| %>
+              <%= check_box_tag "hotspots_filters[]", hotspot_filter %>
+              <%= label_tag label %>
+            <% end %>
+          </div>
+          <button type="submit" class="btn">Submit</button>
+        <% end %>
+    </div>
   </div>
   <div class="card-dispenser-slide">
     <%= link_to new_walk_path do %>
