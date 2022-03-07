@@ -44,6 +44,17 @@
   width: 100%;
 }
 
-.mapboxgl-ctrl-logo {
+.mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right {
   visibility: hidden;
+}
+
+.mapboxgl-popup-content {
+  a {
+    color: $dark-green;
+    font-weight: bold;
+  }
+
+  button {
+    visibility: hidden;
+  }
 }

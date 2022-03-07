@@ -4,17 +4,57 @@ class WalksController < ApplicationController
   def index
     # affichage map + carte nouvel itinéraire + grilles cartes
     # Delete walks with no waypoints
+    # raise
     Walk.all.each do |walk|
       walk.destroy if walk.waypoints.empty?
     end
+    @durations = {:less_than_fifteen => "less than 15 min",
+      :less_than_thirty => "less than 30 min",
+      :one_hour => "less than 1 hour",
+      :one_hour_thirty => "less than 1 hour 30",
+      :two_hours => "less than 2 hours",
+      :more_than_two => "more than 2 hours"
+    }
+    @hotspots_filters = {
+      :park_walks => "park",
+      :fountain_walks => "fountain",
+      :dispenser_walks => "dispenser"
+    }
 
-    @walks = Walk.where(published: true)
+    @search_filters =
+    if params[:durations]
+      @walks = []
+      params[:durations].each do |duration|
+        @walks += Walk.where(published: true).send(duration)
+      end
+    @walks.uniq!
+    elsif params[:hotspots_filters]
+      @walks = []
+      params[:hotspots_filters].each do |hotspot_filter|
+      @walks += Walk.where(published: true).send(hotspot_filter)
+      end
+    @walks.uniq!
+    elsif params[:durations] && params[:hotspots_filters]
+      @walks = []
+      params[:durations].each do |duration|
+        @walks += Walk.where(published: true).send(duration)
+      end
+      params[:hotspots_filters].each do |hotspot_filter|
+        @walks += Walk.where(published: true).send(hotspot_filter)
+      end
+    else
+      @walks = Walk.where(published: true)
+    end
     @hotspots = Hotspot.all
     @waypoints = Waypoint.all
 
     @start_points = []
     @walks.each do |walk|
-      @start_points.push(longitude: walk.waypoints.first.longitude, latitude: walk.waypoints.first.latitude)
+      @start_points.push(
+        longitude: walk.waypoints.first.longitude,
+        latitude: walk.waypoints.first.latitude,
+        info_window: render_to_string(partial: "info_window", locals: { walk: walk })
+      )
     end
   end
 
