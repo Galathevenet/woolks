@@ -57,8 +57,9 @@ export default class extends Controller {
       container: this.mapTarget,
       style: "mapbox://styles/mapbox/streets-v10",
       center: this.center,
-      zoom: 13
+      zoom: 13,
     });
+
 
     this.map.on('load', () => {
       // Display hotspots, startPoints and originalWalk
@@ -216,20 +217,33 @@ export default class extends Controller {
   }
 
   #displayCurrentPosition = (position) => {
-    // Create current position marker
-    const currentPositionEl = document.createElement('i');
-    currentPositionEl.classList.add('fa-solid');
-    currentPositionEl.classList.add('fa-location-crosshairs');
-    currentPositionEl.style.fontSize = '20px';
-    currentPositionEl.style.color = '#FE7F2D';
+    // Add geolocate control to the map.
+    this.map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        // When active the map will receive updates to the device's location as it changes.
+        trackUserLocation: true,
+        // Draw an arrow next to the location dot to indicate which direction the device is heading.
+        showUserHeading: true
+      })
+    );
 
-    if (!this.currentPositionMarker) {
-      this.currentPositionMarker = new mapboxgl.Marker(currentPositionEl)
-      .setLngLat([position.coords.longitude, position.coords.latitude])
-      .addTo(this.map);
-    } else {
-      this.currentPositionMarker.setLngLat([position.coords.longitude, position.coords.latitude]);
-    }
+    // Create current position marker
+    // const currentPositionEl = document.createElement('i');
+    // currentPositionEl.classList.add('fa-solid');
+    // currentPositionEl.classList.add('fa-location-crosshairs');
+    // currentPositionEl.style.fontSize = '20px';
+    // currentPositionEl.style.color = '#FE7F2D';
+
+    // if (!this.currentPositionMarker) {
+    //   this.currentPositionMarker = new mapboxgl.Marker(currentPositionEl)
+    //   .setLngLat([position.coords.longitude, position.coords.latitude])
+    //   .addTo(this.map);
+    // } else {
+    //   this.currentPositionMarker.setLngLat([position.coords.longitude, position.coords.latitude]);
+    // }
   }
 
   #fitMap(position) {
@@ -252,6 +266,7 @@ export default class extends Controller {
     if (this.currentPositionValue) {
       bounds.extend([ position.coords.longitude, position.coords.latitude ])
     }
+
     this.map.fitBounds(bounds, { padding: 20, maxZoom: 17, duration: 0 })
   }
 }
