@@ -45,33 +45,44 @@ export default class extends Controller {
   }
 
   #launchMap = (position) => {
-    // console.log("initializeMap")
-
-    // if (this.centerCurrentValue) { // Center map on current user position
-    //   this.center = [position.coords.longitude, position.coords.latitude]
-    // } else { // center map on first walk startPoint
-    //   this.center = [this.waypointsValue[0].longitude, this.waypointsValue[0].latitude]
-    // }
-
     this.map = new mapboxgl.Map({
       container: this.mapTarget,
       style: "mapbox://styles/mapbox/streets-v10",
-      center: this.center,
-      zoom: 13,
+      // center: this.center,
+      // zoom: 13,
     });
 
+    if (this.currentPositionValue) {
+      this.geolocate = new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        // showAccuracyCircle: false,
+        // When active the map will receive updates to the device's location as it changes.
+        trackUserLocation: true,
+        // Draw an arrow next to the location dot to indicate which direction the device is heading.
+        showUserHeading: true,
+      })
+      this.map.addControl(this.geolocate);
+    }
 
     this.map.on('load', () => {
       // Display hotspots, startPoints and originalWalk
       this.#addHotspotsToMap();
       this.#addStartPointsToMap();
       this.#addOriginalWalkToMap();
-      this.#fitMap(position);
+
 
       // Display current position
       if (this.currentPositionValue) {
-        this.#displayCurrentPosition(position);
+        // this.#displayCurrentPosition(position);
+        this.geolocate.trigger();
       }
+      console.log("out of geolocate")
+
+      this.#fitMap(position);
+
+      console.log("after fitMap")
 
       // Loop to watch position live
       if (this.liveTrackValue) {
@@ -218,17 +229,9 @@ export default class extends Controller {
 
   #displayCurrentPosition = (position) => {
     // Add geolocate control to the map.
-    this.map.addControl(
-      new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        // When active the map will receive updates to the device's location as it changes.
-        trackUserLocation: true,
-        // Draw an arrow next to the location dot to indicate which direction the device is heading.
-        showUserHeading: true
-      })
-    );
+
+
+
 
     // Create current position marker
     // const currentPositionEl = document.createElement('i');
@@ -247,6 +250,7 @@ export default class extends Controller {
   }
 
   #fitMap(position) {
+    console.log("In #fitMap")
     const bounds = new mapboxgl.LngLatBounds()
 
     if (!this.liveTrackValue) {
