@@ -12,15 +12,13 @@
   <div data-mapbox-target="map" id="map" class="full-screen-map"></div>
 
   <div class="content-container display-elements">
-    <h1>Customized Walk</h1>
-
-    <h2 class = "light-orange-bckgrd">You're about to create a new walk itinary</h2>
-
-    <h3 class = "light-orange-bckgrd">Click on the button below when you are at your start point</h3>
-
-    <%= simple_form_for @new_walk, html: { class: "d-flex justify-content-center" }, method: :post do |f| %>
-      <%= f.input :original_walk_id, as: :hidden, input_html: { value: nil } %>
-      <%= f.submit "GO!", class: 'btn-max d-flex justify-content-center' %>
-    <% end %>
+    <div class="light-orange-bckgrd">
+      <h1>Customized Walk</h1>
+      <p class = "">Click on the button below when you are at your start point</p>
+    </div>
   </div>
+    <%= simple_form_for @new_walk, method: :post do |f| %>
+      <%= f.input :original_walk_id, as: :hidden, input_html: { value: nil } %>
+      <%= f.submit "GO!", class: 'btn-max map-btn' %>
+    <% end %>
 </div>
