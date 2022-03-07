@@ -10,10 +10,10 @@ class WalksController < ApplicationController
     end
     @durations = {:less_than_fifteen => "less than 15 min",
       :less_than_thirty => "less than 30 min",
-      :one_hour => "1 hour",
-      :one_hour_thirty => "1 hour 30",
-      :two_hours => "2 hours",
-      :more_than_two => "more than hours"
+      :one_hour => "less than 1 hour",
+      :one_hour_thirty => "less than 1 hour 30",
+      :two_hours => "less than 2 hours",
+      :more_than_two => "more than 2 hours"
     }
     @hotspots_filters = {
       :park_walks => "park",
