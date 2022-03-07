@@ -13,8 +13,13 @@ class ReviewsController < ApplicationController
       redirect_to description_walk_path(@review.walk) #and return
     else
       # @walk = Walk.find(params[:review][:walk_id])
-      # render "recap_and_review/walks"
-      redirect_to recap_and_review_walk_path(@current_walk) #and return
+
+      @walk = @current_walk
+      @hotspots = @walk.hotspots
+      @waypoints = @walk.waypoints
+      @start_points = [longitude: @waypoints.first.longitude, latitude: @waypoints.first.latitude]
+      render "recap_and_review/walks/show"
+      # redirect_to recap_and_review_walk_path(@current_walk) #and return
     end
   end
 
@@ -23,5 +28,4 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:rating, :walk_id, :comment, photos: [])
   end
-
 end

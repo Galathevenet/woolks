@@ -57,9 +57,11 @@
           </div>
           <p><i class="fa-solid fa-person-hiking"></i> <strong><%= @walk.length/1000 %></strong> km</p>
           <p><i class="fa-solid fa-stopwatch"></i> <strong><%= @walk.duration/60 %></strong> min</p>
-          <p id= "hotspot-icon-green"><% @hps.uniq.each do |hp| %>
-            <i class='fa-solid <%= hp %>'></i>
-          <% end %></p>
+          <p id= "hotspot-icon">
+            <% @hps.uniq.each do |hp| %>
+              <i class='fa-solid <%= hp %>'></i>
+            <% end %>
+          </p>
         </div>
       </div>
     </div>

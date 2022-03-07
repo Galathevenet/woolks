@@ -39,15 +39,16 @@
     margin: 0 auto;
     padding: 10px 5px 5px 5px;
     width: 100%;
+    background-color: $light-orange;
 
     .rating {
       font-size: 15px;
-      margin: 0 10px 10px 10px;
+      // margin: 0 10px 10px 10px;
       color: $gray;
-      text-align: right;
-      background-color: $light-orange;
+      text-align: center;
+      // background-color: $light-orange;
       border-radius: 12px;
-      padding: 6px;
+      // padding: 6px;
 
       p {
         height: 20px;
@@ -58,13 +59,21 @@
       font-size: 14px;
       text-align: center;
       color: $gray;
-      background-color: $light-orange;
+      // background-color: $light-orange;
       border-radius: 12px;
       padding: 6px;
+      margin: 4px 0;
     }
   }
 
   .rating-zero {
     visibility:hidden;
+  }
+
+  #hotspot-icon {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 26px;
   }
 }
