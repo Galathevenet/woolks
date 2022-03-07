@@ -28,7 +28,7 @@
     <br>
     <div>
       <%= simple_form_for @walk do |f| %>
-        <div class="form-input review-form-title">
+        <div class="form-input">
           <%= f.input :name, placeholder: "Give a title to my Walk" %>
         </div>
 
@@ -36,8 +36,12 @@
           <%= f.input :description, placeholder: "Give a description to my Walk" %>
         </div>
 
-        <div class="form-input review-form-title">
+        <div class="form-input">
           <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        </div>
+
+        <div class="form-input radio-input">
+          <%= f.input :published, as: :boolean, label: "Publish my walk" %>
         </div>
 
         <div class="form-button">

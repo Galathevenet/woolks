@@ -18,7 +18,7 @@
 }
 
 .btn-med {
-  width: 50%;
+  width: 50vw;
   color: white;
   padding: 24px 24px;
   border-radius: 4px;
@@ -56,4 +56,9 @@
 .form-button {
   display: inline-block;
   text-align: center;
+}
+
+.radio-input {
+  display: inline-block;
+  margin-top: 15px;
 }
