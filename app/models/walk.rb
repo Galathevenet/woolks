@@ -3,7 +3,7 @@ class Walk < ApplicationRecord
   belongs_to :original_walk, optional: true, class_name: "Walk"
   has_many :hotspot_walks
   has_many :hotspots, through: :hotspot_walks
-  has_many :waypoints
+  has_many :waypoints, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
   has_many_attached :photos
