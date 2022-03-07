@@ -1,97 +1,93 @@
 <div class="card-walk-detailed">
-  <div class="height-carousel-title">
-    <h1 id="title-card-detailed"><%= @walk.name %></h1>
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active width-90">
-
-          <div
-            class="mapbox"
-            data-controller="mapbox"
-            data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-            data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
-            data-mapbox-waypoints-value="<%= @waypoints.to_json %>"
-            data-mapbox-start-points-value="<%= @start_points.to_json %>"
-            data-mapbox-current-position-value="true"
-            data-mapbox-live-track-value="false"
-            data-mapbox-center-current-value="true">
-            <div data-mapbox-target="map" id="map" class="medium-map"></div>
-          </div>
-          <%# <img src="https://image.shutterstock.com/image-vector/small-map-city-260nw-770438665.jpg" class="d-block w-100" alt="map"> %>
+  <h1 class="container-child-margin"><%= @walk.name %></h1>
+  <div id="carouselExampleControls" class="carousel slide container-child-margin" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div
+          class="mapbox"
+          data-controller="mapbox"
+          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+          data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
+          data-mapbox-waypoints-value="<%= @waypoints.to_json %>"
+          data-mapbox-start-points-value="<%= @start_points.to_json %>"
+          data-mapbox-current-position-value="true"
+          data-mapbox-live-track-value="false"
+          data-mapbox-center-current-value="true">
+          <div data-mapbox-target="map" id="map" class="medium-map"></div>
         </div>
-        <% @walk.photos.each do |photo| %>
-          <div class="carousel-item">
-            <%= cl_image_tag photo.key, height: 280, width: 462, crop: :fill, class: "d-block width-90"%>
-          </div>
-        <% end %>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      <% @walk.photos.each do |photo| %>
+        <div class="carousel-item">
+          <%= cl_image_tag photo.key, height: 280, width: 462, crop: :fill, class: "d-block"%>
+        </div>
+      <% end %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div class="description-data container-child-margin">
+    <div class="middle-divider">
+      <div class="description">
+        <p><%= @walk.description %></p>
+      </div>
+      <div class="data-walk">
+        <div class="rating">
+          <% if @walk.reviews.size == 0 %>
+            <p>Not rated yet</p>
+          <% else %>
+            <% @walk.reviews_average.times do  %>
+              <span class="fa fa-star"></span>
+            <% end %>
+            <% (5 - @walk.reviews_average).times do %>
+              <span class="fa-regular fa-star"></span>
+            <% end %>
+            <span>(<%= @walk.reviews.size%>)</span>
+          <% end %>
+        </div>
+        <p><i class="fa-solid fa-person-hiking"></i> <strong><%= @walk.length/1000 %></strong> km</p>
+        <p><i class="fa-solid fa-stopwatch"></i> <strong><%= @walk.duration/60 %></strong> min</p>
+        <p id= "hotspot-icon">
+          <% @hps.uniq.each do |hp| %>
+            <i class='fa-solid <%= hp %>'></i>
+          <% end %>
+        </p>
+      </div>
     </div>
   </div>
-  <div class="infos-detailed">
-    <div class="description-data">
-      <div class="middle-divider">
-        <div class="description">
-          <p><%= @walk.description %></p>
-        </div>
-        <div class="data-walk">
-          <div class="rating">
-            <% if @walk.reviews.size == 0 %>
-              <p>Not rated yet</p>
-            <% else %>
-              <% @walk.reviews_average.times do  %>
-                <span class="fa fa-star"></span>
-              <% end %>
-              <% (5 - @walk.reviews_average).times do %>
-                <span class="fa-regular fa-star"></span>
-              <% end %>
-              <span>(<%= @walk.reviews.size%>)</span>
+  <div class="reviews container-child-margin">
+    <h3>Avis des woolkers</h3>
+    <div class="review-scrolldown">
+      <% @walk.reviews.each do |review| %>
+      <div class="mb-4">
+          <p><%= review.user.username %> | <% review.rating.times do %>
+                                            <span class="fa fa-star"></span>
+                                          <% end %>
+                                          <% (5 - review.rating).times do %>
+                                            <span class="fa-regular fa-star"></span>
+                                          <% end %></p>
+          <p><%= review.comment %></p>
+          <div class="photos-review">
+            <% review.photos.each do | photo | %>
+              <%= cl_image_tag photo.key, height: 462, width: 280 , crop: :fill , class: "photo-size", data: {'bs-toggle': "modal", 'bs-target': "#review#{review.id}Modal"} %>
             <% end %>
           </div>
-          <p><i class="fa-solid fa-person-hiking"></i> <strong><%= @walk.length/1000 %></strong> km</p>
-          <p><i class="fa-solid fa-stopwatch"></i> <strong><%= @walk.duration/60 %></strong> min</p>
-          <p id= "hotspot-icon">
-            <% @hps.uniq.each do |hp| %>
-              <i class='fa-solid <%= hp %>'></i>
-            <% end %>
-          </p>
         </div>
-      </div>
+      <% end %>
     </div>
-    <div class="reviews">
-      <h3>Avis des woolkers</h3>
-      <div class="review-scrolldown">
-        <% @walk.reviews.each do |review| %>
-        <div class="mb-4">
-            <p><%= review.user.username %> | <% review.rating.times do %>
-                                              <span class="fa fa-star"></span>
-                                            <% end %>
-                                            <% (5 - review.rating).times do %>
-                                              <span class="fa-regular fa-star"></span>
-                                            <% end %></p>
-            <p><%= review.comment %></p>
-            <div class="photos-review">
-              <% review.photos.each do | photo | %>
-                <%= cl_image_tag photo.key, height: 462, width: 280 , crop: :fill , class: "photo-size", data: {'bs-toggle': "modal", 'bs-target': "#review#{review.id}Modal"} %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-        <%= simple_form_for @new_walk, html: { class: "d-flex justify-content-center" }, method: :post do |f| %>
-          <%= f.input :original_walk_id, as: :hidden, input_html: { value: @walk.id } %>
-          <%= f.submit "GO!", class: 'btn-max d-flex justify-content-center' %>
-        <% end %>
+  </div>
+      <%= simple_form_for @new_walk, html: { class: "d-flex justify-content-center container-child-margin" }, method: :post do |f| %>
+        <%= f.input :original_walk_id, as: :hidden, input_html: { value: @walk.id } %>
+        <%= f.submit "GO!", class: 'btn-max d-flex justify-content-center' %>
+      <% end %>
   </div>
 </div>
+
 
 <%# ----- Modal with carousel for Review pictures ------- %>
 
@@ -104,7 +100,7 @@
             <div class="carousel-inner">
                 <% review.photos.each_with_index do |photo, i| %>
                   <div class="carousel-item <%= "active" if i == 0%>">
-                    <%= cl_image_tag photo.key, height: 400, crop: :fill, class: "d-block width-100"%>
+                    <%= cl_image_tag photo.key, height: 400, width: 340, crop: :fill, class: "d-block"%>
                   </div>
                 <% end %>
             </div>
