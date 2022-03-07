@@ -23,7 +23,7 @@
     color: $gray;
     text-align: center;
     background-color: $light-orange;
-    border-radius: 12px;
+    border-radius: 4px;
     padding: 6px;
   }
 
@@ -45,10 +45,11 @@
       font-size: 15px;
       // margin: 0 10px 10px 10px;
       color: $gray;
+
       text-align: center;
-      // background-color: $light-orange;
-      border-radius: 12px;
-      // padding: 6px;
+      background-color: $light-orange;
+      border-radius: 4px;
+      padding: 6px;
 
       p {
         height: 20px;
@@ -59,8 +60,8 @@
       font-size: 14px;
       text-align: center;
       color: $gray;
-      // background-color: $light-orange;
-      border-radius: 12px;
+      background-color: $light-orange;
+      border-radius: 4px;
       padding: 6px;
       margin: 4px 0;
     }
