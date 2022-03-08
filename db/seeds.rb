@@ -26,7 +26,7 @@ puts "Hotspot db destroyed"
 
 puts "All DBs are down ! I repeat, all DBs are down !"
 
-puts "Creating 4 Users"
+puts "Creating 6 Users"
 gala = User.create!(email: 'gala@mail.com', password: 'gala', username: 'gala')
 gala.photo.attach(
   io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1645623392/Users/gala_by9udp.jpg'),
@@ -98,14 +98,14 @@ walk_one.photos.attach(
 )
 
 walk_two = Walk.create!(
-  user: gala,
-  original_walk: walk_one,
+  user: charles,
+  original_walk: nil,
   name: "Jardin Public and Quinconces",
   description: "Bordeaux's golden triangle, for chic doggies and their owners",
   date: "20220301",
   duration: "660",
   length: "1500",
-  published: false
+  published: true
 )
 walk_two.photos.attach(
   [
@@ -228,8 +228,8 @@ hotspot_dispenser1 = Hotspot.create!(
 hotspot_fountain1 = Hotspot.create!(
   category: "fountain",
   name: "My favorite fountain",
-  longitude: "-0.556408166885376",
-  latitude: "44.84931249931707"
+  longitude: "-0.5603671073913574",
+  latitude: "44.860295034081176"
 )
 
 hotspot_park2 = Hotspot.create!(
@@ -244,33 +244,44 @@ puts "Hotspots created... Feeling hot yet ?"
 puts "Creating 4 Reviews"
 
 
-review_one = Review.create!(walk: walk_one, user: charles, comment: "I liked it, but i couldn't find any poop-bags dispenser", rating: 4)
-review_one.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
-                          {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
-review_three = Review.create!(walk: walk_one, user: gala, comment: "Not enough grass, my dog refused to pee", rating: 5)
-review_three.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
-                          {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
-review_two = Review.create!(walk: walk_two, user: carole, comment: "Since i hate nature, i loved it", rating: 5)
-review_two.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
-                          {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
-review_for = Review.create!(walk: walk_three, user: marion, comment: "Great walk, I've spent a nice moment with my dog", rating: 5)
-review_for.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646405675/Walks/Walk3/Bordeaux_La_Garonne_OK_fnpho7.jpg'), filename: 'wwalk_three_1_dififz.jpg', content_type: 'image/jpg'},
-                          {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404712/Walks/Walk3/french-bulldog-walking-on-leash-in-park_pmtqxa.jpg'), filename: 'walk_three_2_bk4o4i.jpg', content_type: 'image/jpg'}])
-review_five = Review.create!(walk: walk_three, user: cedric, comment: "It was raining...", rating: 3)
-review_five.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk3/IMG_1162_scgapg.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
-                          {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk3/IMG_3597_oz46wj.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
+review1 = Review.create!(walk: walk_one, user: charles, comment: "I liked it, but i couldn't find any poop-bags dispenser", rating: 4)
+review1.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg' }])
+
+review2 = Review.create!(walk: walk_one, user: gala, comment: "Not enough grass, my dog refused to pee", rating: 5)
+review2.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/chartrons_gala_1_ok7egu.jpg'), filename: 'chartrons_gala_1_ok7egu.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/chartrons_gala_2_ezwqvh.jpg'), filename: 'chartrons_gala_2_ezwqvh.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/chartrons_gala_3_fvzttx.jpg'), filename: 'chartrons_gala_3_fvzttx.jpg', content_type: 'image/jpg' }])
+
+review3 = Review.create!(walk: walk_one, user: cedric, comment: "I loved the fountain in this hot summer weather", rating: 5)
+review3.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/chartrons_cedric_1_d3nvfv.jpg'), filename: 'chartrons_cedric_1_d3nvfv.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/chartrons_cedric_2_lqjhpm.jpg'), filename: 'chartrons_cedric_2_lqjhpm.jpg', content_type: 'image/jpg' }])
+
+review4 = Review.create!(walk: walk_two, user: carole, comment: "Since i hate nature, i loved it", rating: 5)
+review4.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg' }])
+
+review5 = Review.create!(walk: walk_three, user: marion, comment: "Great walk, I've spent a nice moment with my dog", rating: 5)
+review5.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646405675/Walks/Walk3/Bordeaux_La_Garonne_OK_fnpho7.jpg'), filename: 'wwalk_three_1_dififz.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404712/Walks/Walk3/french-bulldog-walking-on-leash-in-park_pmtqxa.jpg'), filename: 'walk_three_2_bk4o4i.jpg', content_type: 'image/jpg' }])
+
+review6 = Review.create!(walk: walk_three, user: cedric, comment: "It was raining...", rating: 3)
+review6.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk3/IMG_1162_scgapg.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk3/IMG_3597_oz46wj.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg' }])
 
 
 
 puts "Reviews created... Disclaimer : Woolks takes no responsability for fake reviews !"
 
 
-puts "Creating 2 hotspot_walks"
+puts "Creating 5 hotspot_walks"
 
+HotspotWalk.create!(hotspot: hotspot_fountain1, walk: walk_one)
 HotspotWalk.create!(hotspot: hotspot_park1, walk: walk_two)
 HotspotWalk.create!(hotspot: hotspot_dispenser1, walk: walk_two)
 HotspotWalk.create!(hotspot: hotspot_dispenser1, walk: walk_three)
 HotspotWalk.create!(hotspot: hotspot_park2, walk: walk_three)
+
 
 puts "hotspots_walks created... Toss a coin ! Are you gonna get lucky this time ?"
 
