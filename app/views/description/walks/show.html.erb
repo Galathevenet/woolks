@@ -65,7 +65,8 @@
     <div class="review-scrolldown">
       <% @walk.reviews.each do |review| %>
       <div class="mb-4">
-          <p><%= review.user.username %> | <% review.rating.times do %>
+        <p><%= cl_image_tag review.user.photo.key, crop: :thumb, gravity: :face, class: "avatar-review" %>
+           <%= review.user.username %> | <% review.rating.times do %>
                                             <span class="fa fa-star"></span>
                                           <% end %>
                                           <% (5 - review.rating).times do %>

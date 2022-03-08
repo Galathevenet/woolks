@@ -55,6 +55,19 @@ carole.photo.attach(
   content_type: 'image/jpg'
 )
 
+charles = User.create!(email: 'charles@mail.com', password: 'charles', username: 'charles')
+charles.photo.attach(
+  io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1645623392/Users/charles_spxno4.jpg'),
+  filename: 'charles_spxno4.jpg',
+  content_type: 'image/jpg'
+)
+julia = User.create!(email: 'julia@mail.com', password: 'julia', username: 'julia')
+julia.photo.attach(
+  io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1645623392/Users/julia_cw99zc.jpg'),
+  filename: 'julia_cw99zc.jpg',
+  content_type: 'image/jpg'
+)
+
 puts "The 4 best users on earth have been created out of nowhere"
 
 puts "Creating 3 Walks"
@@ -231,7 +244,7 @@ puts "Hotspots created... Feeling hot yet ?"
 puts "Creating 4 Reviews"
 
 
-review_one = Review.create!(walk: walk_one, user: marion, comment: "I liked it, but i couldn't find any poop-bags dispenser", rating: 4)
+review_one = Review.create!(walk: walk_one, user: charles, comment: "I liked it, but i couldn't find any poop-bags dispenser", rating: 4)
 review_one.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg'},
                           {io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg'}])
 review_three = Review.create!(walk: walk_one, user: gala, comment: "Not enough grass, my dog refused to pee", rating: 5)
