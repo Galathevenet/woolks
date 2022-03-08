@@ -14,24 +14,31 @@
     <h1>Choose your walk !</h1>
     <div class="form-filter dropdown-filter dropdown">
         <%= form_tag(walks_path, method: 'get') do %>
+
           <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
                 Duration ⌄<b class="filter-title"></b>
           </button>
           <div class="dropdown-menu">
-          <% @durations.each do |duration, label| %>
-              <%= check_box_tag "durations[]", duration %>
-              <%= label_tag label %>
+            <% @durations.each do |duration, label| %>
+              <div class="dropdown-item">
+                <%= check_box_tag "durations[]", duration %>
+                <%= label_tag label %>
+              </div>
             <% end %>
           </div>
+
           <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
             Hotspots  ⌄<b class="filter-title"></b>
           </button>
           <div class="dropdown-menu">
             <% @hotspots_filters.each do |hotspot_filter, label| %>
-              <%= check_box_tag "hotspots_filters[]", hotspot_filter %>
-              <%= label_tag label %>
+              <div class="dropdown-item">
+                <%= check_box_tag "hotspots_filters[]", hotspot_filter %>
+                <%= label_tag label %>
+              </div>
             <% end %>
           </div>
+
           <button type="submit" class="btn">Submit</button>
         <% end %>
     </div>

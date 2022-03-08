@@ -8,7 +8,8 @@ class WalksController < ApplicationController
     Walk.all.each do |walk|
       walk.destroy if walk.waypoints.empty?
     end
-    @durations = {:less_than_fifteen => "less than 15 min",
+    @durations = {
+      :less_than_fifteen => "less than 15 min",
       :less_than_thirty => "less than 30 min",
       :one_hour => "less than 1 hour",
       :one_hour_thirty => "less than 1 hour 30",
@@ -22,29 +23,30 @@ class WalksController < ApplicationController
     }
 
     @search_filters =
-    if params[:durations]
-      @walks = []
-      params[:durations].each do |duration|
-        @walks += Walk.where(published: true).send(duration)
+      if params[:durations] && params[:hotspots_filters]
+        @walks = []
+        params[:durations].each do |duration|
+          @walks += Walk.where(published: true).send(duration)
+        end
+        params[:hotspots_filters].each do |hotspot_filter|
+          @walks += Walk.where(published: true).send(hotspot_filter)
+        end
+      elsif params[:durations]
+        @walks = []
+        params[:durations].each do |duration|
+          @walks += Walk.where(published: true).send(duration)
+        end
+        @walks.uniq!
+      elsif params[:hotspots_filters]
+        @walks = []
+        params[:hotspots_filters].each do |hotspot_filter|
+          @walks += Walk.where(published: true).send(hotspot_filter)
+        end
+        @walks.uniq!
+      else
+        @walks = Walk.where(published: true)
       end
-    @walks.uniq!
-    elsif params[:hotspots_filters]
-      @walks = []
-      params[:hotspots_filters].each do |hotspot_filter|
-      @walks += Walk.where(published: true).send(hotspot_filter)
-      end
-    @walks.uniq!
-    elsif params[:durations] && params[:hotspots_filters]
-      @walks = []
-      params[:durations].each do |duration|
-        @walks += Walk.where(published: true).send(duration)
-      end
-      params[:hotspots_filters].each do |hotspot_filter|
-        @walks += Walk.where(published: true).send(hotspot_filter)
-      end
-    else
-      @walks = Walk.where(published: true)
-    end
+
     @hotspots = Hotspot.all
     @waypoints = Waypoint.all
 
