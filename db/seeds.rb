@@ -134,7 +134,7 @@ walk_three = Walk.create!(
   description: "Beautiful hausmanian style buildings and a sweet walk along the riverside",
   date: "20220402",
   duration: "4000",
-  length: "7000",
+  length: "7",
   published: true
 )
 walk_three.photos.attach(
@@ -219,8 +219,8 @@ puts "Creating 4 Hotspots"
 hotspot_park1 = Hotspot.create!(
   category: "dog park",
   name: "My favorite park",
-  longitude: "-0.5762243270874023",
-  latitude: "44.848293238227974"
+  longitude: "0.5642509460449219",
+  latitude: "44.84765428924366"
 )
 
 hotspot_dispenser1 = Hotspot.create!(
@@ -246,11 +246,11 @@ hotspot_park2 = Hotspot.create!(
 
 puts "Hotspots created... Feeling hot yet ?"
 
-puts "Creating 4 Reviews"
+puts "Creating 7 Reviews"
 
 # -----reviews for walk_one (chartrons)-----
 
-review1 = Review.create!(walk: walk_one, user: charles, comment: "I liked it, but i couldn't find any poop-bags dispenser", rating: 4)
+review1 = Review.create!(walk: walk_one, user: charles, comment: "I liked it, but i couldn't find any poop-bags dispenser", rating: 5)
 review1.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg' },
                        { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg' }])
 
@@ -279,7 +279,7 @@ review6.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/imag
                        { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/jardin_julia_3_klv8oa.jpg'), filename: 'jardin_julia_3_klv8oa.jpg', content_type: 'image/jpg' }])
 
 # -----reviews for walk_three (the two bridges)-----
-review5 = Review.create!(walk: walk_three, user: marion, comment: "Great walk, I've spent a nice moment with my dog", rating: 5)
+review5 = Review.create!(walk: walk_three, user: julia, comment: "Great walk, I've spent a nice moment with my dog", rating: 5)
 review5.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646405675/Walks/Walk3/Bordeaux_La_Garonne_OK_fnpho7.jpg'), filename: 'wwalk_three_1_dififz.jpg', content_type: 'image/jpg' },
                        { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404712/Walks/Walk3/french-bulldog-walking-on-leash-in-park_pmtqxa.jpg'), filename: 'walk_three_2_bk4o4i.jpg', content_type: 'image/jpg' }])
 
@@ -287,18 +287,19 @@ review6 = Review.create!(walk: walk_three, user: cedric, comment: "It was rainin
 review6.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk3/IMG_1162_scgapg.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg' },
                        { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk3/IMG_3597_oz46wj.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg' }])
 
-
+review7 = Review.create!(walk: walk_three, user: carole, comment: "Awesome tour by night, the lights reflecting in the water are beautiful", rating: 5)
+review7.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk3/bridges_carole_1_hwmxe6.jpg'), filename: 'bridges_carole_1_hwmxe6.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk3/bridges_carole_2_x7mw37.jpg'), filename: 'bridges_carole_2_x7mw37.jpg', content_type: 'image/jpg' }])
 
 puts "Reviews created... Disclaimer : Woolks takes no responsability for fake reviews !"
-
 
 puts "Creating 5 hotspot_walks"
 
 HotspotWalk.create!(hotspot: hotspot_fountain1, walk: walk_one)
-HotspotWalk.create!(hotspot: hotspot_park1, walk: walk_two)
+HotspotWalk.create!(hotspot: hotspot_park2, walk: walk_two)
 HotspotWalk.create!(hotspot: hotspot_dispenser1, walk: walk_two)
 HotspotWalk.create!(hotspot: hotspot_dispenser1, walk: walk_three)
-HotspotWalk.create!(hotspot: hotspot_park2, walk: walk_three)
+HotspotWalk.create!(hotspot: hotspot_park1, walk: walk_three)
 
 
 puts "hotspots_walks created... Toss a coin ! Are you gonna get lucky this time ?"
