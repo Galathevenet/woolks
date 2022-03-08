@@ -248,6 +248,7 @@ puts "Hotspots created... Feeling hot yet ?"
 
 puts "Creating 4 Reviews"
 
+# -----reviews for walk_one (chartrons)-----
 
 review1 = Review.create!(walk: walk_one, user: charles, comment: "I liked it, but i couldn't find any poop-bags dispenser", rating: 4)
 review1.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg' },
@@ -262,10 +263,22 @@ review3 = Review.create!(walk: walk_one, user: cedric, comment: "I loved the fou
 review3.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/chartrons_cedric_1_d3nvfv.jpg'), filename: 'chartrons_cedric_1_d3nvfv.jpg', content_type: 'image/jpg' },
                        { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/chartrons_cedric_2_lqjhpm.jpg'), filename: 'chartrons_cedric_2_lqjhpm.jpg', content_type: 'image/jpg' }])
 
-review4 = Review.create!(walk: walk_two, user: carole, comment: "Since i hate nature, i loved it", rating: 5)
-review4.photos.attach([{io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_1_dififz.jpg'), filename: 'wwalk_two_1_dififz.jpg', content_type: 'image/jpg' },
-                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk_two_2_bk4o4i.jpg'), filename: 'walk_two_2_bk4o4i.jpg', content_type: 'image/jpg' }])
+# -----reviews for walk_two (jardin public)-----
 
+review4 = Review.create!(walk: walk_two, user: carole, comment: "Since i hate nature, i stayed around Quinquonces and i loved it", rating: 5)
+review4.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/jardin_carole_1_atmcrq.jpg'), filename: 'jardin_carole_1_atmcrq.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/jardin_carole_2_mx8lra.jpg'), filename: 'jardin_carole_2_mx8lra.jpg', content_type: 'image/jpg' }])
+
+review5 = Review.create!(walk: walk_two, user: marion, comment: "Beautiful park, my dogs met so many friends", rating: 5)
+review5.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/jardin_marion_2_fvmj7f.jpg'), filename: 'jardin_marion_2_fvmj7f.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/jardin_marion_1_qjjuhx.jpg'), filename: 'jardin_marion_1_qjjuhx.jpg', content_type: 'image/jpg' }])
+
+review6 = Review.create!(walk: walk_two, user: julia, comment: "The Jardin Public is so huge i lost my dog for a while", rating: 4)
+review6.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/jardin_julia_1_q6ovtg.jpg'), filename: 'jardin_julia_1_q6ovtg.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/jardin_julia_2_jpguuf.jpg'), filename: 'jardin_julia_2_jpguuf.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/jardin_julia_3_klv8oa.jpg'), filename: 'jardin_julia_3_klv8oa.jpg', content_type: 'image/jpg' }])
+
+# -----reviews for walk_three (the two bridges)-----
 review5 = Review.create!(walk: walk_three, user: marion, comment: "Great walk, I've spent a nice moment with my dog", rating: 5)
 review5.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646405675/Walks/Walk3/Bordeaux_La_Garonne_OK_fnpho7.jpg'), filename: 'wwalk_three_1_dififz.jpg', content_type: 'image/jpg' },
                        { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404712/Walks/Walk3/french-bulldog-walking-on-leash-in-park_pmtqxa.jpg'), filename: 'walk_three_2_bk4o4i.jpg', content_type: 'image/jpg' }])
