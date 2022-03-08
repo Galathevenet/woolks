@@ -1,5 +1,5 @@
 <div class="content-container">
-  <h1 class="congrats">Congratulations!</h1>
+  <h1 class="congrats mt-3">Congratulations!</h1>
 
   <div class="medium-map-favorite">
      <div
@@ -18,7 +18,7 @@
 
   <div class="walk-recap">
     <i class="fa-solid fa-person-hiking"></i>
-    <strong><%= @walk.length/1000 %></strong> km
+    <strong><%= @walk.length.round(1) %></strong> km
   </div>
   <div class="walk-recap">
     <i class="fa-solid fa-stopwatch"></i>
@@ -26,7 +26,7 @@
   </div>
   <br>
   <div class="d-flex justify-content-center">
-    <%= link_to "Publish your walk", edit_recap_and_save_walk_path(@walk), class: "btn-med" %>
+    <%= link_to "Save", edit_recap_and_save_walk_path(@walk), class: "btn-med" %>
   </div>
 
   <div class="d-flex justify-content-center mt-3">

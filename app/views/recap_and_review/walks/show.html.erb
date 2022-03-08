@@ -21,7 +21,7 @@
   <div>
     <div class="walk-recap">
       <i class="fa-solid fa-person-hiking"></i>
-      <strong><%= @walk.length/1000 %></strong> km
+      <strong><%= @walk.length.round(1) %></strong> km
     </div>
     <div class="walk-recap">
       <i class="fa-solid fa-stopwatch"></i>
@@ -60,5 +60,4 @@
       <%= f.submit "Add my review", class: "btn-med btn-review-form" %>
     </div>
   <% end %>
-  <%# <%= link_to "Back to homepage", walks_path, class: "nav-link" %>
 </div>
