@@ -28,15 +28,15 @@
     <br>
     <div>
       <%= simple_form_for @walk do |f| %>
-        <div class="form-input">
+        <div class="form-input light-orange-bckgrd">
           <%= f.input :name, placeholder: "Your walk's name", input_html: {  value: "" } %>
         </div>
 
-        <div class="form-input">
+        <div class="form-input light-orange-bckgrd">
           <%= f.input :description, placeholder: "Your walk's description", input_html: { value: "" } %>
         </div>
 
-        <div class="form-input">
+        <div class="form-input light-orange-bckgrd">
           <%= f.input :photos, as: :file, input_html: { multiple: true } %>
         </div>
 
