@@ -36,8 +36,18 @@
           <%= f.input :description, placeholder: "Your walk's description", input_html: { value: "" } %>
         </div>
 
-        <div class="form-input light-orange-bckgrd">
-          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+         <div data-controller="file-preview">
+          <div class="form-input review-form-title light-orange-bckgrd">
+            <%= f.input :photos, as: :file,
+              input_html: { multiple: true, class: "sr-only", data: { action: "change->file-preview#displayPhotoMiniature" } },
+              label: "Add your photos",
+              label_html: { class: "btn-min" } %>
+            <div data-file-preview-target="field">
+              <template data-file-preview-target="imageTemplate">
+                <%= image_tag "", class: "review-photos"%>
+              </template>
+            </div>
+          </div>
         </div>
 
         <div class="form-input radio-input">
