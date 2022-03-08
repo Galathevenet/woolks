@@ -79,7 +79,7 @@ walk_one = Walk.create!(
   description: "A nice stroll around cute alleys to discover this atypical neighborhood",
   date: "20220302",
   duration: "1200",
-  length: "2200",
+  length: "2.2",
   published: true
 )
 walk_one.photos.attach(
@@ -104,19 +104,24 @@ walk_two = Walk.create!(
   description: "Bordeaux's golden triangle, for chic doggies and their owners",
   date: "20220301",
   duration: "660",
-  length: "1500",
+  length: "1.5",
   published: true
 )
 walk_two.photos.attach(
   [
     {
-      io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/walk_one_1_cacmpw.jpg'),
-      filename: 'walk_one_1_cacmpw.jpg',
+      io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk2_2_vpfgf7.jpg'),
+      filename: 'walk2_2_vpfgf7.jpg',
       content_type: 'image/jpg'
     },
     {
-      io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk1/walk_one_2_nd2rty.jpg'),
-      filename: 'walk_one_2_nd2rty.jpg',
+      io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk2_1_ceoxvr.jpg'),
+      filename: 'walk2_1_ceoxvr.jpg',
+      content_type: 'image/jpg'
+    },
+    {
+      io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646228557/Walks/Walk2/walk2_3_we0jje.jpg'),
+      filename: 'walk2_3_we0jje.jpg',
       content_type: 'image/jpg'
     }
   ]
@@ -212,7 +217,7 @@ puts "Waypoints created... Did you take your swimming suit for waypoint 3 ?"
 puts "Creating 4 Hotspots"
 
 hotspot_park1 = Hotspot.create!(
-  category: "park",
+  category: "dog park",
   name: "My favorite park",
   longitude: "-0.5762243270874023",
   latitude: "44.848293238227974"
@@ -233,7 +238,7 @@ hotspot_fountain1 = Hotspot.create!(
 )
 
 hotspot_park2 = Hotspot.create!(
-  category: "park",
+  category: "dog park",
   name: "A lovely park",
   longitude: "-0.5646800994873047",
   latitude: "44.846984906515225"

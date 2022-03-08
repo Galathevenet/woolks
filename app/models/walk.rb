@@ -36,7 +36,7 @@ class Walk < ApplicationRecord
   scope :more_than_two, -> { where("duration > 7200") }
 
 
-  scope :park_walks, -> { joins(:hotspots).where("hotspots.category = 'park'")}
+  scope :park_walks, -> { joins(:hotspots).where("hotspots.category = 'dog park'")}
   scope :fountain_walks, -> { joins(:hotspots).where("hotspots.category = 'fountain'")}
   scope :dispenser_walks, -> { joins(:hotspots).where("hotspots.category = 'dispenser'")}
 
