@@ -1,21 +1,45 @@
 <div class="content-container">
-  <h1 class="congrats mt-3">My pusblished walks</h1>
-  <div>
-    <% @published_walks.each do |walk| %>
-      <%= render 'walk', walk: walk, link: :edit, title_3: walk.name.capitalize %>
-    <% end %>
+  <h1 class="congrats mt-3">My walks</h1>
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          My pusblished walks
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+           <% @published_walks.each do |walk| %>
+            <%= render 'walk', walk: walk, link: :edit, title_3: walk.name.capitalize %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          My favorite walks
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <% @favorite_walks.each do |walk| %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          My history
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <% @history_walks.each do |walk| %>
+            <%= render 'walk', walk: walk, link: :delete, title_3: walk.date %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <h1 class="congrats mt-3">My favorite walks</h1>
-  <div>
-    <% @favorite_walks.each do |walk| %>
-    <% end %>
-  </div>
-
-   <h1 class="congrats mt-3">My history</h1>
-  <div>
-    <% @history_walks.each do |walk| %>
-      <%= render 'walk', walk: walk, link: :delete, title_3: walk.date %>
-    <% end %>
-  </div>
-</div>

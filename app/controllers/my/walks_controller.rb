@@ -11,6 +11,7 @@ class My::WalksController < ApplicationController
   def destroy
     @walk = Walk.find(params[:id])
     @walk.destroy
+    flash[:alert] = "Your walk has been deleted"
     redirect_to my_walks_path
   end
 end
