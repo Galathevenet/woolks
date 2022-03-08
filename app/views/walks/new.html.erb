@@ -11,11 +11,9 @@
 >
   <div data-mapbox-target="map" id="map" class="full-screen-map"></div>
 
-  <div class="content-container display-elements">
-    <div class="light-orange-bckgrd">
-      <h1>Customized Walk</h1>
-      <p>Click on the button below when you are at your start point</p>
-    </div>
+  <div class="display-elements">
+    <h1>Customized Walk</h1>
+    <p>Click on the button below when you are at your start point</p>
   </div>
     <%= simple_form_for @new_walk, method: :post do |f| %>
       <%= f.input :original_walk_id, as: :hidden, input_html: { value: nil } %>

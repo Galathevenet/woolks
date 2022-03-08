@@ -3,6 +3,7 @@ class Description::WalksController < ApplicationController
     @walk = Walk.find(params[:id]) # Original walk
     @hotspots = @walk.hotspots
     @waypoints = @walk.waypoints
+    @user = current_user
 
     @start_points = [
       longitude: @walk.waypoints.first.longitude,

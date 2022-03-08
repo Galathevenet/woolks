@@ -1,5 +1,5 @@
 <div class="content-container">
-  <h1 class="congrats mt-3">Congratulations!</h1>
+  <h1 class="congrats mt-3">Edit your walk</h1>
 
   <div class="medium-map-favorite">
      <div
@@ -19,7 +19,7 @@
 
     <div class="walk-recap">
       <i class="fa-solid fa-person-hiking"></i>
-      <strong><%= @walk.length/1000 %></strong> km
+      <strong><%= @walk.length.round(1) %></strong> km
     </div>
     <div class="walk-recap">
       <i class="fa-solid fa-stopwatch"></i>
@@ -28,17 +28,34 @@
     <br>
     <div>
       <%= simple_form_for @walk do |f| %>
-        <div class="form-input">
-          <%= f.input :name, placeholder: "Your walk's name", input_html: {  value: "" } %>
+        <div class="form-input light-orange-bckgrd">
+          <% if @walk.name == "Your new walk name" %>
+            <%= f.input :name, placeholder: "Your walk's name", input_html: {  value: "" } %>
+          <% else %>
+            <%= f.input :name, placeholder: "Your walk's name" %>
+          <% end %>
+        </div>
+        <div class="form-input light-orange-bckgrd">
+          <% if @walk.description == "Your new walk description" %>
+            <%= f.input :description, placeholder: "Your walk's description", input_html: { value: "" } %>
+          <% else %>
+            <%= f.input :description, placeholder: "Your walk's description" %>
+          <% end %>
         </div>
 
-        <div class="form-input">
-          <%= f.input :description, placeholder: "Your walk's description", input_html: { value: "" } %>
-        </div>
-
-        <div class="form-input">
-          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        <div data-controller="file-preview">
+          <div class="form-input review-form-title light-orange-bckgrd">
+            <%= f.input :photos, as: :file,
+              input_html: { multiple: true, class: "sr-only", data: { action: "change->file-preview#displayPhotoMiniature" } },
+              label: "Add your photos",
+              label_html: { class: "btn-min" } %>
+            <div data-file-preview-target="field">
+              <template data-file-preview-target="imageTemplate">
+                <%= image_tag "", class: "review-photos"%>
+              </template>
+            </div>
           </div>
+        </div>
 
         <div class="form-input radio-input">
           <%= f.input :published, as: :boolean, label: "Publish your walk" %>

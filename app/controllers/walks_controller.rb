@@ -105,6 +105,7 @@ class WalksController < ApplicationController
     # met à jour la walk avec son nom, sa description, ses photos...
     @walk = Walk.find(params[:id])
     if @walk.update(walk_params)
+      flash[:alert] = "Your walk has been saved"
       redirect_to my_walks_path
     else
       # redirect_to edit_recap_and_save_walk_path
