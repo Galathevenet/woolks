@@ -17,7 +17,7 @@ class WalksController < ApplicationController
       :more_than_two => "more than 2 hours"
     }
     @hotspots_filters = {
-      :park_walks => "park",
+      :park_walks => "dog park",
       :fountain_walks => "fountain",
       :dispenser_walks => "dispenser"
     }
