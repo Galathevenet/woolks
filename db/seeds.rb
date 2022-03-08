@@ -382,7 +382,7 @@ review7.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/imag
 
 puts "Reviews created... Disclaimer : Woolks takes no responsability for fake reviews !"
 
-puts "Creating 5 hotspot_walks"
+puts "Creating 8 hotspot_walks"
 
 # -----Walk_one hotspots-----
 HotspotWalk.create!(hotspot: hotspot_fountain1, walk: walk_one)
@@ -398,9 +398,7 @@ HotspotWalk.create!(hotspot: hotspot_park1, walk: walk_three)
 # -----Walk_four hotspots-----
 HotspotWalk.create!(hotspot: hotspot_dispenser2, walk: walk_four)
 HotspotWalk.create!(hotspot: hotspot_park3, walk: walk_four)
-HotspotWalk.create!(hotspot: hotspot_foutain2, walk: walk_four)
-
-
+HotspotWalk.create!(hotspot: hotspot_fountain2, walk: walk_four)
 
 puts "hotspots_walks created... Toss a coin ! Are you gonna get lucky this time ?"
 
