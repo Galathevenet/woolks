@@ -9,17 +9,17 @@ class WalksController < ApplicationController
       walk.destroy if walk.waypoints.empty?
     end
     @durations = {
-      :less_than_fifteen => "less than 15 min",
-      :less_than_thirty => "less than 30 min",
-      :one_hour => "less than 1 hour",
-      :one_hour_thirty => "less than 1 hour 30",
-      :two_hours => "less than 2 hours",
-      :more_than_two => "more than 2 hours"
+      less_than_fifteen: "Up to 15 min",
+      less_than_thirty: "15 to 30 min",
+      one_hour: "30 min to 1 hour",
+      one_hour_thirty: "1h to 1h30",
+      two_hours: "1h30 to 2h",
+      more_than_two: "More than 2h"
     }
     @hotspots_filters = {
-      :park_walks => "park",
-      :fountain_walks => "fountain",
-      :dispenser_walks => "dispenser"
+      park_walks: "Dog park",
+      fountain_walks: "Fountain",
+      dispenser_walks: "Dispenser"
     }
 
     @search_filters =
