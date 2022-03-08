@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   namespace :my do
-    resources :walks, only: [:index] do
+    resources :walks, only: [:index, :destroy] do
       resources :favorite_walks, only: [:create, :destroy]
     end
   end
