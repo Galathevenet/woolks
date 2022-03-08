@@ -65,8 +65,7 @@ export default class extends Controller {
       (position) => {
         // To make sure there's at least one position in the waypoints (to avoid calling methods on nil afterwards):
         this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude]);
-      },
-      this.#endWalkError
+      }
     )
 
     // Update hidden input field of the "End Walk" button
