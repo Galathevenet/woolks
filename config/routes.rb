@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   namespace :my do
-    resources :walks, only: [:index]
+    resources :walks, only: [:index, :destroy]
   end
 
   resources :reviews, only: [:create]

@@ -1,0 +1,111 @@
+<div class="content-container">
+  <h1 class="congrats mt-3">My pusblished walks</h1>
+  <div>
+    <% @published_walks.each do |walk| %>
+      <%= link_to description_walk_path(walk), class: "h-100" do %>
+        <div class="card-walk-inline">
+          <div
+            class="mapbox"
+            id="map"
+            data-controller="mapbox"
+            data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+            data-mapbox-hotspots-value="<%= [] %>"
+            data-mapbox-waypoints-value="<%= @waypoints.where(walk: walk).to_json %>"
+            data-mapbox-start-points-value="<%= [
+              longitude: @waypoints.where(walk: walk).first.longitude,
+              latitude: @waypoints.where(walk: walk).first.latitude
+              ].to_json %>"
+            data-mapbox-current-position-value="false"
+            data-mapbox-live-track-value="false"
+            data-mapbox-center-current-value="false">
+            <div data-mapbox-target="map" id="map" class="medium-map"></div>
+            </div>
+          <div class="card-walk-inline-infos">
+            <h3><%= walk.name.capitalize %></h3>
+            <div class="description">
+              <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length.round(1) %></strong> km</p>
+              <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
+              <p id= "hotspot-icon">
+                <%
+                  hps = [] # Array that will contain the list of the hotspots categories of @walk.
+                  walk.hotspots.each do |h|
+                    case h.category
+                    when "dispenser" then hps.push("fa-trash-can")
+                    when "park" then hps.push("fa-tree")
+                    when "fountain" then hps.push("fa-faucet")
+                    end
+                  end
+                  %>
+                <% hps.uniq.each do |hp| %>
+                  <i class='fa-solid <%= hp %>'></i>
+                <% end %>
+              </p>
+            </div>
+          </div>
+          <div>
+            <%= link_to walk_path(walk), class: "edit-icon" do %>
+              <i class="fa-solid fa-pen"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h1 class="congrats mt-3">My favorite walks</h1>
+  <div>
+    <% @favorite_walks.each do |walk| %>
+    <% end %>
+  </div>
+
+   <h1 class="congrats mt-3">My history</h1>
+  <div>
+    <% @history_walks.each do |walk| %>
+      <div class="card-walk-inline">
+        <div
+          class="mapbox"
+          id="map"
+          data-controller="mapbox"
+          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+          data-mapbox-hotspots-value="<%= [] %>"
+          data-mapbox-waypoints-value="<%= @waypoints.where(walk: walk).to_json %>"
+          data-mapbox-start-points-value="<%= [
+            longitude: @waypoints.where(walk: walk).first.longitude,
+            latitude: @waypoints.where(walk: walk).first.latitude
+            ].to_json %>"
+          data-mapbox-current-position-value="false"
+          data-mapbox-live-track-value="false"
+          data-mapbox-center-current-value="false">
+          <div data-mapbox-target="map" id="map" class="medium-map"></div>
+        </div>
+        <div class="card-walk-inline-infos">
+          <h3><%= walk.date %></h3>
+          <div class="description">
+            <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length.round(1) %></strong> km</p>
+            <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
+            <p id= "hotspot-icon">
+              <%
+                hps = [] # Array that will contain the list of the hotspots categories of @walk.
+                walk.hotspots.each do |h|
+                  case h.category
+                  when "dispenser" then hps.push("fa-trash-can")
+                  when "park" then hps.push("fa-tree")
+                  when "fountain" then hps.push("fa-faucet")
+                  end
+                end
+                %>
+              <% hps.uniq.each do |hp| %>
+                <i class='fa-solid <%= hp %>'></i>
+              <% end %>
+            </p>
+          </div>
+        </div>
+        <div class="icon">
+          <%= link_to my_walk_path(walk), method: :delete, class: "delete-icon" do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

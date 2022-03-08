@@ -1,43 +1,70 @@
 .card-walk-inline {
   overflow: hidden;
   height: 120px;
-  background: $secondary;
+  background: $light-gray;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-right: 15px;
+  margin-bottom: 10px;
 
-  img {
+  #map {
     height: 100%;
-    width: 35%;
+    width: 150px;
     object-fit: cover;
+    margin-left: 0;
+  }
+
+  .medium-map {
+    margin-top: 0 !important;
   }
 
   i {
     margin: 10px;
-    color: $light-gray;
+    color: $gray;
     font-size: 14px;
   }
-}
 
-.card-walk-inline-infos {
-  padding: 15px 0px 15px 15px;
-  color: $light-gray;
-
-  h3 {
-    font-size: 14px;
-    font-weight: bold;
-    margin: 0;
-    text-align: left;
+  .icon {
+    background-color: $light-orange;
+    color: $gray;
   }
 
-  p{
-    font-size: 12px;
-    line-height: 1.4;
-    opacity: .7;
-    margin-bottom: 0;
-    margin-top: 8px;
-    text-align: left;
+  .card-walk-inline-infos {
+    padding: 15px 0px 15px 15px;
+    background-color: $light-orange;
+
+    h3 {
+      font-size: 14px;
+      font-weight: bold;
+      font-family: $headers-font;
+      color: $gray;
+      margin: 10px;
+      text-align: left;
+      background-color: $light-orange;
+      border-radius: 4px;
+      padding: 6px;
+    }
+
+    .description {
+      background-color: $light-orange;
+      color: $gray;
+      border-radius: 4px;
+    }
+
+    p{
+      font-size: 12px;
+      line-height: 1.4;
+      opacity: .7;
+      margin-bottom: 0;
+      margin-top: 8px;
+      text-align: left;
+    }
+
+    i{
+      color: $gray;
+    }
   }
 }
