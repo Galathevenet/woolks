@@ -3,6 +3,7 @@ class Description::WalksController < ApplicationController
     @walk = Walk.find(params[:id]) # Original walk
     @hotspots = @walk.hotspots
     @waypoints = @walk.waypoints
+    @user = current_user
 
     @start_points = [
       longitude: @walk.waypoints.first.longitude,
@@ -14,7 +15,7 @@ class Description::WalksController < ApplicationController
     @walk.hotspots.each do |h|
       case h.category
       when "dispenser" then @hps.push("fa-trash-can")
-      when "park" then @hps.push("fa-tree")
+      when "dog park" then @hps.push("fa-tree")
       when "fountain" then @hps.push("fa-faucet")
       end
     end
