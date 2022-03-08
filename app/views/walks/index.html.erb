@@ -70,7 +70,7 @@
                 <span>(<%= walk.reviews.size%>)</span>
               <% end %>
             </div>
-            <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length/1000 %></strong> km</p>
+            <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length.round(1) %></strong> km</p>
             <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
             <p id= "hotspot-icon">
               <%
