@@ -95,19 +95,19 @@
     .photos-review {
       display: flex;
       flex-direction: row;
-      height: 50px;
+      max-height: 70px;
       width: 100%;
     }
 
     .photo-size {
       width: 10%;
-      height: 100%;
+      // height: 100%;
       margin: 5px;
 
     }
 
     .review-scrolldown {
-      height: 130px;
+      max-height: 130px;
       overflow-y: scroll;
       margin-bottom: 8px;
   }
