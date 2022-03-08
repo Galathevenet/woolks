@@ -20,24 +20,11 @@ export default class extends Controller {
 
     mapboxgl.accessToken = this.apiKeyValue;
 
-    if (!navigator.geolocation) {
-      console.log('Geolocation is NOT supported by your browser');
-    } else {
-      console.log('Geolocation IS supported by your browser');
-
-      this.startTime = new Date();
-
-      // When current position is available, launch map
-      navigator.geolocation.getCurrentPosition(this.#launchMap);
-    }
-  }
-
-  #launchMap = (position) => {
     this.map = new mapboxgl.Map({
       container: this.mapTarget,
       style: "mapbox://styles/mapbox/streets-v10",
-      center: this.center,
-      zoom: 13
+      // center: this.center,
+      // zoom: 13
     });
 
     this.map.on('load', () => {
@@ -45,36 +32,53 @@ export default class extends Controller {
       this.#addHotspotsToMap();
       this.#addStartPointsToMap();
       this.#addOriginalWalkToMap();
-      this.#fitMap(position);
+      this.#fitBoundsWithoutCurrentPosition();
 
-      // Display current position
       if (this.currentPositionValue) {
-        this.#displayCurrentPosition(position);
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            // Display current position
+            this.#displayCurrentPosition(position);
+
+            // Extend bounds by taking into account current user position
+            this.bounds.extend([position.coords.longitude, position.coords.latitude]);
+            this.map.fitBounds(this.bounds, { padding: 20, maxZoom: 17, duration: 0 });
+          }
+        )
       }
 
       // Loop to watch position live
       if (this.liveTrackValue) {
-        this.#initializeCurrentWalk(position)
+        this.#initializeCurrentWalk()
         this.watchPositionId = navigator.geolocation.watchPosition(this.#currentWalkToMap);
+        this.startTime = new Date();
       }
     })
   }
 
   endWalk() {
-    console.log("end");
+    console.log("endWalk");
 
     navigator.geolocation.clearWatch(this.watchPositionId);
 
-    // To make sure there's at least one position in the waypoints (to avoid calling methods on nil afterwards):
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude]);
-    })
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        // To make sure there's at least one position in the waypoints (to avoid calling methods on nil afterwards):
+        this.currentWalkData.features[0].geometry.coordinates.push([position.coords.longitude, position.coords.latitude]);
+      },
+      this.#endWalkError
+    )
 
-    // Write coordinates, distance and duration in params
-    this.waypointsTarget.value = this.currentWalkData.features[0].geometry.coordinates;
+    // Update hidden input field of the "End Walk" button
     this.distanceTarget.value = this.distance;
     this.endTime = new Date()
     this.durationTarget.value = (this.endTime - this.startTime)/1000;
+    this.waypointsTarget.value = this.currentWalkData.features[0].geometry.coordinates;
+    console.log(this.waypointsTarget.value)
+  }
+
+  #endWalkError = (error) => {
+    alert('ERROR: ' + error.message + '. Your walk may not be saved completly');
   }
 
   #addHotspotsToMap = () => {
@@ -112,7 +116,6 @@ export default class extends Controller {
 
   #addStartPointsToMap = () => {
     // console.log("#addStartPointsToMap");
-
     this.startPointsValue.forEach((startPoint) => {
       const popup = new mapboxgl.Popup().setHTML(startPoint.info_window)
       const startPointEl = document.createElement('i');
@@ -170,7 +173,7 @@ export default class extends Controller {
     });
   }
 
-  #initializeCurrentWalk = (position) => {
+  #initializeCurrentWalk = () => {
     // console.log("#initializeCurrentWalk");
 
     this.currentWalkData = {
@@ -247,26 +250,26 @@ export default class extends Controller {
     }
   }
 
-  #fitMap(position) {
-    const bounds = new mapboxgl.LngLatBounds()
+  #fitBoundsWithoutCurrentPosition() {
+    this.bounds = new mapboxgl.LngLatBounds()
 
     if (!this.liveTrackValue) {
       this.hotspotsValue.forEach((marker) => {
-        bounds.extend([ marker.longitude, marker.latitude ])
+        this.bounds.extend([ marker.longitude, marker.latitude ])
       })
     }
 
     this.waypointsValue.forEach((marker) => {
-      bounds.extend([ marker.longitude, marker.latitude ])
+      this.bounds.extend([ marker.longitude, marker.latitude ])
     })
 
     this.startPointsValue.forEach((marker) => {
-      bounds.extend([ marker.longitude, marker.latitude ])
+      this.bounds.extend([ marker.longitude, marker.latitude ])
     })
 
-    if (this.currentPositionValue) {
-      bounds.extend([ position.coords.longitude, position.coords.latitude ])
+    // Only if this.bounds has been initialized with values:
+    if (this.bounds.hasOwnProperty('_ne')) {
+      this.map.fitBounds(this.bounds, { padding: 20, maxZoom: 17, duration: 0 })
     }
-    this.map.fitBounds(bounds, { padding: 20, maxZoom: 17, duration: 0 })
   }
 }

@@ -1,9 +1,5 @@
 class ReviewsController < ApplicationController
 
-  # def new
-  #   @review = Review.new
-  # end
-
   def create
     @review = Review.new(review_params)
     @current_walk = Walk.find(params[:review][:current_walk_id])
@@ -17,7 +13,11 @@ class ReviewsController < ApplicationController
       @walk = @current_walk
       @hotspots = @walk.hotspots
       @waypoints = @walk.waypoints
-      @start_points = [longitude: @waypoints.first.longitude, latitude: @waypoints.first.latitude]
+      if @waypoints.length.zero?
+        @start_points = []
+      else
+        @start_points = [longitude: @waypoints.first.longitude, latitude: @waypoints.first.latitude]
+      end
       render "recap_and_review/walks/show"
       # redirect_to recap_and_review_walk_path(@current_walk) #and return
     end
