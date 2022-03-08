@@ -1,8 +1,15 @@
 .display-elements {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   position: absolute;
   top: 7em;
+  left: 1.2em;
+  width: 90%;
   z-index: 1;
+  background-color: #f4e5dc;
+  padding: 10px;
+  border-radius: 4px;
+
+  p {
+    text-align: center;
+  }
+
 }
