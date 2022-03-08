@@ -16,7 +16,7 @@
           <div data-mapbox-target="map" id="map" class="medium-map"></div>
         </div>
         <div class="card-walk-inline-infos">
-          <h3><%= title_3 %></h3>
+          <h3><%= title_option %></h3>
           <div class="description">
             <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length.round(1) %></strong> km</p>
             <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
@@ -26,7 +26,7 @@
                 walk.hotspots.each do |h|
                   case h.category
                   when "dispenser" then hps.push("fa-trash-can")
-                  when "park" then hps.push("fa-tree")
+                  when "dog park" then hps.push("fa-tree")
                   when "fountain" then hps.push("fa-faucet")
                   end
                 end
@@ -39,7 +39,7 @@
         </div>
         <% if link == :delete %>
           <div class="icon">
-            <%= link_to my_walk_path(walk), method: :delete, class: "delete-icon" do %>
+            <%= link_to my_walk_path(walk), method: :delete, class: "delete-icon", data: { confirm: "You sure?" } do %>
               <i class="fa-solid fa-trash"></i>
             <% end %>
           </div>

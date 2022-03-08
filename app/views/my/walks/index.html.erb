@@ -10,7 +10,7 @@
       <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
         <div class="accordion-body">
            <% @published_walks.each do |walk| %>
-            <%= render 'walk', walk: walk, link: :edit, title_3: walk.name.capitalize %>
+            <%= render 'walk', walk: walk, link: :edit, title_option: walk.name.capitalize %>
           <% end %>
         </div>
       </div>
@@ -37,7 +37,7 @@
       <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
         <div class="accordion-body">
           <% @history_walks.each do |walk| %>
-            <%= render 'walk', walk: walk, link: :delete, title_3: walk.date %>
+            <%= render 'walk', walk: walk, link: :delete, title_option: walk.date %>
           <% end %>
         </div>
       </div>
