@@ -11,7 +11,7 @@
         <div class="accordion-body">
            <% @published_walks.each do |walk| %>
             <%= render 'walk', walk: walk, link: :edit, title_option: walk.name.capitalize %>
-          <% end %>
+           <% end %>
         </div>
       </div>
     </div>
