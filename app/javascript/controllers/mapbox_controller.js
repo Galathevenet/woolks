@@ -22,9 +22,7 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.mapTarget,
-      style: "mapbox://styles/mapbox/streets-v10",
-      // center: this.center,
-      // zoom: 13
+      style: "mapbox://styles/mapbox/streets-v10"
     });
 
     this.map.on('load', () => {
@@ -43,6 +41,14 @@ export default class extends Controller {
             // Extend bounds by taking into account current user position
             this.bounds.extend([position.coords.longitude, position.coords.latitude]);
             this.map.fitBounds(this.bounds, { padding: 20, maxZoom: 17, duration: 0 });
+
+            if (!this.liveTrackValue) {
+              // Center map on current position and set minimum zoom
+              if (this.centerCurrentValue) {
+                this.map.setCenter([position.coords.longitude, position.coords.latitude]);
+              }
+              this.map.setZoom(Math.max(12, this.map.getZoom()));
+            }
           }
         )
       }
