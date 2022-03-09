@@ -4,21 +4,15 @@ class My::FavoriteWalksController < ApplicationController
     @favorite_walk = FavoriteWalk.new(favorite_walk_params)
     @current_walk = Walk.find(params[:walk_id])
     @favorite_walk.user = current_user
-    if @favorite_walk.save
-      flash[:alert] = "Your walk has been added to favorite"
-      redirect_to description_walk_path(@favorite_walk.walk)
-    else
-    end
+    @favorite_walk.save
+    redirect_to description_walk_path(@favorite_walk.walk)
   end
 
   def destroy
-    @favorite_walk = FavoriteWalk.find(params[:walk_id])
+    @favorite_walk = FavoriteWalk.find(params[:id])
     @favorite_walk.user = current_user
-    if @favorite_walk.destroy
-      flash[:alert] = "Your walk has been deleted from favorite"
-      redirect_to description_walk_path(@favorite_walk.walk)
-    else
-    end
+    @favorite_walk.destroy
+    redirect_to my_walks_path
   end
 
   private

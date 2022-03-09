@@ -10,14 +10,14 @@
   padding-right: 15px;
   margin-bottom: 10px;
 
-  #map {
+  #map_inline {
     height: 100%;
     width: 150px;
     object-fit: cover;
     margin-left: 0;
   }
 
-  .medium-map {
+  .medium-map-inline {
     margin-top: 0 !important;
   }
 
@@ -40,6 +40,7 @@
 
   .card-walk-inline-infos {
     padding: 15px 0px 15px 15px;
+    display: flex;
 
     h3 {
       font-size: 14px;

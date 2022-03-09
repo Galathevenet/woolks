@@ -1,44 +1,46 @@
 <div class="card-walk-inline">
-        <div
-          class="mapbox"
-          id="map"
-          data-controller="mapbox"
-          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-          data-mapbox-hotspots-value="<%= [] %>"
-          data-mapbox-waypoints-value="<%= @waypoints.where(walk: walk).to_json %>"
-          data-mapbox-start-points-value="<%= @waypoints.length.zero? ? [] : [
-            longitude: @waypoints.where(walk: walk).first.longitude,
-            latitude: @waypoints.where(walk: walk).first.latitude
-            ].to_json %>"
-          data-mapbox-current-position-value="false"
-          data-mapbox-live-track-value="false"
-          data-mapbox-center-current-value="false">
-          <div data-mapbox-target="map" id="map" class="medium-map"></div>
+  <div
+    class="mapbox"
+    id="map_inline"
+    data-controller="mapbox"
+    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    data-mapbox-hotspots-value="<%= [] %>"
+    data-mapbox-waypoints-value="<%= @waypoints.where(walk: walk).to_json %>"
+    data-mapbox-start-points-value="<%= @waypoints.length.zero? ? [] : [
+      longitude: @waypoints.where(walk: walk).first.longitude,
+      latitude: @waypoints.where(walk: walk).first.latitude
+      ].to_json %>"
+    data-mapbox-current-position-value="false"
+    data-mapbox-live-track-value="false"
+    data-mapbox-center-current-value="false">
+    <div data-mapbox-target="map" id="map" class="medium-map medium-map-inline"></div>
+  </div>
+  <div class="card-walk-inline-infos">
+    <div class="description">
+      <h3><%= title_option %></h3>
+      <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length.round(1) %></strong> km</p>
+      <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
+    </div>
+    <div>
+      <% if link == :delete %>
+        <div class="icon">
+          <%= link_to my_walk_path(walk), method: :delete, class: "delete-icon", data: { confirm: "You sure?" } do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
         </div>
-        <div class="card-walk-inline-infos">
-          <h3><%= title_option %></h3>
-          <div class="description">
-            <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length.round(1) %></strong> km</p>
-            <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
-          </div>
+      <% elsif link == :favorite %>
+        <div class="icon">
+          <%= link_to my_walk_favorite_walk_path(walk_id: walk, id: FavoriteWalk.find_by(user: current_user, walk: walk)), method: :delete, class: "heart_icon" do %>
+          <i class="fa-solid fa-heart"></i>
+          <% end %>
         </div>
-        <% if link == :delete %>
-          <div class="icon">
-            <%= link_to my_walk_path(walk), method: :delete, class: "delete-icon", data: { confirm: "You sure?" } do %>
-              <i class="fa-solid fa-trash"></i>
-            <% end %>
-          </div>
-        <% elsif link == :favorite %>
-          <div class="icon">
-            <%= link_to my_walk_favorite_walks_path(FavoriteWalk.find_by(user: current_user,walk: walk)), method: :delete, class: "heart_icon" do %>
-            <i class="fa-solid fa-heart"></i>
-            <% end %>
-          </div>
-        <% else %>
-          <div class="icon">
-            <%= link_to edit_recap_and_save_walk_path(walk), class: "edit-icon" do %>
-              <i class="fa-solid fa-pen"></i>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+      <% else %>
+        <div class="icon">
+          <%= link_to edit_recap_and_save_walk_path(walk), class: "edit-icon" do %>
+            <i class="fa-solid fa-pen"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
