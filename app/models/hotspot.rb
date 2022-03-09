@@ -5,5 +5,4 @@ class Hotspot < ApplicationRecord
   validates :category, inclusion: { in: ["dog park", "dispenser", "fountain"] }
   validates :longitude, presence: true
   validates :latitude, presence: true
-
 end

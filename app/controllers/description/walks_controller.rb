@@ -14,8 +14,8 @@ class Description::WalksController < ApplicationController
     @hps = [] # Array that will contain the list of the hotspots categories of @walk
     @walk.hotspots.each do |h|
       case h.category
-      when "dispenser" then @hps.push("fa-trash-can")
-      when "dog park" then @hps.push("fa-tree")
+      when "dispenser" then @hps.push("fa-toilet-paper")
+      when "dog park" then @hps.push("fa-dog")
       when "fountain" then @hps.push("fa-faucet")
       end
     end

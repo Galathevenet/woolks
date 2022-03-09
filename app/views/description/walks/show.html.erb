@@ -19,9 +19,9 @@
           data-mapbox-hotspots-value="<%= @hotspots.to_json %>"
           data-mapbox-waypoints-value="<%= @waypoints.to_json %>"
           data-mapbox-start-points-value="<%= @start_points.to_json %>"
-          data-mapbox-current-position-value="true"
+          data-mapbox-current-position-value="false"
           data-mapbox-live-track-value="false"
-          data-mapbox-center-current-value="true">
+          data-mapbox-center-current-value="false">
           <div data-mapbox-target="map" id="map" class="medium-map"></div>
         </div>
       </div>
@@ -70,27 +70,32 @@
     </div>
   </div>
   <div class="reviews container-child-margin">
-    <h3>Woolkers reviews</h3>
-    <div class="review-scrolldown">
-      <% @walk.reviews.each do |review| %>
 
-      <div class="mb-2">
-        <p><%= cl_image_tag review.user.photo.key, crop: :thumb, gravity: :face, class: "avatar-review" %>
-           <%= review.user.username %> | <% review.rating.times do %>
-                                            <span class="fa fa-star"></span>
-                                          <% end %>
-                                          <% (5 - review.rating).times do %>
-                                            <span class="fa-regular fa-star"></span>
-                                          <% end %></p>
-          <p><%= review.comment %></p>
-          <div class="photos-review">
-            <% review.photos.each do | photo | %>
-              <%= cl_image_tag photo.key, height: 46, width: 28 , crop: :fill , class: "photo-size", data: {'bs-toggle': "modal", 'bs-target': "#review#{review.id}Modal"} %>
-            <% end %>
+    <h3>Woolkers reviews</h3>
+    <% if @walk.reviews.blank? %>
+      <p>This walk has not been reviewed yet</p>
+    <% else %>
+      <div class="review-scrolldown">
+        <% @walk.reviews.each do |review| %>
+
+        <div class="mb-2">
+          <p><%= cl_image_tag review.user.photo.key, crop: :thumb, gravity: :face, class: "avatar-review" %>
+            <%= review.user.username %> | <% review.rating.times do %>
+                                              <span class="fa fa-star"></span>
+                                            <% end %>
+                                            <% (5 - review.rating).times do %>
+                                              <span class="fa-regular fa-star"></span>
+                                            <% end %></p>
+            <p><%= review.comment %></p>
+            <div class="photos-review">
+              <% review.photos.each do | photo | %>
+                <%= cl_image_tag photo.key, height: 50, width: 50,  crop: :fill, class: "photo-size", data: {'bs-toggle': "modal", 'bs-target': "#review#{review.id}Modal"} %>
+              <% end %>
+            </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
       <%= simple_form_for @new_walk, html: { class: "d-flex justify-content-center container-child-margin" }, method: :post do |f| %>
         <%= f.input :original_walk_id, as: :hidden, input_html: { value: @walk.id } %>
