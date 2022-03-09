@@ -68,9 +68,9 @@ julia.photo.attach(
   content_type: 'image/jpg'
 )
 
-puts "The 4 best users on earth have been created out of nowhere"
+puts "The 6 best users on earth have been created out of nowhere"
 
-puts "Creating 4 Walks"
+puts "Creating 5 Walks"
 
 walk_one = Walk.create!(
 
@@ -180,7 +180,7 @@ walk_four.photos.attach(
 walk_five = Walk.create!(
   user: gala,
   original_walk: nil,
-  name: "Bacalan's neighborhood and parks",
+  name: "Bacalan's neighborhood",
   description: "Discover Bacalan, a remote neighborhood of Bordeaux in complete transformation",
   date: "20220128",
   duration: "6000",
@@ -197,6 +197,11 @@ walk_five.photos.attach(
     {
       io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646406185/Walks/Walk5/bacalan_2_ruxml8.jpg'),
       filename: 'bacalan_2_ruxml8.jpg',
+      content_type: 'image/jpg'
+    },
+    {
+      io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646406185/Walks/Walk5/bacalan_3_wbcjl1.jpg'),
+      filename: 'bacalan_3_wbcjl1.jpg',
       content_type: 'image/jpg'
     }
   ]
@@ -372,6 +377,13 @@ hotspot_park3 = Hotspot.create!(
   latitude: "44.82538553336783"
 )
 
+hotspot_park4 = Hotspot.create!(
+  category: "dog park",
+  name: "very small park",
+  longitude: "-0.5501961708068848",
+  latitude: "44.87057595197354"
+)
+
 hotspot_dispenser1 = Hotspot.create!(
   category: "dispenser",
   name: "My favorite dispenser",
@@ -384,6 +396,13 @@ hotspot_dispenser2 = Hotspot.create!(
   name: "My daughters' dispenser",
   longitude: "-0.6233105063438414",
   latitude: "44.82851200922972"
+)
+
+hotspot_dispenser3 = Hotspot.create!(
+  category: "dispenser",
+  name: "always empty",
+  longitude: "-0.5543160438537598",
+  latitude: "44.868796693732335"
 )
 
 hotspot_fountain1 = Hotspot.create!(
@@ -460,6 +479,26 @@ review9.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/imag
                        { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_gala_2_gn4rgz.jpg'), filename: 'merignac_gala_2_gn4rgz.jpg', content_type: 'image/jpg' },
                        { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_gala_3_vqh5jw.jpg'), filename: 'merignac_gala_3_vqh5jw.jpg', content_type: 'image/jpg' }])
 
+# -----reviews for walk_five (Bacalan)-----
+
+review10 = Review.create!(walk: walk_four, user: marion, comment: "Nice dog park along the way, Suze was very happy about it", rating: 5)
+review10.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk4/merignac_charles_1_t4wddb.jpg'), filename: 'merignac_charles_1_t4wddb', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_charles_2_prhyfu.jpg'), filename: 'merignac_charles_2_prhyfu.jpg', content_type: 'image/jpg' }])
+
+review11 = Review.create!(walk: walk_four, user: cedric, comment: "Very beautiful antic fountain, would totally recommend for history aficionados", rating: 5)
+review11.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk4/merignac_gala_1_f2a3oa.jpg'), filename: 'merignac_gala_1_f2a3oa.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_gala_2_gn4rgz.jpg'), filename: 'merignac_gala_2_gn4rgz.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_gala_3_vqh5jw.jpg'), filename: 'merignac_gala_3_vqh5jw.jpg', content_type: 'image/jpg' }])
+
+review12 = Review.create!(walk: walk_four, user: carole, comment: "Nice dog park along the way, Suze was very happy about it", rating: 5)
+review12.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk4/merignac_charles_1_t4wddb.jpg'), filename: 'merignac_charles_1_t4wddb', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_charles_2_prhyfu.jpg'), filename: 'merignac_charles_2_prhyfu.jpg', content_type: 'image/jpg' }])
+
+review13 = Review.create!(walk: walk_four, user: julia, comment: "Very beautiful antic fountain, would totally recommend for history aficionados", rating: 5)
+review13.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk4/merignac_gala_1_f2a3oa.jpg'), filename: 'merignac_gala_1_f2a3oa.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_gala_2_gn4rgz.jpg'), filename: 'merignac_gala_2_gn4rgz.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_gala_3_vqh5jw.jpg'), filename: 'merignac_gala_3_vqh5jw.jpg', content_type: 'image/jpg' }])
+
 puts "Reviews created... Disclaimer : Woolks takes no responsability for fake reviews !"
 
 puts "Creating 8 hotspot_walks"
@@ -479,6 +518,11 @@ HotspotWalk.create!(hotspot: hotspot_park1, walk: walk_three)
 HotspotWalk.create!(hotspot: hotspot_dispenser2, walk: walk_four)
 HotspotWalk.create!(hotspot: hotspot_park3, walk: walk_four)
 HotspotWalk.create!(hotspot: hotspot_fountain2, walk: walk_four)
+
+# -----Walk_five hotspots-----
+HotspotWalk.create!(hotspot: hotspot_dispenser3, walk: walk_five)
+HotspotWalk.create!(hotspot: hotspot_park4, walk: walk_five)
+
 
 puts "hotspots_walks created... Toss a coin ! Are you gonna get lucky this time ?"
 
