@@ -22,8 +22,10 @@
           <div class="dropdown-menu">
             <% @durations.each do |duration, label| %>
               <div class="dropdown-item">
-                <%= check_box_tag "durations[]", duration %>
-                <%= label_tag label %>
+                <%= check_box_tag "durations[]", duration, nil, id: duration %>
+                <%= label_tag duration, onclick: "event.stopPropagation()" do %>
+                  <span><%= label %></span>
+                <% end %>
               </div>
             <% end %>
           </div>
