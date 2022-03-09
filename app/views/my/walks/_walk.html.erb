@@ -24,11 +24,21 @@
       </div>
       <div>
         <% if link == :delete %>
+
+          <% unless FavoriteWalk.exists?(user: current_user, walk: walk) %>
+            <div class="icon">
+              <%= link_to my_walk_path(walk), method: :delete, class: "delete-icon", data: { confirm: "You sure?" } do %>
+                <i class="fa-solid fa-trash"></i>
+              <% end %>
+            </div>
+          <% else %>
           <div class="icon">
-            <%= link_to my_walk_path(walk), method: :delete, class: "delete-icon", data: { confirm: "You sure?" } do %>
-              <i class="fa-solid fa-trash"></i>
+            <%= link_to my_walk_favorite_walk_path(walk_id: walk, id: FavoriteWalk.find_by(user: current_user, walk: walk)), method: :delete, class: "heart_icon" do %>
+            <i class="fa-solid fa-heart"></i>
             <% end %>
           </div>
+          <% end %>
+
         <% elsif link == :favorite %>
           <div class="icon">
             <%= link_to my_walk_favorite_walk_path(walk_id: walk, id: FavoriteWalk.find_by(user: current_user, walk: walk)), method: :delete, class: "heart_icon" do %>

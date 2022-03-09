@@ -60,69 +60,75 @@
   </div>
   <div class="card-dispenser-slide">
     <% @walks.select{ |walk| walk.published }.each do |walk| %>
-      <%= link_to description_walk_path(walk) do %>
-        <div class="card-walk">
-          <h2><%= walk.name.capitalize %></h2>
-          <div
-            class="mapbox"
-            data-controller="mapbox"
-            data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-            data-mapbox-hotspots-value="<%= [] %>"
-            data-mapbox-waypoints-value="<%= @waypoints.where(walk: walk).to_json %>"
-            data-mapbox-start-points-value="<%= [
-              longitude: @waypoints.where(walk: walk).first.longitude,
-              latitude: @waypoints.where(walk: walk).first.latitude
-              ].to_json %>"
-            data-mapbox-current-position-value="false"
-            data-mapbox-live-track-value="false"
-            data-mapbox-center-current-value="false">
-            <div data-mapbox-target="map" id="map" class="medium-map"></div>
-            <div>
-            <% if FavoriteWalk.exists?(user: current_user, walk: walk)%>
-              <%= link_to favorite_walk_path(FavoriteWalk.find_by(user: current_user, walk: walk)), :method => :delete, class: "heart_icon" do %>
-                <i class="fa-solid fa-heart"></i>
-              <% end %>
-            <%  else %>
-              <%= link_to favorite_walks_path(walk_id: walk), :method => :post, class: "heart_icon" do %>
-                <i class="fa-regular fa-heart"></i>
-              <% end %>
+      <div class="super-card">
+        <div>
+          <% if FavoriteWalk.exists?(user: current_user, walk: walk)%>
+            <%= link_to favorite_walk_path(FavoriteWalk.find_by(user: current_user, walk: walk)), :method => :delete, class: "heart_icon" do %>
+              <i class="fa-solid fa-heart"></i>
             <% end %>
-          </div>
-          </div>
-          <div class="info">
-            <div class="rating">
-              <% if walk.reviews.size == 0 %>
-                <span>Not rated yet</span>
-              <% else %>
-                <% walk.reviews_average.times do  %>
-                  <span class="fa fa-star"></span>
-                <% end %>
-                <% (5 - walk.reviews_average).times do %>
-                  <span class="fa-regular fa-star"></span>
-                <% end %>
-                <span>(<%= walk.reviews.size%>)</span>
-              <% end %>
-            </div>
-            <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length.round(1) %></strong> km</p>
-            <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
-            <p id= "hotspot-icon">
-              <%
-                hps = [] # Array that will contain the list of the hotspots categories of @walk.
-                walk.hotspots.each do |h|
-                  case h.category
-                  when "dispenser" then hps.push("fa-toilet-paper")
-                  when "dog park" then hps.push("fa-dog")
-                  when "fountain" then hps.push("fa-faucet")
-                  end
-                end
-               %>
-              <% hps.uniq.each do |hp| %>
-                <i class='fa-solid <%= hp %>'></i>
-              <% end %>
-            </p>
-          </div>
+          <%  else %>
+            <%= link_to favorite_walks_path(walk_id: walk), :method => :post, class: "heart_icon" do %>
+              <i class="fa-regular fa-heart"></i>
+            <% end %>
+          <% end %>
         </div>
-      <% end %>
+
+        <%= link_to description_walk_path(walk) do %>
+          <div class="card-walk">
+
+            <h2><%= walk.name.capitalize %></h2>
+
+            <div
+              class="mapbox"
+              data-controller="mapbox"
+              data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+              data-mapbox-hotspots-value="<%= [] %>"
+              data-mapbox-waypoints-value="<%= @waypoints.where(walk: walk).to_json %>"
+              data-mapbox-start-points-value="<%= [
+                longitude: @waypoints.where(walk: walk).first.longitude,
+                latitude: @waypoints.where(walk: walk).first.latitude
+                ].to_json %>"
+              data-mapbox-current-position-value="false"
+              data-mapbox-live-track-value="false"
+              data-mapbox-center-current-value="false">
+              <div data-mapbox-target="map" id="map" class="medium-map"></div>
+            </div>
+
+            <div class="info">
+              <div class="rating">
+                <% if walk.reviews.size == 0 %>
+                  <span>Not rated yet</span>
+                <% else %>
+                  <% walk.reviews_average.times do  %>
+                    <span class="fa fa-star"></span>
+                  <% end %>
+                  <% (5 - walk.reviews_average).times do %>
+                    <span class="fa-regular fa-star"></span>
+                  <% end %>
+                  <span>(<%= walk.reviews.size%>)</span>
+                <% end %>
+              </div>
+              <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length.round(1) %></strong> km</p>
+              <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
+              <p id= "hotspot-icon">
+                <%
+                  hps = [] # Array that will contain the list of the hotspots categories of @walk.
+                  walk.hotspots.each do |h|
+                    case h.category
+                    when "dispenser" then hps.push("fa-toilet-paper")
+                    when "dog park" then hps.push("fa-dog")
+                    when "fountain" then hps.push("fa-faucet")
+                    end
+                  end
+                %>
+                <% hps.uniq.each do |hp| %>
+                  <i class='fa-solid <%= hp %>'></i>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
     <%= link_to new_walk_path, class: "card-add-walk" do %>
       <h2>Create your own walk</h2>

@@ -1,5 +1,4 @@
-class Description::FavoriteWalksController < ApplicationController
-
+class My::FavoriteWalksController < ApplicationController
   def create
     @favorite_walk = FavoriteWalk.new(favorite_walk_params)
     @current_walk = Walk.find(params[:walk_id])
