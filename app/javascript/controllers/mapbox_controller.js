@@ -92,13 +92,13 @@ export default class extends Controller {
       switch (hotspot.category) {
         case 'dispenser':
           // console.log('UUUUUUUUUUUUUU')
-          hotspotEl.classList.add('fa-trash-can');
+          hotspotEl.classList.add('fa-toilet-paper');
           hotspotEl.style.fontSize = '16px';
           hotspotEl.style.color = '#FE7F2D';
           break;
         case 'dog park':
           // console.log("TTTTTTTTTTTT")
-          hotspotEl.classList.add('fa-tree');
+          hotspotEl.classList.add('fa-dog');
           hotspotEl.style.color = '#FE7F2D';//'#5fbf00';
           break;
         case 'fountain':
