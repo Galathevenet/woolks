@@ -292,8 +292,8 @@ hotspot_park1 = Hotspot.create!(
 hotspot_park2 = Hotspot.create!(
   category: "dog park",
   name: "A lovely park",
-  longitude: "-0.5646800994873047",
-  latitude: "44.846984906515225"
+  longitude: "-0.5753982067108154",
+  latitude: "44.84782924026543"
 )
 
 hotspot_park3 = Hotspot.create!(
@@ -327,8 +327,8 @@ hotspot_fountain1 = Hotspot.create!(
 hotspot_fountain2 = Hotspot.create!(
   category: "fountain",
   name: "beautiful fountain",
-  longitude: "-0.6232917308807373",
-  latitude: "44.82781672305423"
+  longitude: "-0.6249761581420898",
+  latitude: "44.8263823715882"
 )
 
 
