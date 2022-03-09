@@ -45,7 +45,7 @@
           </div>
         <% elsif link == :favorite %>
           <div class="icon">
-            <%= link_to my_walk_favorite_walk_path(walk_id), method: :delete, class: "heart_icon" do %>
+            <%= link_to my_walk_favorite_walks_path(FavoriteWalk.find_by(user: current_user,walk: walk)), method: :delete, class: "heart_icon" do %>
             <i class="fa-solid fa-heart"></i>
             <% end %>
           </div>
