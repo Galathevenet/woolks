@@ -88,7 +88,7 @@
             <p><%= review.comment %></p>
             <div class="photos-review">
               <% review.photos.each do | photo | %>
-                <%= cl_image_tag photo.key, crop: :fill , class: "photo-size", data: {'bs-toggle': "modal", 'bs-target': "#review#{review.id}Modal"} %>
+                <%= cl_image_tag photo.key, height: 50, width: 50,  crop: :fill, class: "photo-size", data: {'bs-toggle': "modal", 'bs-target': "#review#{review.id}Modal"} %>
               <% end %>
             </div>
           </div>
