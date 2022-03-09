@@ -34,8 +34,8 @@
   .fa-heart {
     font-size: 14px;
     margin: 10px;
-    position: relative !important;
-    color: $secondary !important;
+    position: initial;
+    color: $secondary;
   }
 
   .card-walk-inline-infos {
@@ -64,7 +64,7 @@
       line-height: 1.4;
       opacity: .7;
       margin-bottom: 0;
-      margin-top: 8px;
+      margin-top: 0;
       text-align: left;
     }
 

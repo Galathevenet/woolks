@@ -20,21 +20,6 @@
           <div class="description">
             <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length.round(1) %></strong> km</p>
             <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
-            <p id= "hotspot-icon">
-              <%
-                hps = [] # Array that will contain the list of the hotspots categories of @walk.
-                walk.hotspots.each do |h|
-                  case h.category
-                  when "dispenser" then hps.push("fa-trash-can")
-                  when "dog park" then hps.push("fa-tree")
-                  when "fountain" then hps.push("fa-faucet")
-                  end
-                end
-                %>
-              <% hps.uniq.each do |hp| %>
-                <i class='fa-solid <%= hp %>'></i>
-              <% end %>
-            </p>
           </div>
         </div>
         <% if link == :delete %>
