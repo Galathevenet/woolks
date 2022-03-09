@@ -6,7 +6,7 @@ class WalksController < ApplicationController
     # Delete walks with no waypoints
     # raise
     Walk.all.each do |walk|
-      walk.destroy if walk.waypoints.empty?
+      #walk.destroy if walk.waypoints.empty?
     end
     @durations = {
       less_than_fifteen: "Up to 15 min",
