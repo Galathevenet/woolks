@@ -8,16 +8,16 @@
   }
 }
 
-.medium-map-favorite {
-  position: relative;
+// .medium-map-favorite {
+//   position: relative;
 
-  .fa-heart {
-    font-size: 25px;
-    position: absolute;
-    right: 20px;
-    top: 8px;
-  }
-}
+//   .fa-heart {
+//     font-size: 25px;
+//     position: absolute;
+//     right: 20px;
+//     top: 8px;
+//   }
+// }
 .fa-heart {
   font-size: 30px;
   position: absolute;
@@ -25,4 +25,30 @@
   top: 15px;
   z-index: 10;
   color: $secondary;
+}
+
+.mapbox {
+  position: relative;
+  .fa-heart {
+    font-size: 25px;
+    position: absolute;
+    right: 10px;
+    top: 25px;
+    z-index: 10;
+    color: $secondary;
+  }
+}
+
+.medium-map-favorite {
+  position: relative;
+  .fav-heart {
+    .fa-heart {
+      font-size: 25px;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      z-index: 10;
+      color: $secondary;
+    }
+  }
 }
