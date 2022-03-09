@@ -177,6 +177,31 @@ walk_four.photos.attach(
   ]
 )
 
+walk_five = Walk.create!(
+  user: gala,
+  original_walk: nil,
+  name: "Bacalan's neighborhood and parks",
+  description: "Discover Bacalan, a remote neighborhood of Bordeaux in complete transformation",
+  date: "20220128",
+  duration: "6000",
+  length: "8.3",
+  published: true
+)
+walk_five.photos.attach(
+  [
+    {
+      io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646406052/Walks/Walk5/bacalan_1_zqp6wf.jpg'),
+      filename: 'bacalan_1_zqp6wf.jpg',
+      content_type: 'image/jpg'
+    },
+    {
+      io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646406185/Walks/Walk5/bacalan_2_ruxml8.jpg'),
+      filename: 'bacalan_2_ruxml8.jpg',
+      content_type: 'image/jpg'
+    }
+  ]
+)
+
 puts "Fake walks created... You walked a lot, take a break :)"
 
 puts "Creating many Waypoints"
@@ -277,6 +302,50 @@ Waypoint.create!(walk: walk_four, longitude: '-0.6235482171177864', latitude: '4
 Waypoint.create!(walk: walk_four, longitude: '-0.623517706990242', latitude: '44.827538511120274')
 Waypoint.create!(walk: walk_four, longitude: '-0.6234221532940865', latitude: '44.82773920430843')
 Waypoint.create!(walk: walk_four, longitude: '-0.6233970075845718', latitude: '44.827814345180144')
+
+# Walk 5
+Waypoint.create!(walk: walk_five, longitude: '-0.5517196655273438', latitude: '44.870058908239486')
+Waypoint.create!(walk: walk_five, longitude: '-0.552138090133667', latitude: '44.86904001434517')
+Waypoint.create!(walk: walk_five, longitude: '-0.5530071258544922', latitude: '44.86917688173788')
+Waypoint.create!(walk: walk_five, longitude: '-0.553162693977356', latitude: '44.86870544823733')
+Waypoint.create!(walk: walk_five, longitude: '-0.55431067943573', latitude: '44.86886512775865')
+Waypoint.create!(walk: walk_five, longitude: '-0.5543267726898193', latitude: '44.86837088018477')
+Waypoint.create!(walk: walk_five, longitude: '-0.554482340812683', latitude: '44.867861420551336')
+Waypoint.create!(walk: walk_five, longitude: '-0.5526047945022583', latitude: '44.86756106537104')
+Waypoint.create!(walk: walk_five, longitude: '-0.5529749393463135', latitude: '44.86694894426579')
+Waypoint.create!(walk: walk_five, longitude: '-0.5534952878952026', latitude: '44.8660934846112')
+Waypoint.create!(walk: walk_five, longitude: '-0.5534309148788452', latitude: '44.866002234831015')
+Waypoint.create!(walk: walk_five, longitude: '-0.5523580312728882', latitude: '44.86565624476712')
+Waypoint.create!(walk: walk_five, longitude: '-0.5519020557403564', latitude: '44.865492754233244')
+Waypoint.create!(walk: walk_five, longitude: '-0.5516445636749268', latitude: '44.865941401563845')
+Waypoint.create!(walk: walk_five, longitude: '-0.5514246225357056', latitude: '44.866549731342396')
+Waypoint.create!(walk: walk_five, longitude: '-0.5507433414459229', latitude: '44.86642426385181')
+Waypoint.create!(walk: walk_five, longitude: '-0.550539493560791', latitude: '44.867260708623476')
+Waypoint.create!(walk: walk_five, longitude: '-0.5517035722732544', latitude: '44.86745460999425')
+Waypoint.create!(walk: walk_five, longitude: '-0.5507057905197142', latitude: '44.86991824112578')
+Waypoint.create!(walk: walk_five, longitude: '-0.5502712726593018', latitude: '44.870066511857466')
+Waypoint.create!(walk: walk_five, longitude: '-0.5500245094299316', latitude: '44.87039346648013')
+Waypoint.create!(walk: walk_five, longitude: '-0.5474603176116943', latitude: '44.87051132176081')
+Waypoint.create!(walk: walk_five, longitude: '-0.5462479591369629', latitude: '44.8736324979772')
+Waypoint.create!(walk: walk_five, longitude: '-0.543522834777832', latitude: '44.87302424305369')
+Waypoint.create!(walk: walk_five, longitude: '-0.5428791046142578', latitude: '44.875001048049896')
+Waypoint.create!(walk: walk_five, longitude: '-0.5408835411071777', latitude: '44.878224615152895')
+Waypoint.create!(walk: walk_five, longitude: '-0.5420637130737305', latitude: '44.87784448691486')
+Waypoint.create!(walk: walk_five, longitude: '-0.5435872077941895', latitude: '44.87837666574495')
+Waypoint.create!(walk: walk_five, longitude: '-0.545046329498291', latitude: '44.87579175103527')
+Waypoint.create!(walk: walk_five, longitude: '-0.5449390411376953', latitude: '44.875122695370194')
+Waypoint.create!(walk: walk_five, longitude: '-0.5468058586120605', latitude: '44.87568531088161')
+Waypoint.create!(walk: walk_five, longitude: '-0.547492504119873', latitude: '44.87446883800005')
+Waypoint.create!(walk: walk_five, longitude: '-0.5488389730453491', latitude: '44.87487559898152')
+Waypoint.create!(walk: walk_five, longitude: '-0.5483883619308472', latitude: '44.8759209995286')
+Waypoint.create!(walk: walk_five, longitude: '-0.550689697265625', latitude: '44.87630494187027')
+Waypoint.create!(walk: walk_five, longitude: '-0.551215410232544', latitude: '44.87631254466307')
+Waypoint.create!(walk: walk_five, longitude: '-0.5530661344528198', latitude: '44.87555986330491')
+Waypoint.create!(walk: walk_five, longitude: '-0.5530822277069091', latitude: '44.875358386321494')
+Waypoint.create!(walk: walk_five, longitude: '-0.5533558130264282', latitude: '44.87526334976374')
+Waypoint.create!(walk: walk_five, longitude: '-0.5535328388214111', latitude: '44.874620898516554')
+Waypoint.create!(walk: walk_five, longitude: '-0.5502820014953612', latitude: '44.873803568516145')
+Waypoint.create!(walk: walk_five, longitude: '-0.5517411231994628', latitude: '44.87010833173837')
 
 puts "Waypoints created... Did you take your swimming suit for waypoint 3 ?"
 
