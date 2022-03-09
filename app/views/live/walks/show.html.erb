@@ -15,6 +15,6 @@
     <%= f.input :waypoints, as: :hidden, input_html: { value: "INIT", data: { mapbox_target: 'waypoints' } } %>
     <%= f.input :distance, as: :hidden, input_html: { value: "0", data: { mapbox_target: 'distance' } } %>
     <%= f.input :duration, as: :hidden, input_html: { value: "0", data: { mapbox_target: 'duration' } } %>
-    <%= f.submit "End walk", class: "map-btn btn-min", data: { action: 'click->mapbox#endWalk' } %>
+    <%= f.submit "End walk", class: "map-btn btn-med", data: { action: 'click->mapbox#endWalk' } %>
   <% end %>
 </div>
