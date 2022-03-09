@@ -380,6 +380,17 @@ review7 = Review.create!(walk: walk_three, user: carole, comment: "Awesome tour 
 review7.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk3/bridges_carole_1_hwmxe6.jpg'), filename: 'bridges_carole_1_hwmxe6.jpg', content_type: 'image/jpg' },
                        { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk3/bridges_carole_2_x7mw37.jpg'), filename: 'bridges_carole_2_x7mw37.jpg', content_type: 'image/jpg' }])
 
+# -----reviews for walk_four (Mérignac)-----
+
+review8 = Review.create!(walk: walk_four, user: charles, comment: "Nice dog park along the way, Suze was very happy about it", rating: 5)
+review8.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk4/merignac_charles_1_t4wddb.jpg'), filename: 'merignac_charles_1_t4wddb', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_charles_2_prhyfu.jpg'), filename: 'merignac_charles_2_prhyfu.jpg', content_type: 'image/jpg' }])
+
+review9 = Review.create!(walk: walk_four, user: gala, comment: "Very beautiful antic fountain, would totally recommend for history aficionados", rating: 5)
+review9.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk4/merignac_gala_1_f2a3oa.jpg'), filename: 'merignac_gala_1_f2a3oa.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_gala_2_gn4rgz.jpg'), filename: 'merignac_gala_2_gn4rgz.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_gala_3_vqh5jw.jpg'), filename: 'merignac_gala_3_vqh5jw.jpg', content_type: 'image/jpg' }])
+
 puts "Reviews created... Disclaimer : Woolks takes no responsability for fake reviews !"
 
 puts "Creating 8 hotspot_walks"
