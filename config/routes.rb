@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'walks#index'
 
   resources :walks, except: [:show]
+  resources :favorite_walks, only: [:create, :destroy]
 
   namespace :description do
     resources :walks, only: [:show]
@@ -13,11 +14,15 @@ Rails.application.routes.draw do
   end
 
   namespace :recap_and_review do
-    resources :walks, only: [:show]
+    resources :walks, only: [:show] do
+      resources :favorite_walks, only: [:create, :destroy]
+    end
   end
 
   namespace :recap_and_save do
-    resources :walks, only: %i[show edit]
+    resources :walks, only: %i[show edit] do
+      resources :favorite_walks, only: [:create, :destroy]
+    end
   end
 
   namespace :my do

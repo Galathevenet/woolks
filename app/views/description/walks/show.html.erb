@@ -3,7 +3,7 @@
   <div id="carouselExampleControls" class="carousel slide container-child-margin" data-bs-ride="carousel">
     <div class="carousel-inner">
     <% if FavoriteWalk.exists?(user: @user,walk: @walk)%>
-      <%= link_to my_walk_favorite_walk_path(FavoriteWalk.find_by(user: @user,walk: @walk)), :method => :delete, class: "heart_icon" do %>
+      <%= link_to my_walk_favorite_walk_path(FavoriteWalk.find_by(user: @user,walk: @walk)), :method => :delete, class: "heart_icon", remote: true do %>
       <i class="fa-solid fa-heart"></i>
       <% end %>
     <%  else %>
