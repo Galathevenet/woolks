@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :favorite_walks, only: [:create, :destroy]
 
   namespace :description do
-    resources :walks, only: [:show]
+    resources :walks, only: [:show] do
+      resources :favorite_walks, only: [:create, :destroy]
+    end
   end
 
   namespace :live do
