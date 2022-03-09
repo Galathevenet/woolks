@@ -36,6 +36,14 @@
               <div class="dropdown-item">
                 <%= check_box_tag "hotspots_filters[]", hotspot_filter %>
                 <%= label_tag label %>
+                <i class='fa-solid <%=
+                  case label
+                  when "Dispenser" then "fa-toilet-paper"
+                  when "Dog park" then "fa-dog"
+                  when "Fountain" then "fa-faucet"
+                  end
+                  %>'>
+                </i>
               </div>
             <% end %>
           </div>
@@ -88,7 +96,7 @@
                 walk.hotspots.each do |h|
                   case h.category
                   when "dispenser" then hps.push("fa-toilet-paper")
-                  when "dog park" then hps.push("fa-tree")
+                  when "dog park" then hps.push("fa-dog")
                   when "fountain" then hps.push("fa-faucet")
                   end
                 end
