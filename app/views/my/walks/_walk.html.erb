@@ -43,6 +43,12 @@
               <i class="fa-solid fa-trash"></i>
             <% end %>
           </div>
+        <% elsif link == :favorite %>
+          <div class="icon">
+            <%= link_to my_walk_favorite_walk_path(walk_id), method: :delete, class: "heart_icon" do %>
+            <i class="fa-solid fa-heart"></i>
+            <% end %>
+          </div>
         <% else %>
           <div class="icon">
             <%= link_to edit_recap_and_save_walk_path(walk), class: "edit-icon" do %>

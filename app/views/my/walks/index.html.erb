@@ -24,6 +24,7 @@
       <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
         <div class="accordion-body">
           <% @favorite_walks.each do |walk| %>
+            <%= render 'walk', walk: walk, link: :favorite, title_option: walk.name.capitalize %>
           <% end %>
         </div>
       </div>
