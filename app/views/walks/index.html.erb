@@ -33,17 +33,19 @@
           </button>
           <div class="dropdown-menu">
             <% @hotspots_filters.each do |hotspot_filter, label| %>
-              <div class="dropdown-item">
-                <%= check_box_tag "hotspots_filters[]", hotspot_filter %>
-                <%= label_tag label %>
-                <i class='fa-solid <%=
-                  case label
-                  when "Dispenser" then "fa-toilet-paper"
-                  when "Dog park" then "fa-dog"
-                  when "Fountain" then "fa-faucet"
-                  end
-                  %>'>
-                </i>
+              <div class="dropdown-item" >
+                <%= check_box_tag "hotspots_filters[]", hotspot_filter, nil, id: hotspot_filter %>
+                <%= label_tag hotspot_filter, onclick: "event.stopPropagation()" do %>
+                  <span><%= label %></span>
+                  <i class='fa-solid <%=
+                    case label
+                    when "Dispenser" then "fa-toilet-paper"
+                    when "Dog park" then "fa-dog"
+                    when "Fountain" then "fa-faucet"
+                    end
+                    %>'>
+                  </i>
+                <% end %>
               </div>
             <% end %>
           </div>
