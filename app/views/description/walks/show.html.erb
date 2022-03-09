@@ -2,7 +2,6 @@
   <h1 class="container-child-margin"><%= @walk.name %></h1>
   <div id="carouselExampleControls" class="carousel slide container-child-margin" data-bs-ride="carousel">
     <div class="carousel-inner">
-    <div data-controller="favorite_walks">
       <% if FavoriteWalk.exists?(user: @user,walk: @walk)%>
         <%= link_to description_walk_favorite_walk_path(FavoriteWalk.find_by(user: @user,walk: @walk)), :method => :delete, class: "heart_icon" do %>
           <i class="fa-solid fa-heart"></i>
@@ -72,7 +71,8 @@
     </div>
   </div>
   <div class="reviews container-child-margin">
-    <h3>Avis des woolkers</h3>
+
+    <h3>Woolkers reviews</h3>
     <% if @walk.reviews.blank? %>
       <p>This walk has not been reviewed yet</p>
     <% else %>

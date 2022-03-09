@@ -2,7 +2,7 @@ class My::WalksController < ApplicationController
   def index
     # 3 onglets avec mes favoris, mes itinéraires créés, mon historique
     @published_walks = Walk.where(user: current_user, published: true)
-    @favorite_walks = [] # Walk.includes(:favorite_walks).where(favorite_walks: {user: current_user})
+    @favorite_walks = FavoriteWalk.where(user: current_user).map { |fwalk| fwalk.walk }
     @history_walks = Walk.where(user: current_user)
     @hotspots = Hotspot.all
     @waypoints = Waypoint.all

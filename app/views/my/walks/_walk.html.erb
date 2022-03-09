@@ -1,46 +1,38 @@
 <div class="card-walk-inline">
-        <div
-          class="mapbox"
-          id="map"
-          data-controller="mapbox"
-          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-          data-mapbox-hotspots-value="<%= [] %>"
-          data-mapbox-waypoints-value="<%= @waypoints.where(walk: walk).to_json %>"
-          data-mapbox-start-points-value="<%= @waypoints.length.zero? ? [] : [
-            longitude: @waypoints.where(walk: walk).first.longitude,
-            latitude: @waypoints.where(walk: walk).first.latitude
-            ].to_json %>"
-          data-mapbox-current-position-value="false"
-          data-mapbox-live-track-value="false"
-          data-mapbox-center-current-value="false">
-          <div data-mapbox-target="map" id="map" class="medium-map"></div>
-        </div>
-        <div class="card-walk-inline-infos">
-          <h3><%= title_option %></h3>
-          <div class="description">
-            <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length.round(1) %></strong> km</p>
-            <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
-            <p id= "hotspot-icon">
-              <%
-                hps = [] # Array that will contain the list of the hotspots categories of @walk.
-                walk.hotspots.each do |h|
-                  case h.category
-                  when "dispenser" then hps.push("fa-toilet-paper")
-                  when "dog park" then hps.push("fa-dog")
-                  when "fountain" then hps.push("fa-faucet")
-                  end
-                end
-                %>
-              <% hps.uniq.each do |hp| %>
-                <i class='fa-solid <%= hp %>'></i>
-              <% end %>
-            </p>
-          </div>
-        </div>
+  <div
+    class="mapbox"
+    id="map_inline"
+    data-controller="mapbox"
+    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    data-mapbox-hotspots-value="<%= [] %>"
+    data-mapbox-waypoints-value="<%= @waypoints.where(walk: walk).to_json %>"
+    data-mapbox-start-points-value="<%= @waypoints.length.zero? ? [] : [
+      longitude: @waypoints.where(walk: walk).first.longitude,
+      latitude: @waypoints.where(walk: walk).first.latitude
+      ].to_json %>"
+    data-mapbox-current-position-value="false"
+    data-mapbox-live-track-value="false"
+    data-mapbox-center-current-value="false">
+    <div data-mapbox-target="map" id="map" class="medium-map medium-map-inline"></div>
+  </div>
+  <%= link_to description_walk_path(walk) do %>
+    <div class="card-walk-inline-infos">
+      <div class="description">
+        <h3><%= title_option %></h3>
+        <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length.round(1) %></strong> km</p>
+        <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
+      </div>
+      <div>
         <% if link == :delete %>
           <div class="icon">
             <%= link_to my_walk_path(walk), method: :delete, class: "delete-icon", data: { confirm: "You sure?" } do %>
               <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
+        <% elsif link == :favorite %>
+          <div class="icon">
+            <%= link_to my_walk_favorite_walk_path(walk_id: walk, id: FavoriteWalk.find_by(user: current_user, walk: walk)), method: :delete, class: "heart_icon" do %>
+            <i class="fa-solid fa-heart"></i>
             <% end %>
           </div>
         <% else %>
@@ -51,3 +43,6 @@
           </div>
         <% end %>
       </div>
+    </div>
+  <% end %>
+</div>

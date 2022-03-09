@@ -10,15 +10,17 @@
   padding-right: 15px;
   margin-bottom: 10px;
 
-  #map {
+  #map_inline {
     height: 100%;
     width: 150px;
     object-fit: cover;
     margin-left: 0;
   }
 
-  .medium-map {
+  .medium-map-inline {
     margin-top: 0 !important;
+    width: 150px;
+    height: 120px;
   }
 
   i {
@@ -31,8 +33,17 @@
     color: $gray;
   }
 
+  .fa-heart {
+    font-size: 14px;
+    margin: 10px;
+    position: initial;
+    color: $secondary;
+  }
+
   .card-walk-inline-infos {
     padding: 15px 0px 15px 15px;
+    display: flex;
+    align-items: center;
 
     h3 {
       font-size: 14px;
@@ -41,15 +52,15 @@
       color: $gray;
       // margin: 10px;
       // padding: 6px;
-      margin-top: 15px;
-      text-align: left;
+      margin-top: 10px;
+      text-align: center;
       border-radius: 4px;
-      text-decoration: overline $secondary;
     }
 
     .description {
       color: $gray;
       border-radius: 4px;
+      width: 35vw;
     }
 
     p{
@@ -57,7 +68,7 @@
       line-height: 1.4;
       opacity: .7;
       margin-bottom: 0;
-      margin-top: 8px;
+      margin-top: 0;
       text-align: left;
     }
 
