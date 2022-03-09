@@ -22,8 +22,10 @@
           <div class="dropdown-menu">
             <% @durations.each do |duration, label| %>
               <div class="dropdown-item">
-                <%= check_box_tag "durations[]", duration %>
-                <%= label_tag label %>
+                <%= check_box_tag "durations[]", duration, nil, id: duration %>
+                <%= label_tag duration, onclick: "event.stopPropagation()" do %>
+                  <span><%= label %></span>
+                <% end %>
               </div>
             <% end %>
           </div>
@@ -33,9 +35,19 @@
           </button>
           <div class="dropdown-menu">
             <% @hotspots_filters.each do |hotspot_filter, label| %>
-              <div class="dropdown-item">
-                <%= check_box_tag "hotspots_filters[]", hotspot_filter %>
-                <%= label_tag label %>
+              <div class="dropdown-item" >
+                <%= check_box_tag "hotspots_filters[]", hotspot_filter, nil, id: hotspot_filter %>
+                <%= label_tag hotspot_filter, onclick: "event.stopPropagation()" do %>
+                  <span><%= label %></span>
+                  <i class='fa-solid <%=
+                    case label
+                    when "Dispenser" then "fa-toilet-paper"
+                    when "Dog park" then "fa-dog"
+                    when "Fountain" then "fa-faucet"
+                    end
+                    %>'>
+                  </i>
+                <% end %>
               </div>
             <% end %>
           </div>
@@ -87,8 +99,8 @@
                 hps = [] # Array that will contain the list of the hotspots categories of @walk.
                 walk.hotspots.each do |h|
                   case h.category
-                  when "dispenser" then hps.push("fa-trash-can")
-                  when "dog park" then hps.push("fa-tree")
+                  when "dispenser" then hps.push("fa-toilet-paper")
+                  when "dog park" then hps.push("fa-dog")
                   when "fountain" then hps.push("fa-faucet")
                   end
                 end

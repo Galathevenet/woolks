@@ -4,7 +4,11 @@ class RecapAndSave::WalksController < ApplicationController
     @walk = Walk.find(params[:id])
     @hotspots = @walk.hotspots
     @waypoints = @walk.waypoints
-    @start_points = [longitude: @waypoints.first.longitude, latitude: @waypoints.first.latitude]
+    if @waypoints.length.zero?
+      @start_points = []
+    else
+      @start_points = [longitude: @waypoints.first.longitude, latitude: @waypoints.first.latitude]
+    end
   end
 
   def edit
