@@ -481,23 +481,21 @@ review9.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/imag
 
 # -----reviews for walk_five (Bacalan)-----
 
-review10 = Review.create!(walk: walk_four, user: marion, comment: "Nice dog park along the way, Suze was very happy about it", rating: 5)
-review10.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk4/merignac_charles_1_t4wddb.jpg'), filename: 'merignac_charles_1_t4wddb', content_type: 'image/jpg' },
-                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_charles_2_prhyfu.jpg'), filename: 'merignac_charles_2_prhyfu.jpg', content_type: 'image/jpg' }])
+review10 = Review.create!(walk: walk_five, user: marion, comment: "I liked the dog park but it was quite small", rating: 4)
+review10.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk5/bacalan_marion_1_pt5yce.jpg'), filename: 'bacalan_marion_1_pt5yce', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk5/bacalan_marion_2_ed5m7n.jpg'), filename: 'bacalan_marion_2_ed5m7n.jpg', content_type: 'image/jpg' }])
 
-review11 = Review.create!(walk: walk_four, user: cedric, comment: "Very beautiful antic fountain, would totally recommend for history aficionados", rating: 5)
-review11.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk4/merignac_gala_1_f2a3oa.jpg'), filename: 'merignac_gala_1_f2a3oa.jpg', content_type: 'image/jpg' },
-                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_gala_2_gn4rgz.jpg'), filename: 'merignac_gala_2_gn4rgz.jpg', content_type: 'image/jpg' },
-                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_gala_3_vqh5jw.jpg'), filename: 'merignac_gala_3_vqh5jw.jpg', content_type: 'image/jpg' }])
+review11 = Review.create!(walk: walk_five, user: cedric, comment: "Beautiful Parc du Bacalan along la Garonne", rating: 5)
+review11.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk5/bacalan_cedric_1_qkox9o.jpg'), filename: 'bacalan_cedric_1_qkox9o.jpg', content_type: 'image/jpg' }])
 
-review12 = Review.create!(walk: walk_four, user: carole, comment: "Nice dog park along the way, Suze was very happy about it", rating: 5)
-review12.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk4/merignac_charles_1_t4wddb.jpg'), filename: 'merignac_charles_1_t4wddb', content_type: 'image/jpg' },
-                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_charles_2_prhyfu.jpg'), filename: 'merignac_charles_2_prhyfu.jpg', content_type: 'image/jpg' }])
+review12 = Review.create!(walk: walk_five, user: carole, comment: "My dog met a very cute puppy it was so sweet <3", rating: 5)
+review12.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk5/bacalan_carole_2_pgpt70.jpg'), filename: 'bacalan_carole_2_pgpt70', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk5/bacalan_carole_1_g0pvtw.jpg'), filename: 'bacalan_carole_1_g0pvtw.jpg', content_type: 'image/jpg' }])
 
-review13 = Review.create!(walk: walk_four, user: julia, comment: "Very beautiful antic fountain, would totally recommend for history aficionados", rating: 5)
-review13.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk4/merignac_gala_1_f2a3oa.jpg'), filename: 'merignac_gala_1_f2a3oa.jpg', content_type: 'image/jpg' },
-                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_gala_2_gn4rgz.jpg'), filename: 'merignac_gala_2_gn4rgz.jpg', content_type: 'image/jpg' },
-                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk4/merignac_gala_3_vqh5jw.jpg'), filename: 'merignac_gala_3_vqh5jw.jpg', content_type: 'image/jpg' }])
+review13 = Review.create!(walk: walk_five, user: julia, comment: "A very big diversity of landscapes, i took a lot of pictures along the way", rating: 5)
+review13.photos.attach([{ io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404654/Walks/Walk5/bacalan_julia_1_apyhe0.jpg'), filename: 'bacalan_julia_1_apyhe0.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk5/bacalan_julia_2_vtb6lu.jpg'), filename: 'bacalan_julia_2_vtb6lu.jpg', content_type: 'image/jpg' },
+                       { io: URI.open('https://res.cloudinary.com/djcv5afgd/image/upload/v1646404658/Walks/Walk5/bacalan_julia_3_lowvdn.jpg'), filename: 'bacalan_julia_3_lowvdn.jpg', content_type: 'image/jpg' }])
 
 puts "Reviews created... Disclaimer : Woolks takes no responsability for fake reviews !"
 
