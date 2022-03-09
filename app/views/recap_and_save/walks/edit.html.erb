@@ -14,7 +14,17 @@
       data-mapbox-center-current-value="false">
       <div data-mapbox-target="map" id="map" class="medium-map"></div>
     </div>
-    <i class="fa-solid fa-heart"></i>
+    <div class="fav-heart">
+    <% if FavoriteWalk.exists?(user: current_user, walk: @walk)%>
+      <%= link_to recap_and_save_walk_favorite_walk_path(FavoriteWalk.find_by(user: current_user, walk: @walk)), :method => :delete, class: "heart_icon" do %>
+        <i class="fa-solid fa-heart"></i>
+      <% end %>
+    <%  else %>
+      <%= link_to recap_and_save_walk_favorite_walks_path(@walk.id), :method => :post, class: "heart_icon" do %>
+        <i class="fa-regular fa-heart"></i>
+      <% end %>
+    <% end %>
+    </div>
   </div>
 
     <div class="walk-recap">

@@ -1,4 +1,4 @@
-class My::FavoriteWalksController < ApplicationController
+class Description::FavoriteWalksController < ApplicationController
 
   def create
     @favorite_walk = FavoriteWalk.new(favorite_walk_params)
