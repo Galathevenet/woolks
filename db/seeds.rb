@@ -285,7 +285,7 @@ puts "Creating 4 Hotspots"
 hotspot_park1 = Hotspot.create!(
   category: "dog park",
   name: "My favorite park",
-  longitude: "0.5642509460449219",
+  longitude: "-0.5642509460449219",
   latitude: "44.84765428924366"
 )
 

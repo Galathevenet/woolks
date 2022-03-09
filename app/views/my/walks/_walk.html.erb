@@ -6,7 +6,7 @@
           data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
           data-mapbox-hotspots-value="<%= [] %>"
           data-mapbox-waypoints-value="<%= @waypoints.where(walk: walk).to_json %>"
-          data-mapbox-start-points-value="<%= [
+          data-mapbox-start-points-value="<%= @waypoints.length.zero? ? [] : [
             longitude: @waypoints.where(walk: walk).first.longitude,
             latitude: @waypoints.where(walk: walk).first.latitude
             ].to_json %>"
