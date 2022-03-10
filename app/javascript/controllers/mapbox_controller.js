@@ -63,8 +63,6 @@ export default class extends Controller {
   }
 
   endWalk() {
-    console.log("endWalk");
-
     navigator.geolocation.clearWatch(this.watchPositionId);
 
     navigator.geolocation.getCurrentPosition(
@@ -80,7 +78,6 @@ export default class extends Controller {
     this.endTime = new Date()
     this.durationTarget.value = (this.endTime - this.startTime)/1000;
     this.waypointsTarget.value = this.currentWalkData.features[0].geometry.coordinates;
-    console.log(this.waypointsTarget.value)
   }
 
   #endWalkError = (error) => {
