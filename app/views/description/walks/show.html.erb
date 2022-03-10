@@ -60,7 +60,14 @@
           <% end %>
         </div>
         <p><i class="fa-solid fa-person-hiking"></i> <strong><%= @walk.length.round(1) %></strong> km</p>
-        <p><i class="fa-solid fa-stopwatch"></i> <strong><%= @walk.duration/60 %></strong> min</p>
+        <p>
+          <i class="fa-solid fa-stopwatch"></i>
+          <% if @walk.duration > 3600 %>
+            <strong><%= (@walk.duration/60) / 60%></strong> h <strong><%= sprintf('%02d', ((@walk.duration/60) % 60)) %></strong>
+          <% else %>
+            <strong><%= @walk.duration/60 %></strong> min
+          <% end %>
+        </p>
         <p id= "hotspot-icon">
           <% @hps.uniq.each do |hp| %>
             <i class='fa-solid <%= hp %>'></i>

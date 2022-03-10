@@ -22,7 +22,14 @@
       <div class="description">
         <h3><%= title_option %></h3>
         <p><i class="fa-solid fa-person-hiking action-icons"></i> <strong><%= walk.length.round(1) %></strong> km</p>
-        <p><i class="fa-solid fa-stopwatch action-icons"></i> <strong><%= walk.duration/60 %></strong> min</p>
+        <p>
+          <i class="fa-solid fa-stopwatch action-icons"></i>
+          <% if walk.duration > 3600 %>
+            <strong><%= (walk.duration/60) / 60%></strong> h <strong><%= sprintf('%02d', ((walk.duration/60) % 60)) %></strong>
+          <% else %>
+            <strong><%= walk.duration/60 %></strong> min
+          <% end %>
+        </p>
       </div>
       <div>
         <% if link == :delete %>
