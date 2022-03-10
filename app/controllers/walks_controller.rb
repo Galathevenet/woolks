@@ -3,11 +3,7 @@ class WalksController < ApplicationController
 
   def index
     # affichage map + carte nouvel itinéraire + grilles cartes
-    # Delete walks with no waypoints
-    # raise
-    Walk.all.each do |walk|
-      walk.destroy if walk.waypoints.empty?
-    end
+
     @durations = {
       less_than_fifteen: "Up to 15 min",
       less_than_thirty: "15 to 30 min",
@@ -22,85 +18,6 @@ class WalksController < ApplicationController
       fountain_walks: "Fountain",
       dispenser_walks: "Dispenser"
     }
-
-    # if params[:durations]
-    #   params[:durations].each do |hotspot_filter|
-    #     case hotspot_filter
-    #     when "less_than_fifteen" then sql += "duration <= 900"
-    #     when "less_than_thirty" then sql += "duration <= 1800 AND duration > 900"
-    #     when "one_hour" then sql += "duration <= 3600 AND duration > 1800"
-    #     when "one_hour_thirty" then sql += "duration <= 5400 AND duration > 3600"
-    #     when "two_hours" then sql += "duration <= 7200 AND duration > 5400"
-    #     when "more_than_two" then sql += "duration > 7200"
-    #     end
-    #   end
-    #   @walks = Walk.where(published: true).where("duration <= ?", min_duration, max_duration)
-    # else
-    #   @walks = Walk.where(published: true)
-    # end
-
-    # if params[:hotspots_filters]
-    #   sql = "hotspots.category IN ("
-    #   params[:hotspots_filters].each do |hotspot|
-    #     case hotspot
-    #     when "park_walks" then sql += "dog park"
-    #     when "fountain_walks" then sql += "fountain"
-    #     when "dispenser_walks" then sql += "dispenser"
-    #     end
-    #     sql += ", "
-    #   end
-    #   sql = sql.slice(..-3) # get rid of the last ", "
-    #   sql += ") "
-    #   @walks = @walks.send(:joins_hotspots).where(sql)
-    # end
-
-
-
-    # @walks = Walk
-    #   .joins(:hotspots)
-    #   .where(published: true)
-    #   .where("duration BETWEEN ? AND ?", 0, 20 * 60)
-
-    # @walks = @walks
-    #   .where("hotspots.category = ?", "dog park")
-    #   .group(:id)
-      # .where("hotspots.category = ?", "dog park")
-      # .where("hotspots.category = ?", "fountain")
-      # .where(hotspot: ['dog park', 'fountain'])
-
-    # if params[:durations]
-    #   sql = ""
-    #   params[:durations].each do |hotspot_filter|
-    #     case hotspot_filter
-    #     when "less_than_fifteen" then sql += "duration <= 900"
-    #     when "less_than_thirty" then sql += "duration <= 1800 AND duration > 900"
-    #     when "one_hour" then sql += "duration <= 3600 AND duration > 1800"
-    #     when "one_hour_thirty" then sql += "duration <= 5400 AND duration > 3600"
-    #     when "two_hours" then sql += "duration <= 7200 AND duration > 5400"
-    #     when "more_than_two" then sql += "duration > 7200"
-    #     end
-    #     sql += " OR "
-    #   end
-    #   sql = sql.slice(..-4) # get rid of the last "OR "
-    #   @walks = Walk.where(published: true).where(sql)
-    # else
-    #   @walks = Walk.where(published: true)
-    # end
-
-    # if params[:hotspots_filters]
-    #   sql = "hotspots.category IN ("
-    #   params[:hotspots_filters].each do |hotspot_filter|
-    #     case hotspot_filter
-    #     when "park_walks" then sql += "dog park"
-    #     when "fountain_walks" then sql += "fountain"
-    #     when "dispenser_walks" then sql += "dispenser"
-    #     end
-    #     sql += ", "
-    #   end
-    #   sql = sql.slice(..-3) # get rid of the last ", "
-    #   sql += ") "
-    #   @walks = @walks.send(:joins_hotspots).where(sql)
-    # end
 
     @search_filters =
       if params[:durations] && params[:hotspots_filters]
@@ -131,12 +48,19 @@ class WalksController < ApplicationController
     @waypoints = Waypoint.all
 
     @start_points = []
+
+    # Walk.all.each do |walk|
+    #   walk.destroy if walk.waypoints.empty?
+    # end
+
     @walks.each do |walk|
-      @start_points.push(
-        longitude: walk.waypoints.first.longitude,
-        latitude: walk.waypoints.first.latitude,
-        info_window: render_to_string(partial: "info_window", locals: { walk: walk })
-      )
+      unless walk.waypoints.empty?
+        @start_points.push(
+          longitude: walk.waypoints.first.longitude,
+          latitude: walk.waypoints.first.latitude,
+          info_window: render_to_string(partial: "info_window", locals: { walk: walk })
+        )
+      end
     end
   end
 
