@@ -19,8 +19,8 @@
     <div class="card-walk-inline-infos">
       <div class="description">
         <h3><%= title_option %></h3>
-        <p><i class="fa-solid fa-person-hiking"></i> <strong><%= walk.length.round(1) %></strong> km</p>
-        <p><i class="fa-solid fa-stopwatch"></i> <strong><%= walk.duration/60 %></strong> min</p>
+        <p><i class="fa-solid fa-person-hiking action-icons"></i> <strong><%= walk.length.round(1) %></strong> km</p>
+        <p><i class="fa-solid fa-stopwatch action-icons"></i> <strong><%= walk.duration/60 %></strong> min</p>
       </div>
       <div>
         <% if link == :delete %>
@@ -28,13 +28,13 @@
           <% unless FavoriteWalk.exists?(user: current_user, walk: walk) %>
             <div class="icon">
               <%= link_to my_walk_path(walk), method: :delete, class: "delete-icon", data: { confirm: "You sure?" } do %>
-                <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid fa-trash action-icons"></i>
               <% end %>
             </div>
           <% else %>
           <div class="icon">
             <%= link_to my_walk_favorite_walk_path(walk_id: walk, id: FavoriteWalk.find_by(user: current_user, walk: walk)), method: :delete, class: "heart_icon" do %>
-            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-heart action-icons"></i>
             <% end %>
           </div>
           <% end %>
@@ -42,13 +42,13 @@
         <% elsif link == :favorite %>
           <div class="icon">
             <%= link_to my_walk_favorite_walk_path(walk_id: walk, id: FavoriteWalk.find_by(user: current_user, walk: walk)), method: :delete, class: "heart_icon" do %>
-            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-heart action-icons"></i>
             <% end %>
           </div>
         <% else %>
           <div class="icon">
             <%= link_to edit_recap_and_save_walk_path(walk), class: "edit-icon" do %>
-              <i class="fa-solid fa-pen"></i>
+              <i class="fa-solid fa-pen action-icons"></i>
             <% end %>
           </div>
         <% end %>
