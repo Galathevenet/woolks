@@ -9,8 +9,7 @@ class Walk < ApplicationRecord
 
   has_many_attached :photos
 
-  validates :name, presence: true, length: { minimum: 6 }
-  # validates :description, presence: true, length: { in: 6..500 }
+  validates :name, presence: true, length: { minimum: 6, maximum: 30 }
   validates :date, presence: true
   validates :duration, presence: true
   validates :length, presence: true

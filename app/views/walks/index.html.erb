@@ -17,7 +17,7 @@
         <%= form_tag(walks_path, method: 'get') do %>
 
           <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
-            <b class="filter-title">Duration ⌄</b>
+            <b class="filter-title">Duration  <span><i class="fa-solid fa-angle-down"></i></span></b>
           </button>
           <div class="dropdown-menu">
             <% @durations.each do |duration, label| %>
@@ -31,7 +31,7 @@
           </div>
 
           <button type="button" class="btn" data-bs-toggle="dropdown" class="dropdown-toggle">
-            <b class="filter-title">Hotspots  ⌄</b>
+            <b class="filter-title">Hotspots  <span><i class="fa-solid fa-angle-down"></i></span></b>
           </button>
           <div class="dropdown-menu">
             <% @hotspots_filters.each do |hotspot_filter, label| %>
@@ -84,10 +84,12 @@
               data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
               data-mapbox-hotspots-value="<%= [] %>"
               data-mapbox-waypoints-value="<%= @waypoints.where(walk: walk).to_json %>"
-              data-mapbox-start-points-value="<%= [
+              data-mapbox-start-points-value="<%=
+                @waypoints.where(walk: walk).length.zero? ? [] : [
                 longitude: @waypoints.where(walk: walk).first.longitude,
                 latitude: @waypoints.where(walk: walk).first.latitude
-                ].to_json %>"
+                ].to_json
+                %>"
               data-mapbox-current-position-value="false"
               data-mapbox-live-track-value="false"
               data-mapbox-center-current-value="false">
