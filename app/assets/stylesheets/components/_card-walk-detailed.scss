@@ -109,7 +109,17 @@
       max-height: 130px;
       overflow-y: scroll;
       margin-bottom: 8px;
-  }
+    }
+
+    .reviewdiv {
+      border-bottom: 1px dotted $gray;
+      padding-bottom: 5px;
+    }
+
+    .reviewdiv:last-child {
+      border:none;
+    }
+
   }
 
 .modal-dialog {

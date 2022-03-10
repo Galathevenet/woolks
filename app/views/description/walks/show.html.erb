@@ -83,9 +83,8 @@
       <p>This walk has not been reviewed yet</p>
     <% else %>
       <div class="review-scrolldown">
-
         <% @walk.reviews.order(created_at: :desc).each do |review| %>
-        <div class="mb-2">
+        <div class="mb-2 reviewdiv">
           <p><%= cl_image_tag review.user.photo.key, crop: :thumb, gravity: :face, class: "avatar-review" %>
             <%= review.user.username %> | <% review.rating.times do %>
               <span class="fa fa-star"></span>
@@ -102,8 +101,6 @@
                 <%= cl_image_tag photo.key, height: 50, width: 50,  crop: :fill, class: "photo-size", data: {'bs-toggle': "modal", 'bs-target': "#review#{review.id}Modal"} %>
               <% end %>
             </div>
-
-            <div class="dropdown-divider"></div>
           </div>
         <% end %>
 
