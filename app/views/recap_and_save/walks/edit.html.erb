@@ -33,7 +33,11 @@
     </div>
     <div class="walk-recap">
       <i class="fa-solid fa-stopwatch"></i>
-      <strong><%= @walk.duration/60 %></strong> min
+      <% if @walk.duration > 3600 %>
+        <strong><%= (@walk.duration/60) / 60%></strong> h <strong><%= sprintf('%02d', ((@walk.duration/60) % 60)) %></strong>
+      <% else %>
+        <strong><%= @walk.duration/60 %></strong> min
+      <% end %>
     </div>
     <br>
     <div>
