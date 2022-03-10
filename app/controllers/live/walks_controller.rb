@@ -19,9 +19,12 @@ class Live::WalksController < ApplicationController
 
     # From: "2.3522219,48.856614,2.3522219,48.856614,2.3522219,48.856614"
     # To: [[2.3522219, 48.856614], [2.3522219, 48.856614], [2.3522219, 48.856614]]
-    params['walk']['waypoints'].split(',').map(&:to_f).each_slice(2).to_a.each do |coords|
-      Waypoint.create!(walk: @walk, longitude: coords[0], latitude: coords[1])
+    unless params['walk']['waypoints'] == "INIT"
+      params['walk']['waypoints'].split(',').map(&:to_f).each_slice(2).to_a.each do |coords|
+        Waypoint.create!(walk: @walk, longitude: coords[0], latitude: coords[1])
+      end
     end
+
 
     @walk.update(
       length: params['walk']['distance'],
