@@ -1,7 +1,9 @@
 class Walk < ApplicationRecord
 
   belongs_to :user
+
   belongs_to :original_walk, optional: true, class_name: "Walk"
+  has_many :walks, foreign_key: :original_walk_id, dependent: :nullify
   has_many :hotspot_walks, dependent: :destroy
   has_many :hotspots, through: :hotspot_walks
   has_many :waypoints, dependent: :destroy
